@@ -27,7 +27,8 @@ public class ImportRoom : MonoBehaviour {
 			string[] columns = rowValue.Split (';');
 			matrix [row] = new Room[columns.Length];
 			for (int col = 0; col < columns.Length; ++col) {
-				string cell = columns [col];
+				string[] cells = columns [col].Split (',');
+				string cell = cells[0];
 				if (cell != "") {
 					Room room = new Room ();
 					matrix [row] [col] = room;
@@ -38,6 +39,11 @@ public class ImportRoom : MonoBehaviour {
 						cell = cell.Replace ("*", "");
 					}
 					int cellType = int.Parse (cell);
+					if (cells.Length > 1) {
+						for (int i = 1; i < cells.Length; ++i) {
+							room.actions.Add(new Action(cells[i]));
+						}
+					}
 					room.type = (RoomType)cellType;
 					rooms.Add (room);
 				}
@@ -78,9 +84,19 @@ public class ImportRoom : MonoBehaviour {
 			corridor.transform.position = (new Vector3(x, 0, z));
 			var tile = corridor.GetComponent<CorridorTile> ();
 			room.corridorTile = tile;
+			tile.actions.AddRange (room.actions);
 		}
 
 		foreach (var room in rooms) {
+
+			foreach (var action in room.actions) {
+				if (action.NeedTile) {
+					int row = action.data [0];
+					int col = action.data [1];
+					action.tile = matrix [row] [col].corridorTile;
+				}
+			}
+
 			if (room.north != null) {
 				room.corridorTile.SetEdge (Direction.North, room.north.corridorTile);					
 			}

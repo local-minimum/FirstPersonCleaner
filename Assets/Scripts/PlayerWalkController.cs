@@ -115,6 +115,16 @@ public class PlayerWalkController : MonoBehaviour {
 
         transform.position = target.playerPosition;
         currentTile = target;
+		foreach (Action action in currentTile.actions) {
+			switch (action.action) {
+			case "teleport":
+				currentTile = action.tile;
+				transform.position = currentTile.playerPosition;
+				break;
+			default:
+				break;
+			}
+		}
         transitioning = false;
     }
 

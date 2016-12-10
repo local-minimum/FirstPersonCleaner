@@ -9,6 +9,9 @@ public class CorridorTile : MonoBehaviour {
 	[SerializeField]
     CorridorTile[] edges = new CorridorTile[4];
 
+	[SerializeField]
+	public List<Action> actions = new List<Action>();
+
     Vector3 offset = Vector3.up * 1.5f;
 
     public CorridorTile GetEdge(Direction direction)

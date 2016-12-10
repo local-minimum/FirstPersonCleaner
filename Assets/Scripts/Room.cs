@@ -9,6 +9,7 @@ public class Room {
 	public Room north;
 	public Room south;
 	public CorridorTile corridorTile;
+	public List<Action> actions = new List<Action>(); 
 
 	public RoomType type;
 
