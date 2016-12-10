@@ -142,6 +142,7 @@ public class CorridorSegmentPlacer : MonoBehaviour {
         }
 
         segment.position = position;
+        segment.gameObject.AddComponent<CorridorTile>();
 
         return segment.gameObject;
     }
