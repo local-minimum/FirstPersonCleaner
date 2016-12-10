@@ -1,11 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 public enum Direction { North, East, South, West};
 
 public class CorridorTile : MonoBehaviour {
 
+    OneRoomDoor[] doors = new OneRoomDoor[0];
+    
 	[SerializeField]
     CorridorTile[] edges = new CorridorTile[4];
 
@@ -13,6 +16,11 @@ public class CorridorTile : MonoBehaviour {
 	public List<Action> actions = new List<Action>();
 
     Vector3 offset = Vector3.up * 0.25f;
+
+    public bool HasDoor(OneRoomDoor door)
+    {
+        return doors.Contains(door);
+    }
 
     public CorridorTile GetEdge(Direction direction)
     {
@@ -77,5 +85,10 @@ public class CorridorTile : MonoBehaviour {
         {
             return transform.position + offset;
         }
+    }
+
+    void Start()
+    {
+        doors = GetComponentsInChildren<OneRoomDoor>();
     }
 }

@@ -34,6 +34,14 @@ public class PlayerWalkController : MonoBehaviour {
     [SerializeField, Range(0, 3)]
     float rotationDuration = 1f;
 
+    public CorridorTile CurrentTile
+    {
+        get
+        {
+            return currentTile;
+        }
+    }
+
     public void SetCurrentTile(CorridorTile tile)
     {
         currentTile = tile;

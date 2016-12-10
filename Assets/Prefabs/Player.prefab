@@ -39,6 +39,7 @@ GameObject:
   - component: {fileID: 124718728142645526}
   - component: {fileID: 81869903408728474}
   - component: {fileID: 114059285372632768}
+  - component: {fileID: 114890314836039830}
   m_Layer: 0
   m_Name: Cam
   m_TagString: MainCamera
@@ -142,15 +143,15 @@ MonoBehaviour:
     - serializedVersion: 2
       time: 0
       value: 0
-      inSlope: 1
-      outSlope: 1
-      tangentMode: 34
+      inSlope: 2
+      outSlope: 2
+      tangentMode: 0
     - serializedVersion: 2
       time: 1
       value: 1
-      inSlope: 1
-      outSlope: 1
-      tangentMode: 34
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 0
@@ -211,6 +212,20 @@ MonoBehaviour:
   walkDuration: 0.4
   refuseDuration: 0.2
   rotationDuration: 0.3
+--- !u!114 &114890314836039830
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1524272297889150}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f587ffa6e1b2bb742b4f3219880f4e77, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  doorLayer:
+    serializedVersion: 2
+    m_Bits: 256
 --- !u!124 &124718728142645526
 Behaviour:
   m_ObjectHideFlags: 1
