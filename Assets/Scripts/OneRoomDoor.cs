@@ -47,6 +47,8 @@ public class OneRoomDoor : MonoBehaviour {
         room = Instantiate(roomPrefab);
         room.transform.SetParent(transform);
         room.transform.Rotate(Vector3.up, (int)direction * 90);
-        room.transform.position = tile.transform.position + CorridorTile.GetLookDirection(direction) * 2.5f;
+        Direction ortho;
+        CorridorTile.GetRotation(direction, true, out ortho);
+        room.transform.position = tile.transform.position + CorridorTile.GetLookDirection(direction) * 2.5f + CorridorTile.GetLookDirection(ortho) * 0.4f;
     }
 }
