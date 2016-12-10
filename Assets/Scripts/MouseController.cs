@@ -10,6 +10,9 @@ public class MouseController : MonoBehaviour {
     LayerMask doorLayer;
 
     [SerializeField]
+    LayerMask roomLayer;
+
+    [SerializeField]
     PlayerWalkController playerCtrl;
 
     void Start()
@@ -32,6 +35,88 @@ public class MouseController : MonoBehaviour {
                     door.OpenDoor(playerCtrl.LookDirection);
                 }
             }
+            else if (Physics.Raycast(r, out hit, 10, roomLayer))
+            {
+                Transform target = null;
+
+                if (hit.transform.gameObject.tag == "TV")
+                {
+                    //TURN OFF IF POSSIBLE
+                }
+                else if (hit.transform.gameObject.tag == "Cupboard")
+                {
+
+                    if (RoomInteractionTargetOccupied(hit.transform, "Cupboard", out target))
+                    {
+                        playerCtrl.Inventory.ReturnDND(target.GetChild(0).gameObject);
+                    } else if (target)
+                    {
+                        GameObject dnd = playerCtrl.Inventory.GetDND();
+                        if (dnd)
+                        {
+                            dnd.transform.SetParent(target);
+                            dnd.transform.rotation = target.rotation;
+                            dnd.transform.position = target.position;
+                        }
+                    }
+                }
+                else if (hit.transform.gameObject.tag == "Floor")
+                {
+
+                    if (RoomInteractionTargetOccupied(hit.transform, "Floor", out target))
+                    {
+                        Debug.Log("Return");
+                        playerCtrl.Inventory.ReturnWetFloor(target.GetChild(0).gameObject);
+                    }
+                    else if (target)
+                    {
+                        Debug.Log("Place");
+                        GameObject wetFloor = playerCtrl.Inventory.GETWetFloor();
+                        if (wetFloor)
+                        {
+                            wetFloor.transform.SetParent(target);
+                            wetFloor.transform.rotation = target.rotation;
+                            wetFloor.transform.position = target.position;
+                        }
+                    }
+                }
+                else if (hit.transform.gameObject.tag == "Bed")
+                {
+
+                    if (RoomInteractionTargetOccupied(hit.transform, "Bed", out target))
+                    {
+                        playerCtrl.Inventory.ReturnTowel(target.GetChild(0).gameObject);
+                    }
+                    else if (target)
+                    {
+                        GameObject towel = playerCtrl.Inventory.GetTowel();
+                        if (towel)
+                        {
+                            towel.transform.SetParent(target);
+                            towel.transform.rotation = target.rotation;
+                            towel.transform.position = target.position;
+                        }
+                    }
+                }
+            }
         }
 	}
+
+    static bool RoomInteractionTargetOccupied(Transform parent, string tag, out Transform child)
+    {
+        child = null;
+        for (int i = 0, l = parent.childCount; i < l; i++)
+        {            
+            child = parent.GetChild(i);
+            if (child.tag == tag)
+            {
+                Debug.Log(child.childCount);
+                break;
+            } else
+            {
+                child = null;
+            }
+        }
+        return child != null && child.tag == tag && child.childCount == 1;
+    }
 }

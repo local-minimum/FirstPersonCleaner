@@ -68,6 +68,21 @@ public class PlayerWalkController : MonoBehaviour {
 
     bool transitioning = false;
 
+    PlayerInventory inventory;
+
+    public PlayerInventory Inventory
+    {
+        get
+        {
+            return inventory;
+        }
+    }
+
+    void Start()
+    {
+        inventory = GetComponentInParent<PlayerInventory>();
+    }
+
 	void Update () {
         if (!transitioning)
         {

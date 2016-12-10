@@ -313,9 +313,38 @@ Prefab:
       propertyPath: m_RootOrder
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 114890314836039830, guid: 1fc85c35883f0ba45b8451ddeeb6a71c,
+        type: 2}
+      propertyPath: roomLayer.m_Bits
+      value: 512
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 1fc85c35883f0ba45b8451ddeeb6a71c, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &832651301 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1368181447676144, guid: 1fc85c35883f0ba45b8451ddeeb6a71c,
+    type: 2}
+  m_PrefabInternal: {fileID: 723181906}
+--- !u!114 &832651302
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 832651301}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bd8f1589ae2be6d49bd2eef6d0242a75, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  capacityTowels: 5
+  capacityDND: 5
+  capacityWetFloor: 5
+  prefabTowels: {fileID: 1150486710590376, guid: 236e34e6a4133e64d8d7c2111ffd7168,
+    type: 2}
+  prefabDND: {fileID: 1150486710590376, guid: 236e34e6a4133e64d8d7c2111ffd7168, type: 2}
+  prefabWetFloor: {fileID: 1150486710590376, guid: 236e34e6a4133e64d8d7c2111ffd7168,
+    type: 2}
 --- !u!114 &1774455230 stripped
 MonoBehaviour:
   m_PrefabParentObject: {fileID: 114112589191766880, guid: d11441aeaa805094b92273e34b64d212,
