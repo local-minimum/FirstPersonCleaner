@@ -12,6 +12,14 @@ public class MouseController : MonoBehaviour {
     [SerializeField]
     LayerMask roomLayer;
 
+    [SerializeField]
+    WorkInstructions workInstructions;
+
+    [SerializeField]
+    LayerMask workInstructionsLayer;
+
+    bool lookingAtInstructions = false;
+
     PlayerWalkController playerCtrl;
 
     void Start()
@@ -20,8 +28,9 @@ public class MouseController : MonoBehaviour {
         playerCtrl = GetComponentInParent<PlayerWalkController>();
     }
 
-	void Update () {
-		if (Input.GetButtonDown("interact"))
+    void Update()
+    {
+        if (Input.GetButtonDown("interact"))
         {
 
             Ray r = cam.ScreenPointToRay(Input.mousePosition);
@@ -53,7 +62,8 @@ public class MouseController : MonoBehaviour {
                     if (RoomInteractionTargetOccupied(hit.transform, "Cupboard", out target))
                     {
                         playerCtrl.Inventory.ReturnDND(target.GetChild(0).gameObject);
-                    } else if (target)
+                    }
+                    else if (target)
                     {
                         GameObject dnd = playerCtrl.Inventory.GetDND();
                         if (dnd)
@@ -103,8 +113,16 @@ public class MouseController : MonoBehaviour {
                     }
                 }
             }
+            else if (Physics.Raycast(r, out hit, 10, workInstructionsLayer))
+            {
+                workInstructions.PickUp();
+                lookingAtInstructions = true;
+            }
+        } else if (Input.GetButtonUp("interact") && lookingAtInstructions)
+        {
+            workInstructions.PutDown();
         }
-	}
+    }
 
     static bool RoomInteractionTargetOccupied(Transform parent, string tag, out Transform child)
     {

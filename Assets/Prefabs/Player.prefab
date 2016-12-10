@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 4874139234994210}
   - component: {fileID: 33743987727439356}
   - component: {fileID: 23186181563654230}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Trolly
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -76,7 +76,8 @@ GameObject:
   - component: {fileID: 33097766801100278}
   - component: {fileID: 65142711641017956}
   - component: {fileID: 23920093608213926}
-  m_Layer: 0
+  - component: {fileID: 114119385134497970}
+  m_Layer: 10
   m_Name: WorkOrder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -108,7 +109,8 @@ GameObject:
   m_Component:
   - component: {fileID: 4249660621519980}
   - component: {fileID: 114608663168777594}
-  m_Layer: 0
+  - component: {fileID: 95484333030983892}
+  m_Layer: 10
   m_Name: Trolly
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -150,7 +152,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1918510190877814}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -178,7 +180,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1668124569839888}
-  m_LocalRotation: {x: -0, y: -0.122435406, z: -0, w: 0.99247646}
+  m_LocalRotation: {x: 0, y: -0.12243224, z: 0, w: 0.9924769}
   m_LocalPosition: {x: -0.37, y: -0.37, z: 0.89}
   m_LocalScale: {x: 0.2, y: 0.03, z: 0.4}
   m_Children: []
@@ -334,6 +336,23 @@ Behaviour:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1524272297889150}
   m_Enabled: 1
+--- !u!95 &95484333030983892
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1918510190877814}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: bc810d8e1275fd248a8fcc36555db3ec, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
 --- !u!108 &108751022910962800
 Light:
   m_ObjectHideFlags: 1
@@ -459,6 +478,17 @@ MonoBehaviour:
   walkDuration: 0.4
   refuseDuration: 0.2
   rotationDuration: 0.3
+--- !u!114 &114119385134497970
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1668124569839888}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ea853f041b7146c46969efc3453a0961, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114217231561059072
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -507,6 +537,10 @@ MonoBehaviour:
   roomLayer:
     serializedVersion: 2
     m_Bits: 512
+  workInstructions: {fileID: 114119385134497970}
+  workInstructionsLayer:
+    serializedVersion: 2
+    m_Bits: 1024
 --- !u!124 &124718728142645526
 Behaviour:
   m_ObjectHideFlags: 1

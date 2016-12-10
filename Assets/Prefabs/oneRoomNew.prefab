@@ -544,7 +544,7 @@ Light:
   serializedVersion: 7
   m_Type: 0
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 3
+  m_Intensity: 2
   m_Range: 8
   m_SpotAngle: 125.1
   m_CookieSize: 10
@@ -623,9 +623,21 @@ MonoBehaviour:
     - serializedVersion: 2
       time: 0
       value: 0
-      inSlope: 2.6178865
-      outSlope: 2.6178865
+      inSlope: 6.585923
+      outSlope: 6.585923
       tangentMode: 34
+    - serializedVersion: 2
+      time: 0.1283102
+      value: 0.84504116
+      inSlope: 2.6018918
+      outSlope: 2.6018918
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 0.23076257
+      value: 0.25198203
+      inSlope: -0.29593706
+      outSlope: -0.29593706
+      tangentMode: 0
     - serializedVersion: 2
       time: 0.3861331
       value: 1.0108527
@@ -639,13 +651,37 @@ MonoBehaviour:
       outSlope: 1.1152029
       tangentMode: 0
     - serializedVersion: 2
+      time: 0.56724226
+      value: 0.9113225
+      inSlope: 1.6956031
+      outSlope: 1.6956031
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 0.6722508
+      value: 0.214814
+      inSlope: 0.5239248
+      outSlope: 0.5239248
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 0.79480785
+      value: 1.0499153
+      inSlope: 2.8041005
+      outSlope: 2.8041005
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 0.9182007
+      value: 0.41298258
+      inSlope: -1.0561943
+      outSlope: -1.0561943
+      tangentMode: 0
+    - serializedVersion: 2
       time: 1
       value: 1
-      inSlope: 1.9096344
-      outSlope: 1.9096344
+      inSlope: 7.176311
+      outSlope: 7.176311
       tangentMode: 34
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 0
   flickerRate: 1
-  flickerMagnitude: 7
+  flickerMagnitude: 10
