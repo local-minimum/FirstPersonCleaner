@@ -40,6 +40,11 @@ public class MouseController : MonoBehaviour {
 
                 if (hit.transform.gameObject.tag == "TV")
                 {
+                    TVNoise tv = hit.transform.gameObject.GetComponent<TVNoise>();
+                    if (tv.enabled)
+                    {
+                        tv.TurnOffTV();
+                    }
                     //TURN OFF IF POSSIBLE
                 }
                 else if (hit.transform.gameObject.tag == "Cupboard")

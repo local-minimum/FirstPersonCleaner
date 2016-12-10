@@ -37,7 +37,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.43688414, g: 0.48453832, b: 0.564796, a: 1}
+  m_IndirectSpecularColor: {r: 0.37311953, g: 0.38074014, b: 0.3587274, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -119,11 +119,11 @@ Light:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 404579407}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 7
   m_Type: 1
   m_Color: {r: 1, g: 0.95686275, b: 0.8392157, a: 1}
-  m_Intensity: 0.5
+  m_Intensity: 0
   m_Range: 10
   m_SpotAngle: 30
   m_CookieSize: 10
@@ -313,38 +313,51 @@ Prefab:
       propertyPath: m_RootOrder
       value: 3
       objectReference: {fileID: 0}
-    - target: {fileID: 114890314836039830, guid: 1fc85c35883f0ba45b8451ddeeb6a71c,
-        type: 2}
-      propertyPath: roomLayer.m_Bits
-      value: 512
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 1fc85c35883f0ba45b8451ddeeb6a71c, type: 2}
   m_IsPrefabParent: 0
---- !u!1 &832651301 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 1368181447676144, guid: 1fc85c35883f0ba45b8451ddeeb6a71c,
-    type: 2}
-  m_PrefabInternal: {fileID: 723181906}
---- !u!114 &832651302
-MonoBehaviour:
+--- !u!1001 &1060365677
+Prefab:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 832651301}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bd8f1589ae2be6d49bd2eef6d0242a75, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  capacityTowels: 5
-  capacityDND: 5
-  capacityWetFloor: 5
-  prefabTowels: {fileID: 1150486710590376, guid: 236e34e6a4133e64d8d7c2111ffd7168,
-    type: 2}
-  prefabDND: {fileID: 1150486710590376, guid: 236e34e6a4133e64d8d7c2111ffd7168, type: 2}
-  prefabWetFloor: {fileID: 1150486710590376, guid: 236e34e6a4133e64d8d7c2111ffd7168,
-    type: 2}
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4931124706350900, guid: 73371a5bd19a2934f84d1d51235c0a8d, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4931124706350900, guid: 73371a5bd19a2934f84d1d51235c0a8d, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4931124706350900, guid: 73371a5bd19a2934f84d1d51235c0a8d, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4931124706350900, guid: 73371a5bd19a2934f84d1d51235c0a8d, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4931124706350900, guid: 73371a5bd19a2934f84d1d51235c0a8d, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4931124706350900, guid: 73371a5bd19a2934f84d1d51235c0a8d, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4931124706350900, guid: 73371a5bd19a2934f84d1d51235c0a8d, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4931124706350900, guid: 73371a5bd19a2934f84d1d51235c0a8d, type: 2}
+      propertyPath: m_RootOrder
+      value: 4
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 73371a5bd19a2934f84d1d51235c0a8d, type: 2}
+  m_IsPrefabParent: 0
 --- !u!114 &1774455230 stripped
 MonoBehaviour:
   m_PrefabParentObject: {fileID: 114112589191766880, guid: d11441aeaa805094b92273e34b64d212,

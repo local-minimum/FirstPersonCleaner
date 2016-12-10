@@ -19,6 +19,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4089021679487514}
+  - component: {fileID: 114217231561059072}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -212,6 +213,25 @@ MonoBehaviour:
   walkDuration: 0.4
   refuseDuration: 0.2
   rotationDuration: 0.3
+--- !u!114 &114217231561059072
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1368181447676144}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bd8f1589ae2be6d49bd2eef6d0242a75, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  capacityTowels: 5
+  capacityDND: 5
+  capacityWetFloor: 5
+  prefabTowels: {fileID: 1150486710590376, guid: 236e34e6a4133e64d8d7c2111ffd7168,
+    type: 2}
+  prefabDND: {fileID: 1150486710590376, guid: 236e34e6a4133e64d8d7c2111ffd7168, type: 2}
+  prefabWetFloor: {fileID: 1150486710590376, guid: 236e34e6a4133e64d8d7c2111ffd7168,
+    type: 2}
 --- !u!114 &114890314836039830
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -226,6 +246,9 @@ MonoBehaviour:
   doorLayer:
     serializedVersion: 2
     m_Bits: 256
+  roomLayer:
+    serializedVersion: 2
+    m_Bits: 512
 --- !u!124 &124718728142645526
 Behaviour:
   m_ObjectHideFlags: 1
