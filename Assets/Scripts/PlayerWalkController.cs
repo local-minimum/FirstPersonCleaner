@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class PlayerWalkController : MonoBehaviour {
     
-    public CorridorTile currentTile;
+    [SerializeField]
+    CorridorTile currentTile;
 
     [SerializeField]
     Direction facingDirection;
@@ -27,6 +28,12 @@ public class PlayerWalkController : MonoBehaviour {
     [SerializeField, Range(0, 3)]
     float rotationDuration = 1f;
 
+    public void SetCurrentTile(CorridorTile tile)
+    {
+        currentTile = tile;
+        transform.position = currentTile.playerPosition;
+
+    }
 
     float animSpeed = 0.01f;
 
