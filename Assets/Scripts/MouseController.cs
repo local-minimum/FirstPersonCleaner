@@ -35,9 +35,9 @@ public class MouseController : MonoBehaviour {
 
             Ray r = cam.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
-            if (Physics.Raycast(r, out hit, 10, doorLayer))
-            {
-                OneRoomDoor door = hit.transform.GetComponent<OneRoomDoor>();
+            if (Physics.Raycast(r, out hit, 4, doorLayer))
+            {                
+                OneRoomDoor door = hit.transform.GetComponentInParent<OneRoomDoor>();                
                 if (door && playerCtrl.CurrentTile.HasDoor(door))
                 {
                     door.OpenDoor(playerCtrl.LookDirection);

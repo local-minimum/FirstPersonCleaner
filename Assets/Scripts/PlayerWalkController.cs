@@ -147,7 +147,7 @@ public class PlayerWalkController : MonoBehaviour {
     IEnumerator<WaitForSeconds> Walk(CorridorTile target)
     {
         transitioning = true;
-        currentTile.CloseAllDoors();
+        //currentTile.CloseAllDoors();
         float start = Time.timeSinceLevelLoad;
         float progress = 0;
         Vector3 startPos = currentTile.playerPosition;

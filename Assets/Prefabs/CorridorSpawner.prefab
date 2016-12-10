@@ -52,13 +52,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   corridorPrefabs:
-  - {fileID: 4965481952570188, guid: 61080ee49cb1d2545a580174cc115069, type: 2}
-  - {fileID: 4594324547257486, guid: a21a7cae25d50064daaac0b9a730a7a9, type: 2}
-  - {fileID: 4726272990914996, guid: bf7d69be42a06e14caaf05d918985d92, type: 2}
-  - {fileID: 4760685926421104, guid: aa8a2fdddb1340c4ca7897d1b3351a4e, type: 2}
-  - {fileID: 4494173258207594, guid: de4066bdd8e07564295f87a59f04deea, type: 2}
-  debugWestWall: 0
-  debugEastWall: 0
-  debugNorthWall: 0
+  - {fileID: 4563925737614358, guid: fe5dc62bc174ce446a7b96e06990aee1, type: 2}
+  - {fileID: 4280640063792878, guid: 7aeb3d952f72d4f4da72c1a0580b77b4, type: 2}
+  - {fileID: 4286356477479386, guid: 566bd7acbda0c7c4aa44427d53552ae3, type: 2}
+  - {fileID: 4857407984102568, guid: c8dc5d58fc1e67a45a62a2c53e8f86d3, type: 2}
+  - {fileID: 4056625198063876, guid: 19db78e8db11f9347a76920c6b3d840a, type: 2}
+  debugWestWall: 1
+  debugEastWall: 1
+  debugNorthWall: 1
   debugSouthWall: 0
-  debugPlace: 1
+  debugPlace: 0

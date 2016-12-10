@@ -65,15 +65,15 @@ public class CorridorSegmentPlacer : MonoBehaviour {
         else if (walls == 3)
         {
             segment = Instantiate(corridorPrefabs[3]);
-            if (!eastWall)
+            if (!westWall)
             {
                 segment.Rotate(Vector3.up, 180);
             }
-            else if (!northWall)
+            else if (!southWall)
             {
                 segment.Rotate(Vector3.up, 90);
             }
-            else if (!southWall)
+            else if (!northWall)
             {
                 segment.Rotate(Vector3.up, -90);
             }
@@ -81,15 +81,15 @@ public class CorridorSegmentPlacer : MonoBehaviour {
         else if (walls == 1)
         {
             segment = Instantiate(corridorPrefabs[0]);
-            if (southWall)
+            if (eastWall)
             {
                 segment.Rotate(Vector3.up, 180);
             }
-            else if (eastWall)
+            else if (northWall)
             {
                 segment.Rotate(Vector3.up, 90);
             }
-            else if (westWall)
+            else if (southWall)
             {
                 segment.Rotate(Vector3.up, -90);
             }
@@ -116,23 +116,23 @@ public class CorridorSegmentPlacer : MonoBehaviour {
                 {
                     if (southWall)
                     {
-                        segment.Rotate(Vector3.up, 90);
+                        segment.Rotate(Vector3.up, -90);
                     }
                     else
                     {
-                        //segment.Rotate(Vector3.up, -90);
+                        segment.Rotate(Vector3.up, 180);
                     }
                 }
                 else
                 {
                     if (northWall)
                     {
-                        segment.Rotate(Vector3.up, -90);
+                        segment.Rotate(Vector3.up, 90);
 
                     }
                     else
                     {
-                        segment.Rotate(Vector3.up, 180);
+                        //segment.Rotate(Vector3.up, 180);
 
                     }
                 }

@@ -74,7 +74,7 @@ public class ImportRoom : MonoBehaviour {
 			}
 		}
 
-		float size = 4f;
+		float size = 5f;
 
 		foreach (var room in rooms) {
 			GameObject corridor = placer.PlaceCorridor (room.north == null, room.west == null, room.south == null, room.east == null);
