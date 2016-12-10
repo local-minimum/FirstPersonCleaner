@@ -101,7 +101,7 @@ public class CorridorSegmentPlacer : MonoBehaviour {
                 //Straight
                 segment = Instantiate(corridorPrefabs[1]);
 
-                if (northWall)
+                if (eastWall)
                 {
                     segment.Rotate(Vector3.up, -90);
                 }
