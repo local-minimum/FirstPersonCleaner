@@ -18,7 +18,7 @@ public class CorridorTile : MonoBehaviour {
     public void SetEdge(Direction direction, CorridorTile other)
     {
         edges[(int)direction] = other;
-        
+
     }
 
     public static Vector3 GetLookDirection(Direction direction)
@@ -37,6 +37,19 @@ public class CorridorTile : MonoBehaviour {
             return Vector3.right;
         }
 
+    }
+
+    public static float GetRotation(Direction from, Direction to)
+    {
+        int iFrom = (int)from;
+        int iTo = (int)to;
+        return 90;
+    }
+
+    public static float GetRotation(Direction from, bool right, out Direction to)
+    {
+        to = (Direction) ((int) from + (right ? 1 : -1));
+        return GetRotation(from, to);
     }
 
     public Vector3 playerPosition

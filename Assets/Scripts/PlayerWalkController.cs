@@ -61,11 +61,11 @@ public class PlayerWalkController : MonoBehaviour {
             }
             else if (Input.GetButtonDown("rotateLeft"))
             {
-
+                StartCoroutine(Rotate(true));
             }
             else if (Input.GetButtonDown("rotateRight"))
             {
-
+                StartCoroutine(Rotate(true));
             }
         }
 	}
@@ -74,15 +74,14 @@ public class PlayerWalkController : MonoBehaviour {
     {
         transitioning = true;
         float start = Time.timeSinceLevelLoad;
-        float end = start + refuseDuration;
-        float t = start;
+        float progress = 0;
         Vector3 startPos = currentTile.playerPosition;
         Vector3 targetPos = startPos + CorridorTile.GetLookDirection(facingDirection);
-        while (t < end)
+        while (progress < 1)
         {
             
-            transform.position = Vector3.Lerp(startPos, targetPos, walkRefuseAnim.Evaluate(t));
-            t = Time.timeSinceLevelLoad;
+            transform.position = Vector3.Lerp(startPos, targetPos, walkRefuseAnim.Evaluate(progress));
+            progress = (Time.timeSinceLevelLoad - start) / refuseDuration;
             yield return new WaitForSeconds(animSpeed);
         }
 
@@ -95,21 +94,42 @@ public class PlayerWalkController : MonoBehaviour {
     {
         transitioning = true;
         float start = Time.timeSinceLevelLoad;
-        float end = start + walkDuration;
-        float t = start;
+        float progress = 0;
         Vector3 startPos = currentTile.playerPosition;
         Vector3 endPos = target.playerPosition;
 
-        while (t < end)
+        while (progress < 1)
         {
             
-            transform.position = Vector3.Lerp(startPos, endPos, walkAnim.Evaluate(t));
-            t = Time.timeSinceLevelLoad;
+            transform.position = Vector3.Lerp(startPos, endPos, walkAnim.Evaluate(progress));
+            progress = (Time.timeSinceLevelLoad - start) / walkDuration;
             yield return new WaitForSeconds(animSpeed);
         }
 
         transform.position = target.playerPosition;
         currentTile = target;
+        transitioning = false;
+    }
+
+    IEnumerator<WaitForSeconds> Rotate(bool rotateRight)
+    {
+        transitioning = true;
+        float start = Time.timeSinceLevelLoad;
+        float progress = 0;
+        Direction targetRotation;
+        float rotationA = CorridorTile.GetRotation(facingDirection, rotateRight, out targetRotation);
+
+        while (progress < 1)
+        {
+
+            //transform.position = Vector3.Lerp(startPos, endPos, walkAnim.Evaluate(progress));
+            progress = (Time.timeSinceLevelLoad - start) / walkDuration;
+            yield return new WaitForSeconds(animSpeed);
+        }
+
+        //transform.position = target.playerPosition;
+
+        facingDirection = targetRotation;
         transitioning = false;
     }
 }
