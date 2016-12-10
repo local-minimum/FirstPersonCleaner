@@ -68,7 +68,7 @@ public class PlayerWalkController : MonoBehaviour {
             }
             else if (Input.GetButtonDown("rotateLeft"))
             {
-                StartCoroutine(Rotate(true));
+                StartCoroutine(Rotate(false));
             }
             else if (Input.GetButtonDown("rotateRight"))
             {

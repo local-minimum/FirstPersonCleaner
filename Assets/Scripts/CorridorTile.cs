@@ -44,7 +44,17 @@ public class CorridorTile : MonoBehaviour {
     {
         int iFrom = (int)from;
         int iTo = (int)to;
-        return 90;
+        int diff = iTo - iFrom;
+        if (diff == 1 || diff == -3)
+        {
+            return 90;
+        } else if (diff == -1 || diff == 3)
+        {
+            return -90;
+        } else
+        {
+            return 180;
+        }
     }
 
     public static float GetRotation(Direction from, bool right, out Direction to)
