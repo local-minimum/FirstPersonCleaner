@@ -49,6 +49,14 @@ public class PlayerWalkController : MonoBehaviour {
 
     }
 
+    public Direction LookDirection
+    {
+        get
+        {
+            return facingDirection;
+        }
+    }
+
     public void SetCurrentDirection(Direction direction)
     {
         lookTransform.rotation = Quaternion.LookRotation(CorridorTile.GetLookDirection(direction), Vector3.up);

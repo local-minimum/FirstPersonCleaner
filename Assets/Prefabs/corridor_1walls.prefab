@@ -220,3 +220,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ad7ee62ccc7ab342b31d8ecae9bed79, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  roomPrefab: {fileID: 1397001737513436, guid: 88bab52ac32ea4b409840a435e73208a, type: 2}

@@ -29,7 +29,7 @@ public class MouseController : MonoBehaviour {
                 OneRoomDoor door = hit.transform.GetComponent<OneRoomDoor>();
                 if (door && playerCtrl.CurrentTile.HasDoor(door))
                 {
-                    door.OpenDoor();
+                    door.OpenDoor(playerCtrl.LookDirection);
                 }
             }
         }
