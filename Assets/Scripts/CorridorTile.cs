@@ -6,6 +6,7 @@ public enum Direction { North, East, South, West};
 
 public class CorridorTile : MonoBehaviour {
 
+	[SerializeField]
     CorridorTile[] edges = new CorridorTile[4];
 
     Vector3 offset = Vector3.up * 1.5f;
