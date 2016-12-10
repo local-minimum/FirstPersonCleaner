@@ -9,6 +9,9 @@ public class ImportRoom : MonoBehaviour {
 	[SerializeField]
 	CorridorSegmentPlacer placer; 	
 
+	[SerializeField]
+	PlayerWalkController walkController;
+
 	// Use this for initialization
 	void Start () {
 		rooms = new List<Room> ();
@@ -58,9 +61,6 @@ public class ImportRoom : MonoBehaviour {
 			if (col < colCount - 1) {
 				room.east = matrix [row] [col + 1];
 			}
-			if (room.south == null && room.north == null && room.east == null && room.west == null) {
-			 
-			}
 		}
 
 		float size = 4f;
@@ -88,6 +88,8 @@ public class ImportRoom : MonoBehaviour {
 				room.corridorTile.SetEdge (Direction.South, room.south.corridorTile);					
 			}
 		}
+
+		walkController.currentTile = rooms [0].corridorTile;
 	}
 	
 	// Update is called once per frame
