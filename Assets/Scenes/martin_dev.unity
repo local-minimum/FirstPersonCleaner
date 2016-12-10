@@ -282,17 +282,17 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 114112589191766880, guid: d11441aeaa805094b92273e34b64d212,
         type: 2}
-      propertyPath: debugSouthWall
-      value: 0
+      propertyPath: debugEastWall
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 114112589191766880, guid: d11441aeaa805094b92273e34b64d212,
         type: 2}
       propertyPath: debugNorthWall
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 114112589191766880, guid: d11441aeaa805094b92273e34b64d212,
         type: 2}
-      propertyPath: debugEastWall
+      propertyPath: debugSouthWall
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 114112589191766880, guid: d11441aeaa805094b92273e34b64d212,

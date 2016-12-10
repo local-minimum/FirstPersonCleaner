@@ -55,89 +55,90 @@ public class CorridorSegmentPlacer : MonoBehaviour {
 
         int walls = (northWall ? 1 : 0) + (southWall ? 1 : 0) + (westWall ? 1 : 0) + (eastWall ? 1 : 0);
         Debug.Log(walls);
-        if (walls > 0 && walls < 4)
-        {
 
-            if (walls == 3)
+        if (walls > 3)
+        {
+            return null;
+        } else if (walls == 0)
+        {
+            segment = Instantiate(corridorPrefabs[4]);
+        }
+        else if (walls == 3)
+        {
+            segment = Instantiate(corridorPrefabs[3]);
+            if (!eastWall)
             {
-                segment = Instantiate(corridorPrefabs[3]);
-                if (!eastWall)
-                {
-                    segment.Rotate(Vector3.up, 180);
-                }
-                else if (!northWall)
-                {
-                    segment.Rotate(Vector3.up, 90);
-                }
-                else if (!southWall)
-                {
-                    segment.Rotate(Vector3.up, -90);
-                }
+                segment.Rotate(Vector3.up, 180);
             }
-            else if (walls == 1)
+            else if (!northWall)
             {
-                segment = Instantiate(corridorPrefabs[0]);
-                if (southWall)
-                {
-                    segment.Rotate(Vector3.up, 180);
-                }
-                else if (eastWall)
-                {
-                    segment.Rotate(Vector3.up, 90);
-                }
-                else if (westWall)
+                segment.Rotate(Vector3.up, 90);
+            }
+            else if (!southWall)
+            {
+                segment.Rotate(Vector3.up, -90);
+            }
+        }
+        else if (walls == 1)
+        {
+            segment = Instantiate(corridorPrefabs[0]);
+            if (southWall)
+            {
+                segment.Rotate(Vector3.up, 180);
+            }
+            else if (eastWall)
+            {
+                segment.Rotate(Vector3.up, 90);
+            }
+            else if (westWall)
+            {
+                segment.Rotate(Vector3.up, -90);
+            }
+        }
+        else
+        {
+            if (northWall == southWall || westWall == eastWall)
+            {
+                //Straight
+                segment = Instantiate(corridorPrefabs[1]);
+
+                if (northWall)
                 {
                     segment.Rotate(Vector3.up, -90);
                 }
+
             }
             else
             {
-                if (northWall == southWall || westWall == eastWall)
+                //Rotating segment
+                segment = Instantiate(corridorPrefabs[2]);
+
+                if (eastWall)
                 {
-                    //Straight
-                    segment = Instantiate(corridorPrefabs[1]);
-
-                    if (northWall)
+                    if (southWall)
                     {
-                        segment.Rotate(Vector3.up, -90);
-                    }
-
-                }
-                else
-                {
-                    //Rotating segment
-                    segment = Instantiate(corridorPrefabs[2]);
-
-                    if (eastWall)
-                    {
-                        if (southWall)
-                        {
-                            segment.Rotate(Vector3.up, 90);
-                        }
-                        else
-                        {
-                            //segment.Rotate(Vector3.up, -90);
-                        }
+                        segment.Rotate(Vector3.up, 90);
                     }
                     else
                     {
-                        if (northWall)
-                        {
-                            segment.Rotate(Vector3.up, -90);
-
-                        }
-                        else
-                        {
-                            segment.Rotate(Vector3.up, 180);
-
-                        }
+                        //segment.Rotate(Vector3.up, -90);
                     }
                 }
-                
-            }
+                else
+                {
+                    if (northWall)
+                    {
+                        segment.Rotate(Vector3.up, -90);
 
-        } else {
-            throw new System.ArgumentException("1-3 walls must be set");
+                    }
+                    else
+                    {
+                        segment.Rotate(Vector3.up, 180);
+
+                    }
+                }
+            }
+                
         }
 
         segment.position = position;

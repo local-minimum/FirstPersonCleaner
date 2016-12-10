@@ -56,8 +56,9 @@ MonoBehaviour:
   - {fileID: 4594324547257486, guid: a21a7cae25d50064daaac0b9a730a7a9, type: 2}
   - {fileID: 4726272990914996, guid: bf7d69be42a06e14caaf05d918985d92, type: 2}
   - {fileID: 4760685926421104, guid: aa8a2fdddb1340c4ca7897d1b3351a4e, type: 2}
-  debugWestWall: 1
+  - {fileID: 4494173258207594, guid: de4066bdd8e07564295f87a59f04deea, type: 2}
+  debugWestWall: 0
   debugEastWall: 0
-  debugNorthWall: 1
-  debugSouthWall: 1
+  debugNorthWall: 0
+  debugSouthWall: 0
   debugPlace: 1
