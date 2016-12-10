@@ -134,8 +134,10 @@ public class PlayerWalkController : MonoBehaviour {
 				transform.position = currentTile.playerPosition;
 				break;
 			case "rotate":
+				SetCurrentDirection ((Direction)(((int)facingDirection + action.data [0]) % 4));
 				break;
 			case "lookat":
+				SetCurrentDirection ((Direction)(action.data [0] % 4));
 				break;
 			default:
 				break;
