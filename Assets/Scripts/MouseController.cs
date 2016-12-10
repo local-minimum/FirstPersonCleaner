@@ -24,12 +24,12 @@ public class MouseController : MonoBehaviour {
 
             Ray r = cam.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
-            if (Physics.Raycast(r, out hit, 2, doorLayer))
+            if (Physics.Raycast(r, out hit, 10, doorLayer))
             {
                 OneRoomDoor door = hit.transform.GetComponent<OneRoomDoor>();
                 if (door && playerCtrl.CurrentTile.HasDoor(door))
                 {
-                    door.ToggleOpenClose();
+                    door.OpenDoor();
                 }
             }
         }

@@ -120,6 +120,7 @@ public class PlayerWalkController : MonoBehaviour {
     IEnumerator<WaitForSeconds> Walk(CorridorTile target)
     {
         transitioning = true;
+        currentTile.CloseAllDoors();
         float start = Time.timeSinceLevelLoad;
         float progress = 0;
         Vector3 startPos = currentTile.playerPosition;
@@ -156,6 +157,7 @@ public class PlayerWalkController : MonoBehaviour {
     IEnumerator<WaitForSeconds> Rotate(bool rotateRight)
     {
         transitioning = true;
+        currentTile.CloseAllDoors();
         float start = Time.timeSinceLevelLoad;
         float progress = 0;
         Direction targetDirection;
@@ -165,7 +167,7 @@ public class PlayerWalkController : MonoBehaviour {
         while (progress < 1)
         {
             lookTransform.rotation = Quaternion.Lerp(startRotation, targetRotation, rotateAnim.Evaluate(progress));
-            progress = (Time.timeSinceLevelLoad - start) / walkDuration;
+            progress = (Time.timeSinceLevelLoad - start) / rotationDuration;
             yield return new WaitForSeconds(animSpeed);
         }
 
@@ -173,4 +175,5 @@ public class PlayerWalkController : MonoBehaviour {
         facingDirection = targetDirection;
         transitioning = false;
     }
+
 }
