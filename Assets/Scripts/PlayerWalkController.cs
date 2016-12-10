@@ -43,7 +43,8 @@ public class PlayerWalkController : MonoBehaviour {
 
     public void SetCurrentDirection(Direction direction)
     {
-
+        lookTransform.rotation = Quaternion.LookRotation(CorridorTile.GetLookDirection(direction), Vector3.up);
+        facingDirection = direction;
     }
 
     float animSpeed = 0.01f;
