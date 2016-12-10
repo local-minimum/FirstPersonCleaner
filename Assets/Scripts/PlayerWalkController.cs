@@ -5,6 +5,9 @@ using UnityEngine;
 public class PlayerWalkController : MonoBehaviour {
 
     [SerializeField]
+    Trolly trolly;
+
+    [SerializeField]
     Transform movementTransform;
 
     [SerializeField]
@@ -46,7 +49,7 @@ public class PlayerWalkController : MonoBehaviour {
     {
         currentTile = tile;
         movementTransform.position = currentTile.playerPosition;
-
+        trolly.UpdateDirection();
     }
 
     public Direction LookDirection
@@ -61,6 +64,7 @@ public class PlayerWalkController : MonoBehaviour {
     {
         lookTransform.rotation = Quaternion.LookRotation(CorridorTile.GetLookDirection(direction), Vector3.up);
         facingDirection = direction;
+        trolly.UpdateDirection();
     }
 
     float animSpeed = 0.01f;
@@ -157,8 +161,7 @@ public class PlayerWalkController : MonoBehaviour {
             yield return new WaitForSeconds(animSpeed);
         }
 
-        movementTransform.position = target.playerPosition;
-        currentTile = target;
+        SetCurrentTile(target);                
 		foreach (Action action in currentTile.actions) {
 			switch (action.action) {
 			case "teleport":
@@ -194,8 +197,7 @@ public class PlayerWalkController : MonoBehaviour {
             yield return new WaitForSeconds(animSpeed);
         }
 
-        lookTransform.rotation = targetRotation;
-        facingDirection = targetDirection;
+        SetCurrentDirection(targetDirection);
         transitioning = false;
     }
 

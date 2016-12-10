@@ -87,6 +87,16 @@ public class CorridorTile : MonoBehaviour {
         return (Direction)(((int)from + 2) % 4);
     }
 
+    public static Direction GetLeftDirection(Direction from)
+    {
+        return (Direction)(((int)from + 3) % 4);
+    }
+
+    public static Direction GetRighDirection(Direction from)
+    {
+        return (Direction)(((int)from + 1) % 4);
+    }
+
     public Vector3 playerPosition
     {
         get
