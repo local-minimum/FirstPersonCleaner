@@ -57,21 +57,40 @@ public class CorridorSegmentPlacer : MonoBehaviour {
         Debug.Log(walls);
         if (walls > 0 && walls < 4)
         {
-            
+
             if (walls == 3)
             {
                 segment = Instantiate(corridorPrefabs[3]);
                 if (!eastWall)
                 {
                     segment.Rotate(Vector3.up, 180);
-                } else if (!northWall)
+                }
+                else if (!northWall)
                 {
                     segment.Rotate(Vector3.up, 90);
-                } else if (!southWall)
+                }
+                else if (!southWall)
                 {
                     segment.Rotate(Vector3.up, -90);
                 }
-            } else
+            }
+            else if (walls == 1)
+            {
+                segment = Instantiate(corridorPrefabs[0]);
+                if (southWall)
+                {
+                    segment.Rotate(Vector3.up, 180);
+                }
+                else if (eastWall)
+                {
+                    segment.Rotate(Vector3.up, 90);
+                }
+                else if (westWall)
+                {
+                    segment.Rotate(Vector3.up, -90);
+                }
+            }
+            else
             {
                 segment = Instantiate(corridorPrefabs[walls - 1]);
             }
