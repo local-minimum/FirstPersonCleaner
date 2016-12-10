@@ -57,7 +57,7 @@ public class PlayerWalkController : MonoBehaviour {
             }
             else if (Input.GetButtonDown("walkReverse"))
             {
-                CorridorTile target = currentTile.GetEdge(facingDirection);
+                CorridorTile target = currentTile.GetEdge(CorridorTile.GetInverseDirection(facingDirection));
                 if (target == null)
                 {
                     StartCoroutine(RefuseWalk());
@@ -68,7 +68,7 @@ public class PlayerWalkController : MonoBehaviour {
             }
             else if (Input.GetButtonDown("rotateLeft"))
             {
-                StartCoroutine(Rotate(true));
+                StartCoroutine(Rotate(false));
             }
             else if (Input.GetButtonDown("rotateRight"))
             {
@@ -121,6 +121,10 @@ public class PlayerWalkController : MonoBehaviour {
 				currentTile = action.tile;
 				transform.position = currentTile.playerPosition;
 				break;
+			case "rotate":
+				break;
+			case "lookat":
+				break;
 			default:
 				break;
 			}
@@ -133,20 +137,20 @@ public class PlayerWalkController : MonoBehaviour {
         transitioning = true;
         float start = Time.timeSinceLevelLoad;
         float progress = 0;
-        Direction targetRotation;
-        float rotationA = CorridorTile.GetRotation(facingDirection, rotateRight, out targetRotation);
-
+        Direction targetDirection;
+        float rotationA = CorridorTile.GetRotation(facingDirection, rotateRight, out targetDirection);
+        Vector3 startRotation = transform.eulerAngles;
+        Vector3 targetRotation = startRotation;
+        targetRotation.y += rotationA;
         while (progress < 1)
         {
-
-            //transform.position = Vector3.Lerp(startPos, endPos, walkAnim.Evaluate(progress));
+            transform.eulerAngles = Vector3.Lerp(startRotation, targetRotation, rotateAnim.Evaluate(progress));
             progress = (Time.timeSinceLevelLoad - start) / walkDuration;
             yield return new WaitForSeconds(animSpeed);
         }
 
-        //transform.position = target.playerPosition;
-
-        facingDirection = targetRotation;
+        transform.eulerAngles = targetRotation;
+        facingDirection = targetDirection;
         transitioning = false;
     }
 }
