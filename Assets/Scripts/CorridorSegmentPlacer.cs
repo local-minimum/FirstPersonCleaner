@@ -54,7 +54,6 @@ public class CorridorSegmentPlacer : MonoBehaviour {
         Transform segment; 
 
         int walls = (northWall ? 1 : 0) + (southWall ? 1 : 0) + (westWall ? 1 : 0) + (eastWall ? 1 : 0);
-        Debug.Log(walls);
 
         if (walls > 3)
         {
