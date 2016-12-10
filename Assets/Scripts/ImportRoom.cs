@@ -16,6 +16,7 @@ public class ImportRoom : MonoBehaviour {
 	void Start () {
 		rooms = new List<Room> ();
 		Room[][] matrix;
+		Room startTile = null;
 
 		TextAsset asset = Resources.Load ("level1") as TextAsset;
 		string dataString = asset.text.Replace ("\r", "\n");
@@ -32,6 +33,10 @@ public class ImportRoom : MonoBehaviour {
 					matrix [row] [col] = room;
 					room.col = col;
 					room.row = row;
+					if (cell.StartsWith ("*")) {
+						startTile = room;
+						cell = cell.Replace ("*", "");
+					}
 					int cellType = int.Parse (cell);
 					room.type = (RoomType)cellType;
 					rooms.Add (room);
@@ -89,7 +94,7 @@ public class ImportRoom : MonoBehaviour {
 			}
 		}
 
-		walkController.currentTile = rooms [0].corridorTile;
+		walkController.SetCurrentTile(startTile.corridorTile);
 	}
 	
 	// Update is called once per frame
