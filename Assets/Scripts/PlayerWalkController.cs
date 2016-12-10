@@ -130,8 +130,7 @@ public class PlayerWalkController : MonoBehaviour {
 		foreach (Action action in currentTile.actions) {
 			switch (action.action) {
 			case "teleport":
-				currentTile = action.tile;
-				transform.position = currentTile.playerPosition;
+				SetCurrentTile (action.tile);
 				break;
 			case "rotate":
 				SetCurrentDirection ((Direction)(((int)facingDirection + action.data [0]) % 4));
