@@ -41,6 +41,11 @@ public class PlayerWalkController : MonoBehaviour {
 
     }
 
+    public void SetCurrentDirection(Direction direction)
+    {
+
+    }
+
     float animSpeed = 0.01f;
 
 
@@ -130,19 +135,18 @@ public class PlayerWalkController : MonoBehaviour {
         float start = Time.timeSinceLevelLoad;
         float progress = 0;
         Direction targetDirection;
-        float rotationA = CorridorTile.GetRotation(facingDirection, rotateRight, out targetDirection);
-        Vector3 startRotation = lookTransform.eulerAngles;
-        Vector3 targetRotation = startRotation;
-        targetRotation.y += rotationA;
+        CorridorTile.GetRotation(facingDirection, rotateRight, out targetDirection);
+        Quaternion startRotation = lookTransform.rotation;
+        Quaternion targetRotation = Quaternion.LookRotation(CorridorTile.GetLookDirection(targetDirection), Vector3.up);
         while (progress < 1)
         {
-
-            lookTransform.eulerAngles = Vector3.Lerp(startRotation, targetRotation, rotateAnim.Evaluate(progress));
+            
+            lookTransform.rotation = Quaternion.Lerp(startRotation, targetRotation, rotateAnim.Evaluate(progress));
             progress = (Time.timeSinceLevelLoad - start) / walkDuration;
             yield return new WaitForSeconds(animSpeed);
         }
 
-        lookTransform.eulerAngles = targetRotation;
+        lookTransform.rotation = targetRotation;
         facingDirection = targetDirection;
         transitioning = false;
     }
