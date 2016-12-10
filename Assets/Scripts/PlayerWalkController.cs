@@ -3,7 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerWalkController : MonoBehaviour {
-    
+
+    [SerializeField]
+    Transform movementTransform;
+
+    [SerializeField]
+    Transform lookTransform;
+
     [SerializeField]
     CorridorTile currentTile;
 
@@ -31,7 +37,7 @@ public class PlayerWalkController : MonoBehaviour {
     public void SetCurrentTile(CorridorTile tile)
     {
         currentTile = tile;
-        transform.position = currentTile.playerPosition;
+        movementTransform.position = currentTile.playerPosition;
 
     }
 
@@ -87,12 +93,12 @@ public class PlayerWalkController : MonoBehaviour {
         while (progress < 1)
         {
             
-            transform.position = Vector3.Lerp(startPos, targetPos, walkRefuseAnim.Evaluate(progress));
+            movementTransform.position = Vector3.Lerp(startPos, targetPos, walkRefuseAnim.Evaluate(progress));
             progress = (Time.timeSinceLevelLoad - start) / refuseDuration;
             yield return new WaitForSeconds(animSpeed);
         }
 
-        transform.position = currentTile.playerPosition;
+        movementTransform.position = currentTile.playerPosition;
 
         transitioning = false;
     }
@@ -108,12 +114,12 @@ public class PlayerWalkController : MonoBehaviour {
         while (progress < 1)
         {
             
-            transform.position = Vector3.Lerp(startPos, endPos, walkAnim.Evaluate(progress));
+            movementTransform.position = Vector3.Lerp(startPos, endPos, walkAnim.Evaluate(progress));
             progress = (Time.timeSinceLevelLoad - start) / walkDuration;
             yield return new WaitForSeconds(animSpeed);
         }
 
-        transform.position = target.playerPosition;
+        movementTransform.position = target.playerPosition;
         currentTile = target;
         transitioning = false;
     }
@@ -125,18 +131,18 @@ public class PlayerWalkController : MonoBehaviour {
         float progress = 0;
         Direction targetDirection;
         float rotationA = CorridorTile.GetRotation(facingDirection, rotateRight, out targetDirection);
-        Vector3 startRotation = transform.eulerAngles;
+        Vector3 startRotation = lookTransform.eulerAngles;
         Vector3 targetRotation = startRotation;
         targetRotation.y += rotationA;
         while (progress < 1)
         {
 
-            transform.eulerAngles = Vector3.Lerp(startRotation, targetRotation, rotateAnim.Evaluate(progress));
+            lookTransform.eulerAngles = Vector3.Lerp(startRotation, targetRotation, rotateAnim.Evaluate(progress));
             progress = (Time.timeSinceLevelLoad - start) / walkDuration;
             yield return new WaitForSeconds(animSpeed);
         }
 
-        transform.eulerAngles = targetRotation;
+        lookTransform.eulerAngles = targetRotation;
         facingDirection = targetDirection;
         transitioning = false;
     }

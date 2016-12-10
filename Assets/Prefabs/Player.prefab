@@ -132,6 +132,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e6d5d85d0143f54dada09ebb9755da1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  movementTransform: {fileID: 4089021679487514}
+  lookTransform: {fileID: 4452971681125288}
   currentTile: {fileID: 0}
   facingDirection: 0
   walkAnim:
