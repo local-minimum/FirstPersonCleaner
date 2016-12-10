@@ -10,23 +10,38 @@ ModelImporter:
     100004: Cube_002
     100006: Cube_003
     100008: //RootNode
+    100010: Bed
+    100012: Cubboard
+    100014: TV
     400000: Cube
     400002: Cube_001
     400004: Cube_002
     400006: Cube_003
     400008: //RootNode
+    400010: Bed
+    400012: Cubboard
+    400014: TV
     2300000: Cube
     2300002: Cube_001
     2300004: Cube_002
     2300006: Cube_003
+    2300008: Bed
+    2300010: Cubboard
+    2300012: TV
     3300000: Cube
     3300002: Cube_001
     3300004: Cube_002
     3300006: Cube_003
+    3300008: Bed
+    3300010: Cubboard
+    3300012: TV
     4300000: Cube_003
     4300002: Cube_002
     4300004: Cube_001
     4300006: Cube
+    4300008: TV
+    4300010: Cubboard
+    4300012: Bed
     7400000: Default Take
     9500000: //RootNode
   materials:

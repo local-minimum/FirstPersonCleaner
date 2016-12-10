@@ -12,7 +12,6 @@ public class MouseController : MonoBehaviour {
     [SerializeField]
     LayerMask roomLayer;
 
-    [SerializeField]
     PlayerWalkController playerCtrl;
 
     void Start()
@@ -65,12 +64,12 @@ public class MouseController : MonoBehaviour {
 
                     if (RoomInteractionTargetOccupied(hit.transform, "Floor", out target))
                     {
-                        Debug.Log("Return");
+
                         playerCtrl.Inventory.ReturnWetFloor(target.GetChild(0).gameObject);
                     }
                     else if (target)
                     {
-                        Debug.Log("Place");
+
                         GameObject wetFloor = playerCtrl.Inventory.GETWetFloor();
                         if (wetFloor)
                         {
@@ -110,7 +109,6 @@ public class MouseController : MonoBehaviour {
             child = parent.GetChild(i);
             if (child.tag == tag)
             {
-                Debug.Log(child.childCount);
                 break;
             } else
             {
