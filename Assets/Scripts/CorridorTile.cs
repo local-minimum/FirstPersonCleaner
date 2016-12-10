@@ -9,7 +9,7 @@ public class CorridorTile : MonoBehaviour {
 	[SerializeField]
     CorridorTile[] edges = new CorridorTile[4];
 
-    Vector3 offset = Vector3.up * 1.5f;
+    Vector3 offset = Vector3.up * 0.25f;
 
     public CorridorTile GetEdge(Direction direction)
     {
@@ -49,8 +49,13 @@ public class CorridorTile : MonoBehaviour {
 
     public static float GetRotation(Direction from, bool right, out Direction to)
     {
-        to = (Direction) ((int) from + (right ? 1 : -1));
+        to = (Direction) (((int) from + (right ? 1 : 3)) % 4);
         return GetRotation(from, to);
+    }
+
+    public static Direction GetInverseDirection(Direction from)
+    {
+        return (Direction)(((int)from + 2) % 4);
     }
 
     public Vector3 playerPosition
