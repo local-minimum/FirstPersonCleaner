@@ -74,6 +74,7 @@ public class ImportRoom : MonoBehaviour {
 			GameObject corridor = placer.PlaceCorridor (room.north == null, room.west == null, room.south == null, room.east == null);
 			float x = room.col * size;
 			float z = -room.row * size;
+			corridor.transform.parent = transform;
 			corridor.transform.position = (new Vector3(x, 0, z));
 			var tile = corridor.GetComponent<CorridorTile> ();
 			room.corridorTile = tile;
