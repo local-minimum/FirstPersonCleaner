@@ -783,6 +783,7 @@ MonoBehaviour:
   walkDuration: 0.4
   refuseDuration: 0.2
   rotationDuration: 0.3
+  lookDuration: 1
   camAnim: {fileID: 95903167480955436}
   myCamera: {fileID: 20526435948998262}
   currentLevel: 0

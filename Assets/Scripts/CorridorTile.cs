@@ -25,6 +25,11 @@ public class CorridorTile : MonoBehaviour {
         return doors.Contains(door);
     }
 
+    public OneRoomDoor GetDoor(Direction direction)
+    {
+        return doors[(int)direction];
+    }
+
 	public Direction GetPreviousDirection(CorridorTile tile) {
 		if (edges [0] == tile) {
 			return Direction.North;

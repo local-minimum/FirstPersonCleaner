@@ -30,6 +30,15 @@ public class OneRoomDoor : MonoBehaviour {
     bool rotating = false;
     float startOfRotationTime;
     bool isOpen = false;
+
+    public bool IsOpen
+    {
+        get
+        {
+            return isOpen;
+        }
+    }
+
     void Start()
     {
         restingRotation = transform.rotation;

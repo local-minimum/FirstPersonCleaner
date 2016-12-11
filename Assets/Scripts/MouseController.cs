@@ -7,6 +7,24 @@ public class MouseController : MonoBehaviour {
     Camera cam;
 
     [SerializeField]
+    Texture2D defaultCur;
+
+    [SerializeField]
+    Vector2 defaultCurHotspot = new Vector2(0.5f, 0.5f);
+
+    [SerializeField]
+    Texture2D cardCur;
+
+    [SerializeField]
+    Vector2 cardCurHotspot = new Vector2(0.75f, 0.75f);
+
+    [SerializeField]
+    Texture2D handCur;
+
+    [SerializeField]
+    Vector2 handCurHotspot = new Vector2(0.3f, 0.3f);
+
+    [SerializeField]
     LayerMask doorLayer;
 
     [SerializeField]
@@ -31,6 +49,9 @@ public class MouseController : MonoBehaviour {
         playerCtrl = GetComponentInParent<PlayerWalkController>();
     }
 
+    enum MouseInteractionTypes { None, Elevator, Door,  Room, WorkOrder};
+
+    MouseInteractionTypes interaction = MouseInteractionTypes.None;
     void Update()
     {
         if (playerCtrl.frozen)
@@ -38,12 +59,29 @@ public class MouseController : MonoBehaviour {
             return;
         }
 
+        Ray r;
+        RaycastHit hit;
+
+        MouseInteractionTypes newInteraction = GetMouseHover(out r, out hit);
+        if (newInteraction != interaction)
+        {
+            if (newInteraction == MouseInteractionTypes.None) {
+                Cursor.SetCursor(defaultCur, defaultCurHotspot, CursorMode.Auto);
+            } else if (newInteraction == MouseInteractionTypes.Door)
+            {
+                Cursor.SetCursor(cardCur, cardCurHotspot, CursorMode.Auto);
+            } else
+            {
+                Cursor.SetCursor(handCur, handCurHotspot, CursorMode.Auto);
+            }
+
+            interaction = newInteraction;
+        }
+
         if (Input.GetButtonDown("interact"))
         {
 
-            Ray r = cam.ScreenPointToRay(Input.mousePosition);
-            RaycastHit hit;
-            if (Physics.Raycast(r, out hit, 5, elevatorInteractions))
+            if (interaction == MouseInteractionTypes.Elevator)
             {
                 Elevator elevator = hit.transform.GetComponentInParent<Elevator>();
                 if (elevator)
@@ -51,7 +89,7 @@ public class MouseController : MonoBehaviour {
                     elevator.PressForElevator(playerCtrl);
                 }
             }
-            else if (Physics.Raycast(r, out hit, 4, doorLayer))
+            else if (interaction == MouseInteractionTypes.Door)
             {                
                 OneRoomDoor door = hit.transform.GetComponentInParent<OneRoomDoor>();                
                 if (door && playerCtrl.CurrentTile.HasDoor(door))
@@ -67,7 +105,7 @@ public class MouseController : MonoBehaviour {
                     }
                 }
             }
-            else if (Physics.Raycast(r, out hit, 10, roomLayer))
+            else if (interaction == MouseInteractionTypes.Room)
             {
                 Transform target = null;
 
@@ -137,15 +175,35 @@ public class MouseController : MonoBehaviour {
                     }
                 }
             }
-            else if (Physics.Raycast(r, out hit, 10, workInstructionsLayer))
+            else if (interaction == MouseInteractionTypes.WorkOrder)
             {
 				lookingAtInstructions = true;
-                workInstructions.PickUp();
+                workInstructions.Toggle();
             }
-        } else if (Input.GetButtonUp("interact") && lookingAtInstructions)
+        }
+    }
+
+    MouseInteractionTypes GetMouseHover(out Ray ray, out RaycastHit hit)
+    {
+        ray = cam.ScreenPointToRay(Input.mousePosition);
+        if (Physics.Raycast(ray, out hit, 3, elevatorInteractions))
         {
-            workInstructions.PutDown();
-			lookingAtInstructions = false;
+            return MouseInteractionTypes.Elevator;
+        }
+        else if (Physics.Raycast(ray, out hit, 3, doorLayer))
+        {
+            return MouseInteractionTypes.Door;
+        }
+        else if (Physics.Raycast(ray, out hit, 10, roomLayer))
+        {
+            return MouseInteractionTypes.Room;
+        }
+        else if (Physics.Raycast(ray, out hit, 10, workInstructionsLayer))
+        {
+            return MouseInteractionTypes.WorkOrder;
+        } else
+        {
+            return MouseInteractionTypes.None;
         }
     }
 

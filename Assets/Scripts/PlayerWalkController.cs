@@ -49,6 +49,9 @@ public class PlayerWalkController : MonoBehaviour {
     [SerializeField, Range(0, 3)]
     float rotationDuration = 1f;
 
+    [SerializeField, Range(0, 3)]
+    float lookDuration = 1f;
+
     [SerializeField]
     Animator camAnim;
 
@@ -217,7 +220,16 @@ public class PlayerWalkController : MonoBehaviour {
                 CorridorTile target = currentTile.GetEdge(facingDirection);
 				if (target == null || currentTile == endTile)
                 {
-                    StartCoroutine(RefuseWalk());
+                    OneRoomDoor door = currentTile.GetDoor(facingDirection);
+                    if (IsLookingIntoRoom || door == null)
+                    {
+                        Debug.Log("No door or looking");
+                        //TODO: Play sigh sound
+                        StartCoroutine(RefuseWalk());
+                    } else
+                    {
+                        StartCoroutine(WalkOpenDoor(door, facingDirection));
+                    }
                 }
                 else
                 {
@@ -245,6 +257,19 @@ public class PlayerWalkController : MonoBehaviour {
             }
         }
 	}
+
+    IEnumerator<WaitForSeconds> WalkOpenDoor(OneRoomDoor door, Direction direction)
+    {
+        transitioning = true;
+        if (!door.IsOpen)
+        {
+            door.OpenDoor(facingDirection);
+
+        }
+        LookIntoOneRoom();
+        yield return new WaitForSeconds(lookDuration);
+        transitioning = false;
+    }
 
     IEnumerator<WaitForSeconds> RefuseWalk()
     {
