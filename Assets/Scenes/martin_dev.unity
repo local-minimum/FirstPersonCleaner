@@ -130,6 +130,12 @@ Prefab:
       propertyPath: m_RootOrder
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 114079274672764128, guid: 80974223accd11048b420de67354cd0b,
+        type: 2}
+      propertyPath: prefabWetFloor
+      value: 
+      objectReference: {fileID: 1839609233534274, guid: 2441fa636c62c7f45a300f019498512f,
+        type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 80974223accd11048b420de67354cd0b, type: 2}
   m_IsPrefabParent: 0
