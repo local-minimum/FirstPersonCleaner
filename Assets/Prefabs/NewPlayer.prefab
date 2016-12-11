@@ -85,9 +85,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4155633453490578}
-  - component: {fileID: 33404251071428156}
   - component: {fileID: 65768167788183678}
-  - component: {fileID: 23347489301345650}
   - component: {fileID: 114393900312886022}
   m_Layer: 10
   m_Name: WorkOrder
@@ -332,37 +330,6 @@ MeshRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 0
---- !u!23 &23347489301345650
-MeshRenderer:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1288914079155774}
-  m_Enabled: 0
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_PreserveUVs: 1
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_SelectedEditorRenderState: 3
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingOrder: 0
 --- !u!23 &23788112200739606
 MeshRenderer:
   m_ObjectHideFlags: 1
@@ -407,13 +374,6 @@ MeshFilter:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1101965800745306}
-  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!33 &33404251071428156
-MeshFilter:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1288914079155774}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!65 &65768167788183678
 BoxCollider:
@@ -677,8 +637,8 @@ MonoBehaviour:
   capacityWetFloor: 99
   prefabTowels: {fileID: 1150486710590376, guid: 236e34e6a4133e64d8d7c2111ffd7168,
     type: 2}
-  prefabDND: {fileID: 1150486710590376, guid: 236e34e6a4133e64d8d7c2111ffd7168, type: 2}
-  prefabWetFloor: {fileID: 1150486710590376, guid: 236e34e6a4133e64d8d7c2111ffd7168,
+  prefabDND: {fileID: 1292780473806070, guid: 839ba535a4222b448a9ebeba7d5a23a5, type: 2}
+  prefabWetFloor: {fileID: 1839609233534274, guid: 2441fa636c62c7f45a300f019498512f,
     type: 2}
 --- !u!114 &114159914554527762
 MonoBehaviour:
