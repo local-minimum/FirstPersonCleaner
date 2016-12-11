@@ -13,6 +13,9 @@ public class Elevator : MonoBehaviour {
     float waitForDoorsTime = 1.7f;
 
     [SerializeField]
+    float waitDelayCamEffect = 0.4f;
+
+    [SerializeField]
     float waitWhileWalkingIn = 2f;
 
     [SerializeField]
@@ -55,10 +58,9 @@ public class Elevator : MonoBehaviour {
         anim.SetTrigger("OpenDoors");
         yield return new WaitForSeconds(waitForDoorsTime);
         playerCtrl.EnterElevator();
-        yield return new WaitForSeconds(waitWhileWalkingIn);
+        yield return new WaitForSeconds(waitDelayCamEffect);
         playerCtrl.WhiteOut();
-        playerCtrl.StartNextLevel();
-        yield return new WaitForSeconds(waitFakeLevelLoad);
-        playerCtrl.ResumePlay();
+        yield return new WaitForSeconds(waitWhileWalkingIn);
+        playerCtrl.StartNextLevel(waitFakeLevelLoad);
     }
 }

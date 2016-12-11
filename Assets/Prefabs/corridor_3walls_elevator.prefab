@@ -638,10 +638,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 088626355b9d1ff41aa6bfc61326531c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  waitForElevatorTime: 2
+  waitForElevatorTime: 1
   waitForDoorsTime: 1.7
-  waitWhileWalkingIn: 2
-  waitFakeLevelLoad: 0.4
+  waitDelayCamEffect: 1.7
+  waitWhileWalkingIn: 0.4
+  waitFakeLevelLoad: 1.5
   buttonPressColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
   mRend: {fileID: 23406792332568740}
   buttonMatIndex: 2

@@ -101,7 +101,9 @@ public class PlayerWalkController : MonoBehaviour {
 
     public void EnterElevator()
     {
+        Debug.Log("Trigger enter cam");
         camAnim.SetTrigger("Elevator");
+        //camAnim.ResetTrigger("Elevator");
     }
 
     public void SetCurrentDirection(Direction direction)
@@ -126,14 +128,23 @@ public class PlayerWalkController : MonoBehaviour {
         }
     }
 
+
+    int cullingMask;
+    CameraClearFlags clearMode;
+
     public void WhiteOut()
     {
-
+        cullingMask = myCamera.cullingMask;
+        myCamera.cullingMask = 0;
+        clearMode = myCamera.clearFlags;
+        myCamera.clearFlags = CameraClearFlags.Nothing;
     }
 
     public void ResumePlay()
     {
         frozen = false;
+        myCamera.cullingMask = cullingMask;
+        myCamera.clearFlags = clearMode;
     }
 
     public void StartNextLevel()
