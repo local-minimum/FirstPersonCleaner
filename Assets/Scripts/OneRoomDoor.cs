@@ -7,6 +7,15 @@ public class OneRoomDoor : MonoBehaviour {
     [SerializeField]
     GameObject roomPrefab;
 
+    [SerializeField]
+    Sounder soundOpen;
+
+    [SerializeField]
+    Sounder soundClose;
+
+    [SerializeField]
+    Sounder soundCreak;
+
     Collider col;
 
     GameObject room;
@@ -38,6 +47,8 @@ public class OneRoomDoor : MonoBehaviour {
         {
             SpawnRoom(direction);
         }
+        soundOpen.PlayOne();
+        soundCreak.ProbabilityPlayOne();
         isOpen = true;
         activeLayer = gameObject.layer;
         gameObject.layer = 0;
@@ -56,6 +67,8 @@ public class OneRoomDoor : MonoBehaviour {
         {
             return false;
         }
+        soundClose.PlayOne();
+        soundCreak.ProbabilityPlayOne();
         isOpen = false;
         rotationStart = rotationTarget;
         rotationTarget = restingRotation;

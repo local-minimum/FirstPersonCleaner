@@ -151,6 +151,22 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &1530826498441668
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4127289785850644}
+  - component: {fileID: 114093210109631222}
+  m_Layer: 0
+  m_Name: WalkSounds
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1931384391573310
 GameObject:
   m_ObjectHideFlags: 0
@@ -180,6 +196,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 4434353860029498}
   m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4127289785850644
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1530826498441668}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4439546919182850}
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4141883131269742
 Transform:
@@ -277,6 +306,7 @@ Transform:
   - {fileID: 4154115953732810}
   - {fileID: 4141883131269742}
   - {fileID: 4188848462049026}
+  - {fileID: 4127289785850644}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -587,6 +617,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e6d5d85d0143f54dada09ebb9755da1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  walkSounds: {fileID: 114093210109631222}
   importRoom: {fileID: 0}
   trolly: {fileID: 114049812422380616}
   movementTransform: {fileID: 4439546919182850}
@@ -692,6 +723,27 @@ MonoBehaviour:
   prefabDND: {fileID: 1292780473806070, guid: 839ba535a4222b448a9ebeba7d5a23a5, type: 2}
   prefabWetFloor: {fileID: 1839609233534274, guid: 2441fa636c62c7f45a300f019498512f,
     type: 2}
+--- !u!114 &114093210109631222
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1530826498441668}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a7e1d7dab139e2e42a22b8a733333a81, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speaker: {fileID: 0}
+  alternativeSoundBites:
+  - {fileID: 8300000, guid: 71236e67ad0a6b64cb0d342c6aad1ed6, type: 3}
+  - {fileID: 8300000, guid: 8b0c10eceeae45e4faab68fc75a95e26, type: 3}
+  - {fileID: 8300000, guid: 3a2cbac5d2edb2743b49d6bcb82a6b96, type: 3}
+  - {fileID: 8300000, guid: c52aa3cf2384feb4b9043da06416c856, type: 3}
+  - {fileID: 8300000, guid: 8e01a597a3a47f84a837c46b85f27619, type: 3}
+  - {fileID: 8300000, guid: 49fa35001c6c7174a9aaf6b545c356d1, type: 3}
+  volume: 0.5
+  sequenceDelay: 0.3
 --- !u!114 &114159914554527762
 MonoBehaviour:
   m_ObjectHideFlags: 1

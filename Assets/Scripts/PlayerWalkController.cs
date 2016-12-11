@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class PlayerWalkController : MonoBehaviour {
 
+    [SerializeField]
+    Sounder walkSounds;
+
 	[SerializeField]
 	ImportRoom importRoom;
 
@@ -270,6 +273,7 @@ public class PlayerWalkController : MonoBehaviour {
         {
             StopLookingIntoOneRoom();
         }
+        walkSounds.PlayInSequence(3);
         transitioning = true;
         //currentTile.CloseAllDoors();
         float start = Time.timeSinceLevelLoad;
@@ -310,6 +314,7 @@ public class PlayerWalkController : MonoBehaviour {
 
     IEnumerator<WaitForSeconds> Rotate(bool rotateRight)
     {
+        walkSounds.PlayInSequence(2);
         transitioning = true;
         if (isLookingIntoRoom)
         {

@@ -16,6 +16,9 @@ public class Sounder : MonoBehaviour {
     [SerializeField]
     float sequenceDelay;
 
+    [SerializeField]
+    float probabilityPlay = 0.5f;
+
 	void Start () {
         if (speaker == null)
         {
@@ -27,6 +30,14 @@ public class Sounder : MonoBehaviour {
         }
 	}
 	
+    public void ProbabilityPlayOne()
+    {
+        if (Random.value < probabilityPlay)
+        {
+            PlayOne();
+        }
+    }
+
 	public void PlayOne()
     {
         speaker.PlayOneShot(alternativeSoundBites[Random.Range(0, alternativeSoundBites.Length)], volume);
@@ -49,6 +60,7 @@ public class Sounder : MonoBehaviour {
             PlayOne();
             yield return new WaitForSeconds(sequenceDelay);
             count--;
+
         }
     }
 }
