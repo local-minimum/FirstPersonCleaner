@@ -15,17 +15,16 @@ public class OneRoomDoor : MonoBehaviour {
 
     LayerMask activeLayer;
 
-    Quaternion startRotation;
+    Quaternion rotationStart;
     Quaternion rotationTarget;
     Quaternion restingRotation;
 
     bool rotating = false;
-    float rotationStart;
+    float startOfRotationTime;
     bool isOpen = false;
     void Start()
     {
         restingRotation = transform.rotation;
-        startRotation = restingRotation;
         tile = GetComponentInParent<CorridorTile>();
         mRend = GetComponentInChildren<MeshRenderer>();
         col = GetComponentInChildren<Collider>();
@@ -46,9 +45,9 @@ public class OneRoomDoor : MonoBehaviour {
         gameObject.layer = 0;
         room.SetActive(true);        
         col.enabled = false;
-        startRotation = restingRotation;
-        rotationTarget = restingRotation * Quaternion.AngleAxis(10, Vector3.up);
-        rotationStart = Time.timeSinceLevelLoad;
+        rotationStart = Quaternion.AngleAxis((int) CorridorTile.GetRighDirection(direction) * 90, Vector3.up);
+        rotationTarget = Quaternion.AngleAxis((int)CorridorTile.GetInverseDirection(direction) * 90, Vector3.up);
+        startOfRotationTime = Time.timeSinceLevelLoad;
         rotating = true;
     }
 
@@ -63,11 +62,11 @@ public class OneRoomDoor : MonoBehaviour {
             room.SetActive(false);
         }
         isOpen = false;
-        startRotation = transform.localRotation;
+        rotationStart = rotationTarget;
         rotationTarget = restingRotation;
         col.enabled = true;
         gameObject.layer = activeLayer;
-        rotationStart = Time.timeSinceLevelLoad;
+        startOfRotationTime = Time.timeSinceLevelLoad;
         rotating = true;
 
     }
@@ -87,14 +86,14 @@ public class OneRoomDoor : MonoBehaviour {
         if (rotating)
         {
 
-            float progress = (Time.timeSinceLevelLoad - rotationStart) / 0.6f;
+            float progress = (Time.timeSinceLevelLoad - startOfRotationTime) / 0.6f;
             if (progress > 1)
             {
-                transform.localRotation = rotationTarget;
+                transform.rotation = rotationTarget;
                 rotating = false;
             } else
             {
-                transform.localRotation = Quaternion.Lerp(startRotation, rotationTarget, progress);
+                transform.rotation = Quaternion.Lerp(rotationStart, rotationTarget, progress);
 
             }
         }
