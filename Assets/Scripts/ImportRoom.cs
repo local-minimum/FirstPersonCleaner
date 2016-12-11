@@ -82,7 +82,12 @@ public class ImportRoom : MonoBehaviour {
 		float size = 5f;
 
 		foreach (var room in rooms) {
-			GameObject corridor = placer.PlaceCorridor (room.north == null, room.west == null, room.south == null, room.east == null);
+			GameObject corridor;
+			if (room == endTile) {
+				corridor = placer.PlaceEndTile (room.north == null, room.west == null, room.south == null, room.east == null);
+			} else {
+				corridor = placer.PlaceCorridor (room.north == null, room.west == null, room.south == null, room.east == null);
+			}
 			float x = room.col * size;
 			float z = -room.row * size;
 			corridor.transform.parent = transform;

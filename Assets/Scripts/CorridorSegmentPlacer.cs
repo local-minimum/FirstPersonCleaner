@@ -44,6 +44,26 @@ public class CorridorSegmentPlacer : MonoBehaviour {
         PlaceCorridor(transform.position, debugNorthWall, debugWestWall, debugSouthWall, debugEastWall);
     }
 
+	public GameObject PlaceEndTile(bool northWall, bool westWall, bool southWall, bool eastWall)
+	{
+		Vector3 position = transform.position;
+		Transform segment; 
+
+		segment = Instantiate (corridorPrefabs [3]);
+		if (!westWall) {
+			segment.Rotate (Vector3.up, 180);
+		} else if (!southWall) {
+			segment.Rotate (Vector3.up, 90);
+		} else if (!northWall) {
+			segment.Rotate (Vector3.up, -90);
+		}
+
+		segment.position = position;
+		segment.gameObject.AddComponent<CorridorTile> ();
+
+		return segment.gameObject;
+	}
+
     public GameObject PlaceCorridor(bool northWall, bool westWall, bool southWall, bool eastWall)
     {
         return PlaceCorridor(transform.position, northWall, westWall, southWall, eastWall);

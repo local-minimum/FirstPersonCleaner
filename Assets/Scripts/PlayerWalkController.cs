@@ -113,7 +113,7 @@ public class PlayerWalkController : MonoBehaviour {
             if (Input.GetButtonDown("walkForward"))
             {
                 CorridorTile target = currentTile.GetEdge(facingDirection);
-                if (target == null)
+				if (target == null || currentTile == endTile)
                 {
                     StartCoroutine(RefuseWalk());
                 }
@@ -125,7 +125,7 @@ public class PlayerWalkController : MonoBehaviour {
             else if (Input.GetButtonDown("walkReverse"))
             {
                 CorridorTile target = currentTile.GetEdge(CorridorTile.GetInverseDirection(facingDirection));
-                if (target == null)
+				if (target == null || currentTile == endTile)
                 {
                     StartCoroutine(RefuseWalk());
                 } else
