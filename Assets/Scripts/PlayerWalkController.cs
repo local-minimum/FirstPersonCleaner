@@ -226,8 +226,6 @@ public class PlayerWalkController : MonoBehaviour {
                     OneRoomDoor door = currentTile.GetDoor(facingDirection);
                     if (IsLookingIntoRoom || door == null)
                     {
-                        Debug.Log("No door or looking");
-                        //TODO: Play sigh sound
                         StartCoroutine(RefuseWalk());
                     } else
                     {
@@ -241,13 +239,21 @@ public class PlayerWalkController : MonoBehaviour {
             }
             else if (Input.GetButton("walkReverse"))
             {
-                CorridorTile target = currentTile.GetEdge(CorridorTile.GetInverseDirection(facingDirection));
-				if (target == null || currentTile == endTile)
+                if (isLookingIntoRoom)
                 {
-                    StartCoroutine(RefuseWalk());
-                } else
-                {
-                    StartCoroutine(Walk(target));
+                    StartCoroutine(WalkOutOfRoom());
+                }
+                else {
+
+                    CorridorTile target = currentTile.GetEdge(CorridorTile.GetInverseDirection(facingDirection));
+                    if (target == null || currentTile == endTile)
+                    {
+                        StartCoroutine(RefuseWalk());
+                    }
+                    else
+                    {
+                        StartCoroutine(Walk(target));
+                    }
                 }
             }
             else if (Input.GetButton("rotateLeft"))
@@ -260,6 +266,15 @@ public class PlayerWalkController : MonoBehaviour {
             }
         }
 	}
+   
+    IEnumerator<WaitForSeconds> WalkOutOfRoom()
+    {
+        transitioning = true;
+        StopLookingIntoOneRoom();
+        yield return new WaitForSeconds(lookDuration);
+        transitioning = false;
+    }
+
 
     IEnumerator<WaitForSeconds> WalkOpenDoor(OneRoomDoor door, Direction direction)
     {
@@ -305,7 +320,7 @@ public class PlayerWalkController : MonoBehaviour {
         {
             StopLookingIntoOneRoom();
         }
-        walkSounds.PlayInSequence(3);
+        walkSounds.PlayInSequence(2);
         trollySounds.PlayOne();
         transitioning = true;
         //currentTile.CloseAllDoors();

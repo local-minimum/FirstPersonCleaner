@@ -3,8 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class TVNoise : MonoBehaviour {
-
-    [SerializeField]
+    
     Texture2D tex;
 
     [SerializeField]
@@ -68,6 +67,20 @@ public class TVNoise : MonoBehaviour {
         tex.Apply();
     }
 
+    Color matCol;
+    Color emissCol;
+
+    public void ToggleTV()
+    {
+        if (tvIsOn)
+        {
+            TurnOffTV(); 
+        } else
+        {
+            TurnOnTV();
+        }
+    }
+
     public void TurnOffTV()
     {
         tvIsOn = false;
@@ -83,8 +96,22 @@ public class TVNoise : MonoBehaviour {
         tex.Apply();
         tvLight.enabled = false;
         Material mat = GetComponent<MeshRenderer>().materials[1];
+
+        matCol = mat.color;
+        emissCol = mat.GetColor("_EmissionColor");
+
         mat.color = Color.black;        
         mat.SetColor("_EmissionColor", Color.black);
-        enabled = false;
+        GetComponent<AudioSource>().Pause();
+    }
+
+    public void TurnOnTV()
+    {
+        tvIsOn = true;
+        tvLight.enabled = true;
+        Material mat = GetComponent<MeshRenderer>().materials[1];
+        mat.color = matCol;
+        mat.SetColor("_EmissionColor", emissCol);
+        GetComponent<AudioSource>().UnPause();
     }
 }

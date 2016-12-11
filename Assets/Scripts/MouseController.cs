@@ -7,6 +7,21 @@ public class MouseController : MonoBehaviour {
     Camera cam;
 
     [SerializeField]
+    Sounder towelSounderDown;
+
+    [SerializeField]
+    Sounder towelSounderUp;
+
+    [SerializeField]
+    Sounder dndSounder;
+
+    [SerializeField]
+    Sounder wetSounderDown;
+
+    [SerializeField]
+    Sounder wetSounderUp;
+
+    [SerializeField]
     Texture2D defaultCur;
 
     [SerializeField]
@@ -112,11 +127,10 @@ public class MouseController : MonoBehaviour {
                 if (hit.transform.gameObject.tag == "TV")
                 {
                     TVNoise tv = hit.transform.gameObject.GetComponent<TVNoise>();
-                    if (tv.enabled)
+                    if (tv)
                     {
-                        tv.TurnOffTV();
-                    }
-                    //TURN OFF IF POSSIBLE
+                        tv.ToggleTV();
+                    }                    
                 }
                 else if (hit.transform.gameObject.tag == "Cupboard")
                 {
@@ -124,6 +138,7 @@ public class MouseController : MonoBehaviour {
                     if (RoomInteractionTargetOccupied(hit.transform, "Cupboard", out target))
                     {
                         playerCtrl.Inventory.ReturnDND(target.GetChild(0).gameObject);
+                        dndSounder.PlayOne();
                     }
                     else if (target)
                     {
@@ -133,6 +148,7 @@ public class MouseController : MonoBehaviour {
                             dnd.transform.SetParent(target);
                             dnd.transform.rotation = target.rotation;
                             dnd.transform.position = target.position;
+                            dndSounder.PlayOne();
                         }
                     }
                 }
@@ -141,18 +157,19 @@ public class MouseController : MonoBehaviour {
 
                     if (RoomInteractionTargetOccupied(hit.transform, "Floor", out target))
                     {
-
+                        wetSounderUp.PlayOne();
                         playerCtrl.Inventory.ReturnWetFloor(target.GetChild(0).gameObject);
                     }
                     else if (target)
                     {
 
-                        GameObject wetFloor = playerCtrl.Inventory.GETWetFloor();
+                        GameObject wetFloor = playerCtrl.Inventory.GetWetFloor();
                         if (wetFloor)
                         {
                             wetFloor.transform.SetParent(target);
                             wetFloor.transform.rotation = target.rotation;
                             wetFloor.transform.position = target.position;
+                            wetSounderDown.PlayOne();
                         }
                     }
                 }
@@ -162,6 +179,7 @@ public class MouseController : MonoBehaviour {
                     if (RoomInteractionTargetOccupied(hit.transform, "Bed", out target))
                     {
                         playerCtrl.Inventory.ReturnTowel(target.GetChild(0).gameObject);
+                        towelSounderUp.PlayOne();
                     }
                     else if (target)
                     {
@@ -171,6 +189,7 @@ public class MouseController : MonoBehaviour {
                             towel.transform.SetParent(target);
                             towel.transform.rotation = target.rotation;
                             towel.transform.position = target.position;
+                            towelSounderDown.PlayOne();
                         }
                     }
                 }

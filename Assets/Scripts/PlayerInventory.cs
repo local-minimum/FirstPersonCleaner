@@ -77,7 +77,7 @@ public class PlayerInventory : MonoBehaviour {
         oldDND.Enqueue(dnd);
     }
 
-    public GameObject GETWetFloor()
+    public GameObject GetWetFloor()
     {
         if (oldWetFloor.Count > 0)
         {
