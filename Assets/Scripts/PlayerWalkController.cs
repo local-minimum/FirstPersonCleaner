@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class PlayerWalkController : MonoBehaviour {
 
+	[SerializeField]
+	ImportRoom importRoom;
+
     [SerializeField]
     Trolly trolly;
 
@@ -117,6 +120,11 @@ public class PlayerWalkController : MonoBehaviour {
         {
             if (Input.GetButtonDown("walkForward"))
             {
+				if (currentTile == endTile) {
+					importRoom.createRooms (2);
+					return;
+				}
+
                 CorridorTile target = currentTile.GetEdge(facingDirection);
 				if (target == null || currentTile == endTile)
                 {

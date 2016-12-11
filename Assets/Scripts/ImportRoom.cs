@@ -12,14 +12,22 @@ public class ImportRoom : MonoBehaviour {
 	[SerializeField]
 	PlayerWalkController walkController;
 
-	// Use this for initialization
-	void Start () {
+	public void createRooms(int level) {
+		if (rooms != null) {
+			foreach (var room in rooms) {
+				while(room.corridorTile.transform.GetChildCount()>0){
+					GameObject.Destroy(room.corridorTile.transform.GetChild (0));
+				}
+
+				Destroy (room.corridorTile);
+			}
+		}
 		rooms = new List<Room> ();
 		Room[][] matrix;
 		Room startTile = null;
 		Room endTile = null;
 
-		TextAsset asset = Resources.Load ("level1") as TextAsset;
+		TextAsset asset = Resources.Load ("level" + level) as TextAsset;
 		string dataString = asset.text.Replace ("\r", "\n");
 		string[] rows = dataString.Split(new char[] { '\n' }, System.StringSplitOptions.RemoveEmptyEntries);
 		matrix = new Room[rows.Length][]; 
@@ -103,7 +111,7 @@ public class ImportRoom : MonoBehaviour {
 			foreach (var action in room.actions) {
 				if (action.NeedTile) {
 					int row = action.GetInteger (0);
-						int col = action.GetInteger (1);
+					int col = action.GetInteger (1);
 					action.tile = matrix [row] [col].corridorTile;
 				}
 			}
@@ -124,6 +132,11 @@ public class ImportRoom : MonoBehaviour {
 
 		walkController.SetCurrentTile(startTile.corridorTile);
 		walkController.SetEndTile (endTile.corridorTile);
+	}
+
+	// Use this for initialization
+	void Start () {
+		createRooms (1);
 	}
 	
 	// Update is called once per frame

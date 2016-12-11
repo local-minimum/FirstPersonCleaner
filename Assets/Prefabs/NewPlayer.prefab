@@ -578,6 +578,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e6d5d85d0143f54dada09ebb9755da1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  importRoom: {fileID: 0}
   trolly: {fileID: 114049812422380616}
   movementTransform: {fileID: 4439546919182850}
   lookTransform: {fileID: 4188848462049026}

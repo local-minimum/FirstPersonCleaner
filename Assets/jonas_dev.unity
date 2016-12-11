@@ -37,7 +37,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657868, g: 0.49641263, b: 0.57481706, a: 1}
+  m_IndirectSpecularColor: {r: 0.37311947, g: 0.38074005, b: 0.35872722, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -91,11 +91,6 @@ NavMeshSettings:
     cellSize: 0.16666667
     accuratePlacement: 0
   m_NavMeshData: {fileID: 0}
---- !u!20 &48773812 stripped
-Camera:
-  m_PrefabParentObject: {fileID: 20526435948998262, guid: 80974223accd11048b420de67354cd0b,
-    type: 2}
-  m_PrefabInternal: {fileID: 543521462}
 --- !u!114 &254447713 stripped
 MonoBehaviour:
   m_PrefabParentObject: {fileID: 114112589191766880, guid: d11441aeaa805094b92273e34b64d212,
@@ -139,7 +134,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4542678708294712, guid: d11441aeaa805094b92273e34b64d212, type: 2}
       propertyPath: m_RootOrder
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 114112589191766880, guid: d11441aeaa805094b92273e34b64d212,
         type: 2}
@@ -201,79 +196,22 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4439546919182850, guid: 80974223accd11048b420de67354cd0b, type: 2}
       propertyPath: m_RootOrder
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
-    - target: {fileID: 114393900312886022, guid: 80974223accd11048b420de67354cd0b,
+    - target: {fileID: 114074284298593848, guid: 80974223accd11048b420de67354cd0b,
         type: 2}
-      propertyPath: camera
+      propertyPath: importRoom
       value: 
-      objectReference: {fileID: 48773812}
+      objectReference: {fileID: 910004523}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 80974223accd11048b420de67354cd0b, type: 2}
   m_IsPrefabParent: 0
---- !u!1 &1231036727
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 5
-  m_Component:
-  - component: {fileID: 1231036729}
-  - component: {fileID: 1231036728}
-  m_Layer: 0
-  m_Name: Directional Light
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!108 &1231036728
-Light:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1231036727}
-  m_Enabled: 1
-  serializedVersion: 7
-  m_Type: 1
-  m_Color: {r: 1, g: 0.95686275, b: 0.8392157, a: 1}
-  m_Intensity: 1
-  m_Range: 10
-  m_SpotAngle: 30
-  m_CookieSize: 10
-  m_Shadows:
-    m_Type: 2
-    m_Resolution: -1
-    m_CustomResolution: -1
-    m_Strength: 1
-    m_Bias: 0.05
-    m_NormalBias: 0.4
-    m_NearPlane: 0.2
-  m_Cookie: {fileID: 0}
-  m_DrawHalo: 0
-  m_Flare: {fileID: 0}
-  m_RenderMode: 0
-  m_CullingMask:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_Lightmapping: 4
-  m_AreaSize: {x: 1, y: 1}
-  m_BounceIntensity: 1
-  m_ShadowRadius: 0
-  m_ShadowAngle: 0
---- !u!4 &1231036729
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1231036727}
-  m_LocalRotation: {x: 0.40821788, y: -0.23456968, z: 0.10938163, w: 0.8754261}
-  m_LocalPosition: {x: 0, y: 3, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+--- !u!114 &910004523 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114784353986944100, guid: 9c10b3dfd23f44dee92b4de11fe4e412,
+    type: 2}
+  m_PrefabInternal: {fileID: 1434431196}
+  m_Script: {fileID: 11500000, guid: fbd6e45acb5004612952eeded0d1abee, type: 3}
 --- !u!1001 &1434431196
 Prefab:
   m_ObjectHideFlags: 0
@@ -311,7 +249,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4593721407956812, guid: 9c10b3dfd23f44dee92b4de11fe4e412, type: 2}
       propertyPath: m_RootOrder
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 114784353986944100, guid: 9c10b3dfd23f44dee92b4de11fe4e412,
         type: 2}
