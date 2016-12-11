@@ -258,7 +258,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1236403836429930}
   m_LocalRotation: {x: 0.70509565, y: 0.00000001466738, z: 0.00000005966954, w: 0.7091122}
-  m_LocalPosition: {x: -1.66, y: 2.88, z: -2.43}
+  m_LocalPosition: {x: -0.29, y: 2.87, z: -3.47}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4254908642203570}
@@ -271,7 +271,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1026631241831532}
   m_LocalRotation: {x: 0.032049384, y: -0.7748443, z: 0.01901841, w: 0.63105273}
-  m_LocalPosition: {x: 3.2999976, y: 3.5400767, z: 0.30000162}
+  m_LocalPosition: {x: 1.93, y: 3.44, z: 0.02}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4260045708885672}
@@ -507,8 +507,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 2.54, y: 1.83, z: 1.66}
-  m_Center: {x: -1.2292475, y: 3.3926222, z: -1.23}
+  m_Size: {x: 1.1, y: 1.83, z: 1.66}
+  m_Center: {x: -0.66, y: 3.3926222, z: -1.23}
 --- !u!65 &65770497896119402
 BoxCollider:
   m_ObjectHideFlags: 1
@@ -519,8 +519,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 2.95, y: 2.89, z: 0.3}
-  m_Center: {x: -0.42, y: 1.45, z: -1.9}
+  m_Size: {x: 1.65, y: 2.35, z: 0.3}
+  m_Center: {x: 0.22, y: 1.37, z: -1.9}
 --- !u!82 &82135367185564826
 AudioSource:
   m_ObjectHideFlags: 1
@@ -653,7 +653,7 @@ Light:
   m_Type: 0
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Intensity: 0.9
-  m_Range: 8
+  m_Range: 2
   m_SpotAngle: 125.1
   m_CookieSize: 10
   m_Shadows:
@@ -687,7 +687,7 @@ Light:
   m_Type: 0
   m_Color: {r: 0.26427335, g: 0.41640478, b: 0.7647059, a: 1}
   m_Intensity: 4
-  m_Range: 8
+  m_Range: 3
   m_SpotAngle: 60
   m_CookieSize: 10
   m_Shadows:
@@ -791,4 +791,4 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 0
   flickerRate: 1
-  flickerMagnitude: 4
+  flickerMagnitude: 8
