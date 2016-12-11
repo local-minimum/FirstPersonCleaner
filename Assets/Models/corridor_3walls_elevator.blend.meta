@@ -1,0 +1,124 @@
+fileFormatVersion: 2
+guid: ec4d6151c1d890444961dbc0e9dd0471
+timeCreated: 1481469338
+licenseType: Free
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: Corridor
+    100002: //RootNode
+    100004: CorridorLamp
+    100006: Cube
+    100008: Elevator
+    100010: ElevatorControl
+    100012: ElevatorDoorInnerLeft
+    100014: ElevatorDoorInnerRight
+    100016: ElevatorDoorOuterLeft
+    100018: ElevatorDoorOuterRight
+    400000: Corridor
+    400002: //RootNode
+    400004: CorridorLamp
+    400006: Cube
+    400008: Elevator
+    400010: ElevatorControl
+    400012: ElevatorDoorInnerLeft
+    400014: ElevatorDoorInnerRight
+    400016: ElevatorDoorOuterLeft
+    400018: ElevatorDoorOuterRight
+    2300000: Corridor
+    2300002: CorridorLamp
+    2300004: Cube
+    2300006: Elevator
+    2300008: ElevatorControl
+    2300010: ElevatorDoorInnerLeft
+    2300012: ElevatorDoorInnerRight
+    2300014: ElevatorDoorOuterLeft
+    2300016: ElevatorDoorOuterRight
+    3300000: Corridor
+    3300002: CorridorLamp
+    3300004: Cube
+    3300006: Elevator
+    3300008: ElevatorControl
+    3300010: ElevatorDoorInnerLeft
+    3300012: ElevatorDoorInnerRight
+    3300014: ElevatorDoorOuterLeft
+    3300016: ElevatorDoorOuterRight
+    4300000: CorridorLamp
+    4300002: Corridor
+    4300004: Cube
+    4300006: Elevator
+    4300008: ElevatorDoorInnerRight
+    4300010: ElevatorDoorInnerLeft
+    4300012: ElevatorDoorOuterLeft
+    4300014: ElevatorDoorOuterRight
+    4300016: ElevatorControl
+    7400000: Default Take
+    9500000: //RootNode
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
