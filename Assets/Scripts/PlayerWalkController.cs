@@ -264,7 +264,7 @@ public class PlayerWalkController : MonoBehaviour {
         }
 
 		Direction from = target.GetPreviousDirection (currentTile);
-		Debug.Log (from);
+		//Debug.Log (from);
         SetCurrentTile(target);                
 		foreach (Action action in currentTile.actions) {
 			if (action.IsActive (from)) {

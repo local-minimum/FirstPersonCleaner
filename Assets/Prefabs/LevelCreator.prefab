@@ -53,3 +53,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   placer: {fileID: 0}
   walkController: {fileID: 0}
+  startLevel: 1
