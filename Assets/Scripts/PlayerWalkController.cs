@@ -43,6 +43,9 @@ public class PlayerWalkController : MonoBehaviour {
     [SerializeField]
     Animator camAnim;
 
+	[SerializeField]
+	Camera myCamera;
+
     public CorridorTile CurrentTile
     {
         get
@@ -56,6 +59,8 @@ public class PlayerWalkController : MonoBehaviour {
         currentTile = tile;
         movementTransform.position = currentTile.playerPosition;
         trolly.UpdateDirection();
+		var mainShader = myCamera.GetComponent<MainShader> ();
+		mainShader.hasGlitch = tile.hasGlitch;
     }
 
 	public void SetEndTile(CorridorTile tile) {

@@ -94,6 +94,7 @@ public class ImportRoom : MonoBehaviour {
 			corridor.transform.position = (new Vector3(x, 0, z));
 			var tile = corridor.GetComponent<CorridorTile> ();
 			room.corridorTile = tile;
+			tile.hasGlitch = room.HasGlitch;
 			tile.actions.AddRange (room.actions);
 		}
 

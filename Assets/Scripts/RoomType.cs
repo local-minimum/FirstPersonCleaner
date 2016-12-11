@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public enum RoomType {
-	Start,
-	End,
-	A,
-	B,
-	C
+	Type1,
+	Type2,
+	Type3,
+	Type4,
+	Type5
 }

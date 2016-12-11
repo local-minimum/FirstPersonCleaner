@@ -26,9 +26,9 @@ Shader "Sprites/Glitch"
 		_Color ("Tint", Color) = (1,1,1,1)
 		[MaterialToggle] PixelSnap ("Pixel snap", Float) = 0
 		_GlitchInterval ("Glitch interval time [seconds]", Float) = 0.16
-		_DispProbability ("Displacement Glitch Probability", Float) = 0.002
+		_DispProbability ("Displacement Glitch Probability", Float) = 0.004
 		_DispIntensity ("Displacement Glitch Intensity", Float) = 0.09
-		_ColorProbability("Color Glitch Probability", Float) = 0.002
+		_ColorProbability("Color Glitch Probability", Float) = 0.004
 		_ColorIntensity("Color Glitch Intensity", Float) = 0.07
 		[MaterialToggle] _WrapDispCoords ("Wrap disp glitch (off = clamp)", Float) = 1
 		[MaterialToggle] _DispGlitchOn ("Displacement Glitch On", Float) = 1

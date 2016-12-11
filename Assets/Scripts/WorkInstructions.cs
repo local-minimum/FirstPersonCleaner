@@ -17,7 +17,6 @@ public class WorkInstructions : MonoBehaviour {
     }
 	public void PickUp()
     {       
-			Debug.Log ("PickUp");
 			anim.SetTrigger ("Pickup");
 			var dof = myCamera.GetComponent<DepthOfField> ();
 			dof.focalLength = 0.8f;
@@ -25,8 +24,7 @@ public class WorkInstructions : MonoBehaviour {
 
 	public void PutDown()
     {
-			Debug.Log ("PutDown");
-		anim.ResetTrigger (Animator.StringToHash("Pickup"));
+			anim.ResetTrigger (Animator.StringToHash("Pickup"));
 			anim.SetTrigger ("Putdown");
 			var dof = myCamera.GetComponent<DepthOfField> ();
 			dof.focalLength = 2.5f;
