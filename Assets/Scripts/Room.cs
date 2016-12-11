@@ -15,4 +15,10 @@ public class Room {
 
 	public int col;
 	public int row;
+
+	public bool HasGlitch {
+		get {
+			return this.type == RoomType.Type2;
+		}
+	}
 }
