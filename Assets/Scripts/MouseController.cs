@@ -54,8 +54,6 @@ public class MouseController : MonoBehaviour {
     [SerializeField]
     LayerMask elevatorInteractions;
 
-    bool lookingAtInstructions = false;
-
     PlayerWalkController playerCtrl;
 
     void Start()
@@ -196,7 +194,6 @@ public class MouseController : MonoBehaviour {
             }
             else if (interaction == MouseInteractionTypes.WorkOrder)
             {
-				lookingAtInstructions = true;
                 workInstructions.Toggle();
             }
         }

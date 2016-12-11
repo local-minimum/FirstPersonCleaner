@@ -27,13 +27,15 @@ public class TVNoise : MonoBehaviour {
     float flickerMagnitude = 4;
 
     bool tvIsOn = true;
-
+    AudioSource aSource;
     void Start () {
+        aSource = GetComponent<AudioSource>();
         tex = new Texture2D(pxWidth, pxHeight);        
         tex.name = "TV noise Tex";
         UpdateTex();
         GetComponent<MeshRenderer>().materials[1].SetTexture("_MainTex", tex);
         tvLight = GetComponentInChildren<Light>();
+        aSource.Play();
 	}
 
 	
@@ -106,12 +108,13 @@ public class TVNoise : MonoBehaviour {
     }
 
     public void TurnOnTV()
-    {
+    {        
         tvIsOn = true;
         tvLight.enabled = true;
         Material mat = GetComponent<MeshRenderer>().materials[1];
         mat.color = matCol;
         mat.SetColor("_EmissionColor", emissCol);
-        GetComponent<AudioSource>().UnPause();
+                
+        aSource.Play();
     }
 }
