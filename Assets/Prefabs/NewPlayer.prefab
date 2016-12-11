@@ -144,6 +144,8 @@ GameObject:
   - component: {fileID: 4154115953732810}
   - component: {fileID: 114049812422380616}
   - component: {fileID: 95101209877144922}
+  - component: {fileID: 82210122001374650}
+  - component: {fileID: 114651191112684574}
   m_Layer: 10
   m_Name: Trolley
   m_TagString: Untagged
@@ -456,6 +458,86 @@ AudioListener:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1393237751781700}
   m_Enabled: 1
+--- !u!82 &82210122001374650
+AudioSource:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1473688322099454}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!92 &92178192420703060
 Behaviour:
   m_ObjectHideFlags: 1
@@ -618,6 +700,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   walkSounds: {fileID: 114093210109631222}
+  trollySounds: {fileID: 114651191112684574}
   importRoom: {fileID: 0}
   trolly: {fileID: 114049812422380616}
   movementTransform: {fileID: 4439546919182850}
@@ -744,6 +827,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 49fa35001c6c7174a9aaf6b545c356d1, type: 3}
   volume: 0.5
   sequenceDelay: 0.3
+  probabilityPlay: 0.5
 --- !u!114 &114159914554527762
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -784,6 +868,29 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   myCamera: {fileID: 20526435948998262}
+--- !u!114 &114651191112684574
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1473688322099454}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a7e1d7dab139e2e42a22b8a733333a81, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speaker: {fileID: 82210122001374650}
+  alternativeSoundBites:
+  - {fileID: 8300000, guid: b136a598f81cb4c438b4a90046696e67, type: 3}
+  - {fileID: 8300000, guid: 5a5ef9b1ae3499341aa8674ec0d57b6a, type: 3}
+  - {fileID: 8300000, guid: 43eea52a02f14464ebb02c08941b12ed, type: 3}
+  - {fileID: 8300000, guid: 694f38244733db1439797d71d5a14a7b, type: 3}
+  - {fileID: 8300000, guid: 0185f2ec470606b4fa12efaf12887394, type: 3}
+  - {fileID: 8300000, guid: c88a735c18d2dac49875b76e0c9741f3, type: 3}
+  - {fileID: 8300000, guid: c73fb158ff9d6784d96bba79c82ff210, type: 3}
+  volume: 1
+  sequenceDelay: 0
+  probabilityPlay: 0.5
 --- !u!114 &114840121985312650
 MonoBehaviour:
   m_ObjectHideFlags: 1
