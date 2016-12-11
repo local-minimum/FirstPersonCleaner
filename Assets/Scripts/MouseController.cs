@@ -116,12 +116,13 @@ public class MouseController : MonoBehaviour {
             }
             else if (Physics.Raycast(r, out hit, 10, workInstructionsLayer))
             {
+				lookingAtInstructions = true;
                 workInstructions.PickUp();
-                lookingAtInstructions = true;
             }
         } else if (Input.GetButtonUp("interact") && lookingAtInstructions)
         {
             workInstructions.PutDown();
+			lookingAtInstructions = false;
         }
     }
 
