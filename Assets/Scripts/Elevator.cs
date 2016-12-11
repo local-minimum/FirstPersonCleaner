@@ -4,6 +4,12 @@ using UnityEngine;
 
 public class Elevator : MonoBehaviour {
 
+    [SerializeField]
+    Sounder plingSounder;
+
+    [SerializeField]
+    Sounder doorSounder;
+
     bool hasBeenTriggered = false;
 
     [SerializeField]
@@ -55,7 +61,9 @@ public class Elevator : MonoBehaviour {
         playerCtrl.frozen = true;
         yield return new WaitForSeconds(waitForElevatorTime);
         mat.color = restingColor;
+        plingSounder.PlayOne();
         anim.SetTrigger("OpenDoors");
+        doorSounder.PlayInSequence(2);
         yield return new WaitForSeconds(waitForDoorsTime);
         playerCtrl.EnterElevator();
         yield return new WaitForSeconds(waitDelayCamEffect);

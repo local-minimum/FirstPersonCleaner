@@ -89,6 +89,9 @@ GameObject:
   - component: {fileID: 4985625812432372}
   - component: {fileID: 95957834479537076}
   - component: {fileID: 114556743911155982}
+  - component: {fileID: 82613255668073496}
+  - component: {fileID: 114985716760122172}
+  - component: {fileID: 114903553940310976}
   m_Layer: 0
   m_Name: corridor_3walls_elevator
   m_TagString: Untagged
@@ -610,6 +613,86 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.064382, y: 0.19022705, z: 0.4934761}
   m_Center: {x: -0.023872, y: 0.091731526, z: 0.5424731}
+--- !u!82 &82613255668073496
+AudioSource:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1658718981953430}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!95 &95957834479537076
 Animator:
   serializedVersion: 3
@@ -638,6 +721,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 088626355b9d1ff41aa6bfc61326531c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  plingSounder: {fileID: 114903553940310976}
+  doorSounder: {fileID: 114985716760122172}
   waitForElevatorTime: 1
   waitForDoorsTime: 1.7
   waitDelayCamEffect: 1.7
@@ -646,3 +731,37 @@ MonoBehaviour:
   buttonPressColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
   mRend: {fileID: 23406792332568740}
   buttonMatIndex: 2
+--- !u!114 &114903553940310976
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1658718981953430}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a7e1d7dab139e2e42a22b8a733333a81, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speaker: {fileID: 82613255668073496}
+  alternativeSoundBites:
+  - {fileID: 8300000, guid: b229fb266108fb14cbb26fa2f63f703e, type: 3}
+  volume: 1
+  sequenceDelay: 0
+  probabilityPlay: 0.5
+--- !u!114 &114985716760122172
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1658718981953430}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a7e1d7dab139e2e42a22b8a733333a81, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speaker: {fileID: 82613255668073496}
+  alternativeSoundBites:
+  - {fileID: 8300000, guid: c621aae8a89100847a5e9549534f70bb, type: 3}
+  volume: 1
+  sequenceDelay: 0.2
+  probabilityPlay: 0.5
