@@ -22,6 +22,22 @@ public class CorridorTile : MonoBehaviour {
         return doors.Contains(door);
     }
 
+	public Direction GetPreviousDirection(CorridorTile tile) {
+		if (edges [0] == tile) {
+			return Direction.North;
+		}
+		if (edges [1] == tile) {
+			return Direction.East;
+		}
+		if (edges [2] == tile) {
+			return Direction.South;
+		}
+		if (edges [3] == tile) {
+			return Direction.West;
+		}
+		throw new UnityException ("Invalid direction");
+	}
+
     public bool CloseAllDoors()
     {
         bool any = false;

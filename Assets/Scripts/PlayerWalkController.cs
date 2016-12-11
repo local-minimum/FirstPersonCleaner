@@ -174,20 +174,24 @@ public class PlayerWalkController : MonoBehaviour {
             yield return new WaitForSeconds(animSpeed);
         }
 
+		Direction from = target.GetPreviousDirection (currentTile);
+		Debug.Log (from);
         SetCurrentTile(target);                
 		foreach (Action action in currentTile.actions) {
-			switch (action.action) {
-			case "teleport":
-				SetCurrentTile (action.tile);
-				break;
-			case "rotate":
-				SetCurrentDirection ((Direction)(((int)facingDirection + action.data [0]) % 4));
-				break;
-			case "lookat":
-				SetCurrentDirection ((Direction)(action.data [0] % 4));
-				break;
-			default:
-				break;
+			if (action.IsActive (from)) {
+				switch (action.action) {
+				case "teleport":				
+					SetCurrentTile (action.tile);
+					break;
+				case "rotate":
+					SetCurrentDirection ((Direction)(((int)facingDirection + action.GetInteger (0)) % 4));
+					break;
+				case "lookat":
+					SetCurrentDirection (action.GetDirection (0));
+					break;
+				default:
+					break;
+				}
 			}
 		}
         transitioning = false;
