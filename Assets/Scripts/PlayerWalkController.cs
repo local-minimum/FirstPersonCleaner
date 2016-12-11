@@ -49,6 +49,12 @@ public class PlayerWalkController : MonoBehaviour {
 	[SerializeField]
 	Camera myCamera;
 
+	[SerializeField]
+	public int currentLevel;
+
+	[SerializeField]
+	int maxLevel = 2;
+
     public CorridorTile CurrentTile
     {
         get
@@ -100,6 +106,13 @@ public class PlayerWalkController : MonoBehaviour {
         }
     }
 
+	void StartNextLevel() {
+		if (currentLevel < maxLevel) {
+			currentLevel++;
+			importRoom.createRooms (currentLevel);
+		}
+	}
+
     void Start()
     {
         inventory = GetComponentInParent<PlayerInventory>();
@@ -121,7 +134,7 @@ public class PlayerWalkController : MonoBehaviour {
             if (Input.GetButtonDown("walkForward"))
             {
 				if (currentTile == endTile) {
-					importRoom.createRooms (2);
+					StartNextLevel ();
 					return;
 				}
 

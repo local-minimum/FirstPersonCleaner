@@ -15,14 +15,11 @@ public class ImportRoom : MonoBehaviour {
 	public void createRooms(int level) {
 		if (rooms != null) {
 			foreach (var room in rooms) {
-				while(room.corridorTile.transform.GetChildCount()>0){
-					GameObject.Destroy(room.corridorTile.transform.GetChild (0));
-				}
-
-				Destroy (room.corridorTile);
+				Destroy (room.corridorObject);
 			}
 		}
 		rooms = new List<Room> ();
+		walkController.currentLevel = level;
 		Room[][] matrix;
 		Room startTile = null;
 		Room endTile = null;
@@ -101,6 +98,7 @@ public class ImportRoom : MonoBehaviour {
 			corridor.transform.parent = transform;
 			corridor.transform.position = (new Vector3(x, 0, z));
 			var tile = corridor.GetComponent<CorridorTile> ();
+			room.corridorObject = corridor;
 			room.corridorTile = tile;
 			tile.hasGlitch = room.HasGlitch;
 			tile.actions.AddRange (room.actions);

@@ -8,6 +8,7 @@ public class Room {
 	public Room west;
 	public Room north;
 	public Room south;
+	public GameObject corridorObject;
 	public CorridorTile corridorTile;
 	public List<Action> actions = new List<Action>(); 
 
