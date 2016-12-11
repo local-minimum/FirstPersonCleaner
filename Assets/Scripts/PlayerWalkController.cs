@@ -7,6 +7,9 @@ public class PlayerWalkController : MonoBehaviour {
     [SerializeField]
     Sounder walkSounds;
 
+    [SerializeField]
+    Sounder trollySounds;
+
 	[SerializeField]
 	ImportRoom importRoom;
 
@@ -274,6 +277,7 @@ public class PlayerWalkController : MonoBehaviour {
             StopLookingIntoOneRoom();
         }
         walkSounds.PlayInSequence(3);
+        trollySounds.PlayOne();
         transitioning = true;
         //currentTile.CloseAllDoors();
         float start = Time.timeSinceLevelLoad;

@@ -780,7 +780,7 @@ MonoBehaviour:
   roomPrefab: {fileID: 1549239621622938, guid: 86042727a267d214bb40544cbad75b51, type: 2}
   soundOpen: {fileID: 114218677442015660}
   soundClose: {fileID: 114369326444391096}
-  soundCreak: {fileID: 0}
+  soundCreak: {fileID: 114943509889471742}
 --- !u!114 &114218677442015660
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -846,7 +846,7 @@ MonoBehaviour:
   roomPrefab: {fileID: 1549239621622938, guid: 86042727a267d214bb40544cbad75b51, type: 2}
   soundOpen: {fileID: 114218677442015660}
   soundClose: {fileID: 114369326444391096}
-  soundCreak: {fileID: 0}
+  soundCreak: {fileID: 114943509889471742}
 --- !u!114 &114733669550981408
 MonoBehaviour:
   m_ObjectHideFlags: 1

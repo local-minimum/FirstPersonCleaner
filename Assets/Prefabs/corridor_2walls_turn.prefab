@@ -875,7 +875,8 @@ MonoBehaviour:
     type: 2}
   soundClose: {fileID: 114369326444391096, guid: 7aeb3d952f72d4f4da72c1a0580b77b4,
     type: 2}
-  soundCreak: {fileID: 0}
+  soundCreak: {fileID: 114943509889471742, guid: 7aeb3d952f72d4f4da72c1a0580b77b4,
+    type: 2}
 --- !u!114 &114670764274850240
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -892,7 +893,8 @@ MonoBehaviour:
     type: 2}
   soundClose: {fileID: 114369326444391096, guid: 7aeb3d952f72d4f4da72c1a0580b77b4,
     type: 2}
-  soundCreak: {fileID: 0}
+  soundCreak: {fileID: 114943509889471742, guid: 7aeb3d952f72d4f4da72c1a0580b77b4,
+    type: 2}
 --- !u!114 &114959211187507914
 MonoBehaviour:
   m_ObjectHideFlags: 1
