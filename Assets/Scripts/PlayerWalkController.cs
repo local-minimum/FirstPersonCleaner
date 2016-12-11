@@ -37,6 +37,9 @@ public class PlayerWalkController : MonoBehaviour {
     [SerializeField, Range(0, 3)]
     float rotationDuration = 1f;
 
+    [SerializeField]
+    Animator camAnim;
+
     public CorridorTile CurrentTile
     {
         get
@@ -85,6 +88,16 @@ public class PlayerWalkController : MonoBehaviour {
     void Start()
     {
         inventory = GetComponentInParent<PlayerInventory>();
+    }
+
+    public void LookIntoOneRoom()
+    {
+        camAnim.SetBool("Looking", true);
+    }
+
+    public void StopLookingIntoOneRoom()
+    {
+        camAnim.SetBool("Looking", false);
     }
 
 	void Update () {
@@ -183,7 +196,10 @@ public class PlayerWalkController : MonoBehaviour {
     IEnumerator<WaitForSeconds> Rotate(bool rotateRight)
     {
         transitioning = true;
-        currentTile.CloseAllDoors();
+        if (currentTile.CloseAllDoors())
+        {
+            StopLookingIntoOneRoom();
+        }
         float start = Time.timeSinceLevelLoad;
         float progress = 0;
         Direction targetDirection;

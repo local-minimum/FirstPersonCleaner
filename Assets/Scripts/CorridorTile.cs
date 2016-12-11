@@ -22,12 +22,14 @@ public class CorridorTile : MonoBehaviour {
         return doors.Contains(door);
     }
 
-    public void CloseAllDoors()
+    public bool CloseAllDoors()
     {
+        bool any = false;
         for (int i=0,l=doors.Length; i< l; i++)
         {
-            doors[i].CloseDoor();
+            any = any | doors[i].CloseDoor();
         }
+        return any;
     }
 
     public CorridorTile GetEdge(Direction direction)

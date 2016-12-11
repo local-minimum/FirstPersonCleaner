@@ -30,11 +30,11 @@ public class OneRoomDoor : MonoBehaviour {
         col = GetComponentInChildren<Collider>();
     }
 
-    public void OpenDoor(Direction direction)
+    public bool OpenDoor(Direction direction)
     {
         if (isOpen)
         {
-            return;
+            return false;
         }
         if (room == null)
         {
@@ -49,13 +49,14 @@ public class OneRoomDoor : MonoBehaviour {
         rotationTarget = Quaternion.AngleAxis((int)CorridorTile.GetInverseDirection(direction) * 90, Vector3.up);
         startOfRotationTime = Time.timeSinceLevelLoad;
         rotating = true;
+        return true;   
     }
 
-    public void CloseDoor()
+    public bool CloseDoor()
     {
         if (!isOpen)
         {
-            return;
+            return false;
         }
         if (room)
         {
@@ -68,7 +69,7 @@ public class OneRoomDoor : MonoBehaviour {
         gameObject.layer = activeLayer;
         startOfRotationTime = Time.timeSinceLevelLoad;
         rotating = true;
-
+        return true;
     }
 
     void SpawnRoom(Direction direction)
