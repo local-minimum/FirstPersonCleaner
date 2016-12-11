@@ -51,6 +51,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4099f2fdecf8034eadad628d3498a51, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  doorLayer:
+    serializedVersion: 2
+    m_Bits: 256
   elevatorPrefab: {fileID: 4985625812432372, guid: 257e32b1ff491674b9e0209933f91b8d,
     type: 2}
   corridorPrefabs:

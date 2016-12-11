@@ -27,7 +27,17 @@ public class CorridorTile : MonoBehaviour {
 
     public OneRoomDoor GetDoor(Direction direction)
     {
-        return doors[(int)direction];
+        Ray r = new Ray(playerPosition, GetLookDirection(direction));
+        RaycastHit hit;
+        if (Physics.Raycast(r, out hit, 4, MouseController.DoorLayer))
+        {
+            OneRoomDoor door = hit.transform.GetComponentInParent<OneRoomDoor>();
+            if (door != null && HasDoor(door))
+            {
+                return door;
+            }            
+        } 
+        return null;
     }
 
 	public Direction GetPreviousDirection(CorridorTile tile) {

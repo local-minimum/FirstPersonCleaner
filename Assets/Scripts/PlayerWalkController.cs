@@ -390,4 +390,15 @@ public class PlayerWalkController : MonoBehaviour {
         transitioning = false;
     }
 
+    void OnDrawGizmos()
+    {
+        if (currentTile == null)
+        {
+            return;
+        }
+
+        Ray r = new Ray(currentTile.playerPosition, CorridorTile.GetLookDirection(LookDirection));
+        Gizmos.DrawLine(r.origin, r.GetPoint(3));
+    }
+
 }

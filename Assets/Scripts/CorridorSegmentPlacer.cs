@@ -7,6 +7,9 @@ public enum CorridorType { Default};
 public class CorridorSegmentPlacer : MonoBehaviour {
 
     [SerializeField]
+    LayerMask doorLayer;
+
+    [SerializeField]
     Transform elevatorPrefab;
 
     [SerializeField]
@@ -62,8 +65,7 @@ public class CorridorSegmentPlacer : MonoBehaviour {
 		}
 
 		segment.position = position;
-		segment.gameObject.AddComponent<CorridorTile> ();
-
+		CorridorTile tile = segment.gameObject.AddComponent<CorridorTile> ();        
 		return segment.gameObject;
 	}
 

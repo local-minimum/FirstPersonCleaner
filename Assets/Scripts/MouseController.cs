@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class MouseController : MonoBehaviour {
 
+    public static LayerMask DoorLayer;
+
     Camera cam;
 
     [SerializeField]
@@ -58,6 +60,7 @@ public class MouseController : MonoBehaviour {
 
     void Start()
     {
+        DoorLayer = doorLayer;
         cam = GetComponentInParent<Camera>();
         playerCtrl = GetComponentInParent<PlayerWalkController>();
     }
