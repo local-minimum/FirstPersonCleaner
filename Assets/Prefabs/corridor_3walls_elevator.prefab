@@ -140,7 +140,8 @@ GameObject:
   - component: {fileID: 4606505096102214}
   - component: {fileID: 33906499973477688}
   - component: {fileID: 23406792332568740}
-  m_Layer: 0
+  - component: {fileID: 65628131309537350}
+  m_Layer: 11
   m_Name: ElevatorControl
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -597,6 +598,18 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1149586278297942}
   m_Mesh: {fileID: 4300006, guid: ec4d6151c1d890444961dbc0e9dd0471, type: 3}
+--- !u!65 &65628131309537350
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1873797922874408}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.064382, y: 0.19022705, z: 0.4934761}
+  m_Center: {x: -0.023872, y: 0.091731526, z: 0.5424731}
 --- !u!95 &95957834479537076
 Animator:
   serializedVersion: 3
@@ -628,4 +641,7 @@ MonoBehaviour:
   waitForElevatorTime: 2
   waitForDoorsTime: 1.7
   waitWhileWalkingIn: 2
-  waitFakeLevelLoad: 2
+  waitFakeLevelLoad: 0.4
+  buttonPressColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
+  mRend: {fileID: 23406792332568740}
+  buttonMatIndex: 2

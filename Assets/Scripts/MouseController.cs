@@ -18,6 +18,9 @@ public class MouseController : MonoBehaviour {
     [SerializeField]
     LayerMask workInstructionsLayer;
 
+    [SerializeField]
+    LayerMask elevatorInteractions;
+
     bool lookingAtInstructions = false;
 
     PlayerWalkController playerCtrl;
@@ -30,12 +33,25 @@ public class MouseController : MonoBehaviour {
 
     void Update()
     {
+        if (playerCtrl.frozen)
+        {
+            return;
+        }
+
         if (Input.GetButtonDown("interact"))
         {
 
             Ray r = cam.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
-            if (Physics.Raycast(r, out hit, 4, doorLayer))
+            if (Physics.Raycast(r, out hit, 5, elevatorInteractions))
+            {
+                Elevator elevator = hit.transform.GetComponentInParent<Elevator>();
+                if (elevator)
+                {
+                    elevator.PressForElevator(playerCtrl);
+                }
+            }
+            else if (Physics.Raycast(r, out hit, 4, doorLayer))
             {                
                 OneRoomDoor door = hit.transform.GetComponentInParent<OneRoomDoor>();                
                 if (door && playerCtrl.CurrentTile.HasDoor(door))

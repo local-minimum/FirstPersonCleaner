@@ -49,6 +49,7 @@ public class Elevator : MonoBehaviour {
         Material mat = mRend.materials[buttonMatIndex];
         Color restingColor = mat.color;
         mat.color = buttonPressColor;
+        playerCtrl.frozen = true;
         yield return new WaitForSeconds(waitForElevatorTime);
         mat.color = restingColor;
         anim.SetTrigger("OpenDoors");

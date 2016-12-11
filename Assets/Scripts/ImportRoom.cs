@@ -132,9 +132,11 @@ public class ImportRoom : MonoBehaviour {
 		walkController.SetEndTile (endTile.corridorTile);
 	}
 
+    [SerializeField]
+    int startLevel = 1;
 	// Use this for initialization
 	void Start () {
-		createRooms (1);
+		createRooms (startLevel);
 	}
 	
 	// Update is called once per frame

@@ -55,6 +55,21 @@ public class PlayerWalkController : MonoBehaviour {
 	[SerializeField]
 	int maxLevel = 2;
 
+    private bool _frozen = false;   
+    public bool frozen
+    {
+        get
+        {
+            return _frozen;
+        }
+
+        set
+        {
+            _frozen = value;
+            Cursor.visible = !value;
+        }
+    }
+
     public CorridorTile CurrentTile
     {
         get
@@ -86,7 +101,7 @@ public class PlayerWalkController : MonoBehaviour {
 
     public void EnterElevator()
     {
-
+        camAnim.SetTrigger("Elevator");
     }
 
     public void SetCurrentDirection(Direction direction)
@@ -118,15 +133,34 @@ public class PlayerWalkController : MonoBehaviour {
 
     public void ResumePlay()
     {
-
+        frozen = false;
     }
 
-	public void StartNextLevel() {
+    public void StartNextLevel()
+    {
+        StartNextLevel(0);
+    }
+
+    public void StartNextLevel(float delay) {
 		if (currentLevel < maxLevel) {
 			currentLevel++;
 			importRoom.createRooms (currentLevel);
+            if (delay > 0)
+            {
+                StartCoroutine(_delayNextLevel(delay));
+            }
+            else
+            {
+                ResumePlay();
+            }
 		}
 	}
+
+    IEnumerator<WaitForSeconds> _delayNextLevel(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        ResumePlay();
+    }
 
     void Start()
     {
@@ -144,14 +178,10 @@ public class PlayerWalkController : MonoBehaviour {
     }
 
 	void Update () {
-        if (!transitioning)
+        if (!transitioning && !frozen)
         {
             if (Input.GetButtonDown("walkForward"))
             {
-				if (currentTile == endTile) {
-					StartNextLevel ();
-					return;
-				}
 
                 CorridorTile target = currentTile.GetEdge(facingDirection);
 				if (target == null || currentTile == endTile)

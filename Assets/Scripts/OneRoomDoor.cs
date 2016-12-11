@@ -7,7 +7,6 @@ public class OneRoomDoor : MonoBehaviour {
     [SerializeField]
     GameObject roomPrefab;
 
-    MeshRenderer mRend;
     Collider col;
 
     GameObject room;
@@ -26,7 +25,6 @@ public class OneRoomDoor : MonoBehaviour {
     {
         restingRotation = transform.rotation;
         tile = GetComponentInParent<CorridorTile>();
-        mRend = GetComponentInChildren<MeshRenderer>();
         col = GetComponentInChildren<Collider>();
     }
 
