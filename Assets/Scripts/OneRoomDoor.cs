@@ -47,7 +47,7 @@ public class OneRoomDoor : MonoBehaviour {
         room.SetActive(true);        
         col.enabled = false;
         startRotation = restingRotation;
-        rotationTarget = restingRotation * Quaternion.AngleAxis(90, Vector3.up);
+        rotationTarget = restingRotation * Quaternion.AngleAxis(10, Vector3.up);
         rotationStart = Time.timeSinceLevelLoad;
         rotating = true;
     }

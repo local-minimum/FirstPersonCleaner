@@ -545,7 +545,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ad7ee62ccc7ab342b31d8ecae9bed79, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  roomPrefab: {fileID: 1169694627762902, guid: 73371a5bd19a2934f84d1d51235c0a8d, type: 2}
+  roomPrefab: {fileID: 1549239621622938, guid: 86042727a267d214bb40544cbad75b51, type: 2}
 --- !u!114 &114670764274850240
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -557,4 +557,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ad7ee62ccc7ab342b31d8ecae9bed79, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  roomPrefab: {fileID: 1169694627762902, guid: 73371a5bd19a2934f84d1d51235c0a8d, type: 2}
+  roomPrefab: {fileID: 1549239621622938, guid: 86042727a267d214bb40544cbad75b51, type: 2}
