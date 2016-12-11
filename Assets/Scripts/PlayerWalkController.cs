@@ -8,6 +8,9 @@ public class PlayerWalkController : MonoBehaviour {
     Sounder walkSounds;
 
     [SerializeField]
+    Sounder walkRefuse;
+
+    [SerializeField]
     Sounder trollySounds;
 
 	[SerializeField]
@@ -278,6 +281,7 @@ public class PlayerWalkController : MonoBehaviour {
             StopLookingIntoOneRoom();
         }
         transitioning = true;
+        walkRefuse.PlayOne();
         float start = Time.timeSinceLevelLoad;
         float progress = 0;
         Vector3 startPos = currentTile.playerPosition;
