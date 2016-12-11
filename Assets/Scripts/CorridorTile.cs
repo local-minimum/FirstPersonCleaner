@@ -40,7 +40,7 @@ public class CorridorTile : MonoBehaviour {
 		}
 		throw new UnityException ("Invalid direction");
 	}
-
+    
     public bool CloseAllDoors()
     {
         bool any = false;

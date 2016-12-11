@@ -42,7 +42,7 @@ public class OneRoomDoor : MonoBehaviour {
         activeLayer = gameObject.layer;
         gameObject.layer = 0;
         room.SetActive(true);        
-        col.enabled = false;
+        //col.enabled = false;
         rotationStart = Quaternion.AngleAxis((int) CorridorTile.GetRighDirection(direction) * 90, Vector3.up);
         rotationTarget = Quaternion.AngleAxis((int)CorridorTile.GetInverseDirection(direction) * 90, Vector3.up);
         startOfRotationTime = Time.timeSinceLevelLoad;
@@ -56,10 +56,6 @@ public class OneRoomDoor : MonoBehaviour {
         {
             return false;
         }
-        if (room)
-        {
-            room.SetActive(false);
-        }
         isOpen = false;
         rotationStart = rotationTarget;
         rotationTarget = restingRotation;
@@ -67,7 +63,20 @@ public class OneRoomDoor : MonoBehaviour {
         gameObject.layer = activeLayer;
         startOfRotationTime = Time.timeSinceLevelLoad;
         rotating = true;
+        StartCoroutine(delayDisableRoom());
         return true;
+    }
+
+    IEnumerator<WaitForSeconds> delayDisableRoom()
+    {
+        yield return new WaitForSeconds(2f);
+        if (!isOpen)
+        {
+            if (room)
+            {
+                room.SetActive(false);
+            }
+        }
     }
 
     void SpawnRoom(Direction direction)

@@ -135,30 +135,6 @@ Prefab:
       propertyPath: importRoom
       value: 
       objectReference: {fileID: 986032058}
-    - target: {fileID: 4439546919182850, guid: 80974223accd11048b420de67354cd0b, type: 2}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 20526435948998262, guid: 80974223accd11048b420de67354cd0b,
-        type: 2}
-      propertyPath: m_BackGroundColor.r
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 20526435948998262, guid: 80974223accd11048b420de67354cd0b,
-        type: 2}
-      propertyPath: m_BackGroundColor.g
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 20526435948998262, guid: 80974223accd11048b420de67354cd0b,
-        type: 2}
-      propertyPath: m_BackGroundColor.b
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 114074284298593848, guid: 80974223accd11048b420de67354cd0b,
-        type: 2}
-      propertyPath: maxLevel
-      value: 2
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 80974223accd11048b420de67354cd0b, type: 2}
   m_IsPrefabParent: 0
@@ -203,24 +179,14 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 114784353986944100, guid: 9c10b3dfd23f44dee92b4de11fe4e412,
         type: 2}
-      propertyPath: walkController
-      value: 
-      objectReference: {fileID: 2120540737}
-    - target: {fileID: 114784353986944100, guid: 9c10b3dfd23f44dee92b4de11fe4e412,
-        type: 2}
       propertyPath: placer
       value: 
       objectReference: {fileID: 1774455230}
     - target: {fileID: 114784353986944100, guid: 9c10b3dfd23f44dee92b4de11fe4e412,
         type: 2}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114784353986944100, guid: 9c10b3dfd23f44dee92b4de11fe4e412,
-        type: 2}
-      propertyPath: startLevel
-      value: 0
-      objectReference: {fileID: 0}
+      propertyPath: walkController
+      value: 
+      objectReference: {fileID: 2120540737}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 9c10b3dfd23f44dee92b4de11fe4e412, type: 2}
   m_IsPrefabParent: 0

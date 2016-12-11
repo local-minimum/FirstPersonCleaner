@@ -178,20 +178,34 @@ public class PlayerWalkController : MonoBehaviour {
         inventory = GetComponentInParent<PlayerInventory>();
     }
 
+    bool isLookingIntoRoom = false;
+    public bool IsLookingIntoRoom {
+        get {
+            return isLookingIntoRoom;
+        }
+    }
+
     public void LookIntoOneRoom()
     {
+        isLookingIntoRoom = true;
         camAnim.SetBool("Looking", true);
     }
 
     public void StopLookingIntoOneRoom()
     {
+        isLookingIntoRoom = false;
         camAnim.SetBool("Looking", false);
     }
 
 	void Update () {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            Application.Quit();
+        }
+
         if (!transitioning && !frozen)
         {
-            if (Input.GetButtonDown("walkForward"))
+            if (Input.GetButton("walkForward"))
             {
 
                 CorridorTile target = currentTile.GetEdge(facingDirection);
@@ -204,7 +218,7 @@ public class PlayerWalkController : MonoBehaviour {
                     StartCoroutine(Walk(target));
                 }
             }
-            else if (Input.GetButtonDown("walkReverse"))
+            else if (Input.GetButton("walkReverse"))
             {
                 CorridorTile target = currentTile.GetEdge(CorridorTile.GetInverseDirection(facingDirection));
 				if (target == null || currentTile == endTile)
@@ -215,11 +229,11 @@ public class PlayerWalkController : MonoBehaviour {
                     StartCoroutine(Walk(target));
                 }
             }
-            else if (Input.GetButtonDown("rotateLeft"))
+            else if (Input.GetButton("rotateLeft"))
             {
                 StartCoroutine(Rotate(false));
             }
-            else if (Input.GetButtonDown("rotateRight"))
+            else if (Input.GetButton("rotateRight"))
             {
                 StartCoroutine(Rotate(true));
             }
@@ -228,6 +242,10 @@ public class PlayerWalkController : MonoBehaviour {
 
     IEnumerator<WaitForSeconds> RefuseWalk()
     {
+        if (isLookingIntoRoom)
+        {
+            StopLookingIntoOneRoom();
+        }
         transitioning = true;
         float start = Time.timeSinceLevelLoad;
         float progress = 0;
@@ -248,6 +266,10 @@ public class PlayerWalkController : MonoBehaviour {
 
     IEnumerator<WaitForSeconds> Walk(CorridorTile target)
     {
+        if (isLookingIntoRoom)
+        {
+            StopLookingIntoOneRoom();
+        }
         transitioning = true;
         //currentTile.CloseAllDoors();
         float start = Time.timeSinceLevelLoad;
@@ -289,10 +311,15 @@ public class PlayerWalkController : MonoBehaviour {
     IEnumerator<WaitForSeconds> Rotate(bool rotateRight)
     {
         transitioning = true;
-        if (currentTile.CloseAllDoors())
+        if (isLookingIntoRoom)
         {
             StopLookingIntoOneRoom();
         }
+        /*
+        if (currentTile.CloseAllDoors())
+        {
+            StopLookingIntoOneRoom();
+        }*/
         float start = Time.timeSinceLevelLoad;
         float progress = 0;
         Direction targetDirection;
