@@ -16,6 +16,9 @@ public class PlayerWalkController : MonoBehaviour {
     [SerializeField]
     CorridorTile currentTile;
 
+	[SerializeField]
+	CorridorTile endTile;
+
     [SerializeField]
     Direction facingDirection;
 
@@ -54,6 +57,10 @@ public class PlayerWalkController : MonoBehaviour {
         movementTransform.position = currentTile.playerPosition;
         trolly.UpdateDirection();
     }
+
+	public void SetEndTile(CorridorTile tile) {
+		endTile = tile;
+	}
 
     public Direction LookDirection
     {
