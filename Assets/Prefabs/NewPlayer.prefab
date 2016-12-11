@@ -112,6 +112,7 @@ GameObject:
   - component: {fileID: 95903167480955436}
   - component: {fileID: 114032776178575290}
   - component: {fileID: 114345615163645304}
+  - component: {fileID: 114483349563891808}
   m_Layer: 0
   m_Name: Cam
   m_TagString: MainCamera
@@ -581,6 +582,7 @@ MonoBehaviour:
   movementTransform: {fileID: 4439546919182850}
   lookTransform: {fileID: 4188848462049026}
   currentTile: {fileID: 0}
+  endTile: {fileID: 0}
   facingDirection: 0
   walkAnim:
     serializedVersion: 2
@@ -658,6 +660,7 @@ MonoBehaviour:
   refuseDuration: 0.2
   rotationDuration: 0.3
   camAnim: {fileID: 95903167480955436}
+  myCamera: {fileID: 20526435948998262}
 --- !u!114 &114079274672764128
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -675,7 +678,7 @@ MonoBehaviour:
   prefabTowels: {fileID: 1150486710590376, guid: 236e34e6a4133e64d8d7c2111ffd7168,
     type: 2}
   prefabDND: {fileID: 1150486710590376, guid: 236e34e6a4133e64d8d7c2111ffd7168, type: 2}
-  prefabWetFloor: {fileID: 1150486710590376, guid: 236e34e6a4133e64d8d7c2111ffd7168,
+  prefabWetFloor: {fileID: 1839609233534274, guid: 2441fa636c62c7f45a300f019498512f,
     type: 2}
 --- !u!114 &114345615163645304
 MonoBehaviour:
@@ -702,6 +705,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea853f041b7146c46969efc3453a0961, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  myCamera: {fileID: 0}
+--- !u!114 &114483349563891808
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1393237751781700}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 33f2233e7aa4d49ab964c03f97fc3f13, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mat: {fileID: 0}
+  shader: {fileID: 4800000, guid: 507e8e1dc1aff48449dcee51f2f95331, type: 3}
+  hasGlitch: 0
 --- !u!114 &114840121985312650
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -130,12 +130,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 2
       objectReference: {fileID: 0}
-    - target: {fileID: 114079274672764128, guid: 80974223accd11048b420de67354cd0b,
-        type: 2}
-      propertyPath: prefabWetFloor
-      value: 
-      objectReference: {fileID: 1839609233534274, guid: 2441fa636c62c7f45a300f019498512f,
-        type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 80974223accd11048b420de67354cd0b, type: 2}
   m_IsPrefabParent: 0
@@ -238,24 +232,6 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d11441aeaa805094b92273e34b64d212, type: 2}
   m_IsPrefabParent: 0
---- !u!1 &1258924517 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 1393237751781700, guid: 80974223accd11048b420de67354cd0b,
-    type: 2}
-  m_PrefabInternal: {fileID: 73720030}
---- !u!114 &1258924527
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1258924517}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 33f2233e7aa4d49ab964c03f97fc3f13, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  mat: {fileID: 0}
-  shader: {fileID: 4800000, guid: 507e8e1dc1aff48449dcee51f2f95331, type: 3}
 --- !u!114 &1774455230 stripped
 MonoBehaviour:
   m_PrefabParentObject: {fileID: 114112589191766880, guid: d11441aeaa805094b92273e34b64d212,
