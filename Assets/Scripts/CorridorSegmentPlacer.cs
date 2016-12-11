@@ -7,6 +7,9 @@ public enum CorridorType { Default};
 public class CorridorSegmentPlacer : MonoBehaviour {
 
     [SerializeField]
+    Transform elevatorPrefab;
+
+    [SerializeField]
     Transform[] corridorPrefabs;
 
     [SerializeField]
@@ -49,7 +52,7 @@ public class CorridorSegmentPlacer : MonoBehaviour {
 		Vector3 position = transform.position;
 		Transform segment; 
 
-		segment = Instantiate (corridorPrefabs [3]);
+		segment = Instantiate (elevatorPrefab);
 		if (!westWall) {
 			segment.Rotate (Vector3.up, 180);
 		} else if (!southWall) {

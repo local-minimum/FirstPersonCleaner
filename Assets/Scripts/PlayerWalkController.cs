@@ -84,6 +84,11 @@ public class PlayerWalkController : MonoBehaviour {
         }
     }
 
+    public void EnterElevator()
+    {
+
+    }
+
     public void SetCurrentDirection(Direction direction)
     {
         lookTransform.rotation = Quaternion.LookRotation(CorridorTile.GetLookDirection(direction), Vector3.up);
@@ -106,7 +111,17 @@ public class PlayerWalkController : MonoBehaviour {
         }
     }
 
-	void StartNextLevel() {
+    public void WhiteOut()
+    {
+
+    }
+
+    public void ResumePlay()
+    {
+
+    }
+
+	public void StartNextLevel() {
 		if (currentLevel < maxLevel) {
 			currentLevel++;
 			importRoom.createRooms (currentLevel);
