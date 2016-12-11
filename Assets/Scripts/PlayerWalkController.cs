@@ -16,6 +16,9 @@ public class PlayerWalkController : MonoBehaviour {
     [SerializeField]
     CorridorTile currentTile;
 
+	[SerializeField]
+	CorridorTile endTile;
+
     [SerializeField]
     Direction facingDirection;
 
@@ -54,6 +57,10 @@ public class PlayerWalkController : MonoBehaviour {
         movementTransform.position = currentTile.playerPosition;
         trolly.UpdateDirection();
     }
+
+	public void SetEndTile(CorridorTile tile) {
+		endTile = tile;
+	}
 
     public Direction LookDirection
     {
@@ -106,7 +113,7 @@ public class PlayerWalkController : MonoBehaviour {
             if (Input.GetButtonDown("walkForward"))
             {
                 CorridorTile target = currentTile.GetEdge(facingDirection);
-                if (target == null)
+				if (target == null || currentTile == endTile)
                 {
                     StartCoroutine(RefuseWalk());
                 }
@@ -118,7 +125,7 @@ public class PlayerWalkController : MonoBehaviour {
             else if (Input.GetButtonDown("walkReverse"))
             {
                 CorridorTile target = currentTile.GetEdge(CorridorTile.GetInverseDirection(facingDirection));
-                if (target == null)
+				if (target == null || currentTile == endTile)
                 {
                     StartCoroutine(RefuseWalk());
                 } else
@@ -174,20 +181,24 @@ public class PlayerWalkController : MonoBehaviour {
             yield return new WaitForSeconds(animSpeed);
         }
 
+		Direction from = target.GetPreviousDirection (currentTile);
+		Debug.Log (from);
         SetCurrentTile(target);                
 		foreach (Action action in currentTile.actions) {
-			switch (action.action) {
-			case "teleport":
-				SetCurrentTile (action.tile);
-				break;
-			case "rotate":
-				SetCurrentDirection ((Direction)(((int)facingDirection + action.data [0]) % 4));
-				break;
-			case "lookat":
-				SetCurrentDirection ((Direction)(action.data [0] % 4));
-				break;
-			default:
-				break;
+			if (action.IsActive (from)) {
+				switch (action.action) {
+				case "teleport":				
+					SetCurrentTile (action.tile);
+					break;
+				case "rotate":
+					SetCurrentDirection ((Direction)(((int)facingDirection + action.GetInteger (0)) % 4));
+					break;
+				case "lookat":
+					SetCurrentDirection (action.GetDirection (0));
+					break;
+				default:
+					break;
+				}
 			}
 		}
         transitioning = false;

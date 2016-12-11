@@ -17,6 +17,7 @@ public class ImportRoom : MonoBehaviour {
 		rooms = new List<Room> ();
 		Room[][] matrix;
 		Room startTile = null;
+		Room endTile = null;
 
 		TextAsset asset = Resources.Load ("level1") as TextAsset;
 		string dataString = asset.text.Replace ("\r", "\n");
@@ -37,6 +38,10 @@ public class ImportRoom : MonoBehaviour {
 					if (cell.StartsWith ("*")) {
 						startTile = room;
 						cell = cell.Replace ("*", "");
+					}
+					if (cell.StartsWith ("#")) {
+						endTile = room;
+						cell = cell.Replace ("#", "");
 					}
 					int cellType = int.Parse (cell);
 					if (cells.Length > 1) {
@@ -77,7 +82,12 @@ public class ImportRoom : MonoBehaviour {
 		float size = 5f;
 
 		foreach (var room in rooms) {
-			GameObject corridor = placer.PlaceCorridor (room.north == null, room.west == null, room.south == null, room.east == null);
+			GameObject corridor;
+			if (room == endTile) {
+				corridor = placer.PlaceEndTile (room.north == null, room.west == null, room.south == null, room.east == null);
+			} else {
+				corridor = placer.PlaceCorridor (room.north == null, room.west == null, room.south == null, room.east == null);
+			}
 			float x = room.col * size;
 			float z = -room.row * size;
 			corridor.transform.parent = transform;
@@ -91,8 +101,8 @@ public class ImportRoom : MonoBehaviour {
 
 			foreach (var action in room.actions) {
 				if (action.NeedTile) {
-					int row = action.data [0];
-					int col = action.data [1];
+					int row = action.GetInteger (0);
+						int col = action.GetInteger (1);
 					action.tile = matrix [row] [col].corridorTile;
 				}
 			}
@@ -112,6 +122,7 @@ public class ImportRoom : MonoBehaviour {
 		}
 
 		walkController.SetCurrentTile(startTile.corridorTile);
+		walkController.SetEndTile (endTile.corridorTile);
 	}
 	
 	// Update is called once per frame
