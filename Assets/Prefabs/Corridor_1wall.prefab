@@ -56,7 +56,6 @@ GameObject:
   - component: {fileID: 114027881384573426}
   - component: {fileID: 114842794281165610}
   - component: {fileID: 114904566150970732}
-  - component: {fileID: 82785902641409496}
   m_Layer: 8
   m_Name: DoorParent
   m_TagString: Untagged
@@ -464,86 +463,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.33116898, y: 1.6480063, z: 3.4800007}
   m_Center: {x: 0.0955845, y: 0, z: -0.7500002}
---- !u!82 &82785902641409496
-AudioSource:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1220289258328228}
-  m_Enabled: 1
-  serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 0
-  m_Volume: 1
-  m_Pitch: 1
-  Loop: 0
-  Mute: 0
-  Spatialize: 0
-  SpatializePostEffects: 0
-  Priority: 128
-  DopplerLevel: 1
-  MinDistance: 1
-  MaxDistance: 500
-  Pan2D: 0
-  rolloffMode: 0
-  BypassEffects: 0
-  BypassListenerEffects: 0
-  BypassReverbZones: 0
-  rolloffCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 2
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    - serializedVersion: 2
-      time: 1
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  panLevelCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 2
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 0
-  spreadCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 2
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 0
-  reverbZoneMixCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 2
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 0
 --- !u!95 &95617495829894632
 Animator:
   serializedVersion: 3
@@ -646,6 +565,7 @@ MonoBehaviour:
   volume: 1
   sequenceDelay: 0
   probabilityPlay: 0.5
+  emit: 0
 --- !u!114 &114399825991684776
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -681,6 +601,7 @@ MonoBehaviour:
   volume: 1
   sequenceDelay: 0
   probabilityPlay: 0.5
+  emit: 0
 --- !u!114 &114904566150970732
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -702,3 +623,4 @@ MonoBehaviour:
   volume: 1
   sequenceDelay: 0
   probabilityPlay: 0.05
+  emit: 0

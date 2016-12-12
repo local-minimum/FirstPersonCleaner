@@ -143,7 +143,7 @@ Prefab:
     - target: {fileID: 114074284298593848, guid: 80974223accd11048b420de67354cd0b,
         type: 2}
       propertyPath: maxLevel
-      value: 5
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 82371836820672384, guid: 80974223accd11048b420de67354cd0b,
         type: 2}
@@ -215,6 +215,11 @@ Prefab:
       propertyPath: walkController
       value: 
       objectReference: {fileID: 2120540737}
+    - target: {fileID: 114784353986944100, guid: 9c10b3dfd23f44dee92b4de11fe4e412,
+        type: 2}
+      propertyPath: startLevel
+      value: 6
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 9c10b3dfd23f44dee92b4de11fe4e412, type: 2}
   m_IsPrefabParent: 0
@@ -267,6 +272,24 @@ Prefab:
       propertyPath: spinMat
       value: 
       objectReference: {fileID: 2100000, guid: 96a635c5ded38f94ea76ca5c3f506e03, type: 2}
+    - target: {fileID: 114112589191766880, guid: d11441aeaa805094b92273e34b64d212,
+        type: 2}
+      propertyPath: corridorPrefabs.Array.data[0]
+      value: 
+      objectReference: {fileID: 4329644761824292, guid: 12f4ccfa65f20664e9f0d3e6e952c8f8,
+        type: 2}
+    - target: {fileID: 114112589191766880, guid: d11441aeaa805094b92273e34b64d212,
+        type: 2}
+      propertyPath: corridorPrefabs.Array.data[2]
+      value: 
+      objectReference: {fileID: 4169068372696492, guid: 4510f3cf3173f464b8958c27ae62171e,
+        type: 2}
+    - target: {fileID: 114112589191766880, guid: d11441aeaa805094b92273e34b64d212,
+        type: 2}
+      propertyPath: corridorPrefabs.Array.data[3]
+      value: 
+      objectReference: {fileID: 4107585136942772, guid: 96326c0772178e14ba4cbd88c6af159c,
+        type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d11441aeaa805094b92273e34b64d212, type: 2}
   m_IsPrefabParent: 0
