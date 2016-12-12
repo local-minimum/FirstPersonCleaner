@@ -77,8 +77,8 @@ public class OneRoomDoor : MonoBehaviour {
             return false;
         }
         Debug.Log("Hard close");
-        soundClose.PlayOne();
         soundCreak.ProbabilityPlayOne();
+        soundClose.PlayOne();
         isOpen = false;
         rotationStart = rotationTarget;
         rotationTarget = restingRotation;
