@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityStandardAssets.ImageEffects;
 
 public class PlayerWalkController : MonoBehaviour {
 
@@ -90,14 +91,25 @@ public class PlayerWalkController : MonoBehaviour {
         }
     }
 
+    MainShader glitchShader;
+
     public void SetCurrentTile(CorridorTile tile)
     {
         currentTile = tile;
         movementTransform.position = currentTile.playerPosition;
         tile.SoftMangageDoorRooms();
-        trolly.UpdateDirection();
-		var mainShader = myCamera.GetComponent<MainShader> ();
-		mainShader.hasGlitch = tile.hasGlitch;
+        trolly.UpdateDirection(true);
+        if (glitchShader)
+        {
+            if (tile.hasGlitch)
+            {
+                glitchShader.IncreaseFrequency();
+            }
+            else
+            {
+                glitchShader.DecreaseFrequency();
+            }
+        }
     }
 
 	public void SetEndTile(CorridorTile tile) {
@@ -119,11 +131,11 @@ public class PlayerWalkController : MonoBehaviour {
         //camAnim.ResetTrigger("Elevator");
     }
 
-    public void SetCurrentDirection(Direction direction)
+    public void SetCurrentDirection(Direction direction, bool animateTrolley)
     {
         lookTransform.rotation = Quaternion.LookRotation(CorridorTile.GetLookDirection(direction), Vector3.up);
         facingDirection = direction;
-        trolly.UpdateDirection();
+        trolly.UpdateDirection(animateTrolley);
     }
 
     float animSpeed = 0.01f;
@@ -165,6 +177,9 @@ public class PlayerWalkController : MonoBehaviour {
         StartNextLevel(0);
     }
 
+    [SerializeField]
+    Animator[] theEndTriggers;
+
     public void StartNextLevel(float delay) {
 		if (currentLevel < maxLevel) {
 			currentLevel++;
@@ -176,9 +191,23 @@ public class PlayerWalkController : MonoBehaviour {
             else
             {
                 ResumePlay();
+
             }
-		}
-	}
+		} else
+        {
+            glitchShader.SetMaxGlitchFrequency();
+            for (int i = 0; i < theEndTriggers.Length; i++)
+            {
+                theEndTriggers[i].SetTrigger("TheEnd");
+                Debug.Log("Started end on " + theEndTriggers[i].name);
+            }
+            myCamera.cullingMask = cullingMask;
+            myCamera.clearFlags = clearMode;
+            camAnim.Stop();
+            var dof = myCamera.GetComponent<DepthOfField>();
+            dof.focalLength = 0.1f;
+        }
+    }
 
     IEnumerator<WaitForSeconds> _delayNextLevel(float delay)
     {
@@ -189,6 +218,7 @@ public class PlayerWalkController : MonoBehaviour {
     void Start()
     {
         inventory = GetComponentInParent<PlayerInventory>();
+        glitchShader = myCamera.GetComponent<MainShader>();
     }
 
     bool isLookingIntoRoom = false;
@@ -236,6 +266,7 @@ public class PlayerWalkController : MonoBehaviour {
                 else
                 {
                     StartCoroutine(Walk(target));
+                    trolly.WalkForward();
                 }
             }
             else if (Input.GetButton("walkReverse"))
@@ -257,11 +288,11 @@ public class PlayerWalkController : MonoBehaviour {
                     }
                 }
             }
-            else if (Input.GetButton("rotateLeft"))
+            else if (Input.GetButton("rotateLeft") && currentTile != endTile)
             {
                 StartCoroutine(Rotate(false));
             }
-            else if (Input.GetButton("rotateRight"))
+            else if (Input.GetButton("rotateRight") && currentTile != endTile)
             {
                 StartCoroutine(Rotate(true));
             }
@@ -350,12 +381,12 @@ public class PlayerWalkController : MonoBehaviour {
 				case "rotate":
                         Direction targetDirection = (Direction)(((int)facingDirection + action.GetInteger(0)) % 4);
                         importRoom.ManageDoors(currentTile, targetDirection);
-                        SetCurrentDirection (targetDirection);
+                        SetCurrentDirection (targetDirection, false);
 					break;
 				case "lookat":
                         targetDirection = action.GetDirection(0);
                         importRoom.ManageDoors(currentTile, targetDirection);
-                        SetCurrentDirection (targetDirection);
+                        SetCurrentDirection (targetDirection, false);
 					break;
 				default:
 					break;
@@ -392,7 +423,7 @@ public class PlayerWalkController : MonoBehaviour {
             yield return new WaitForSeconds(animSpeed);
         }
 
-        SetCurrentDirection(targetDirection);        
+        SetCurrentDirection(targetDirection, true);        
         transitioning = false;
     }
 
