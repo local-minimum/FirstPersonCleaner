@@ -25,6 +25,36 @@ public class CorridorTile : MonoBehaviour {
         return doors.Contains(door);
     }
 
+    public void SoftMangageDoorRooms(List<Direction> visibleDirections)
+    {
+        foreach (Direction direction in doorDirections.Keys)
+        {
+            OneRoomDoor room = doorDirections[direction];
+            if (room.IsOpen)
+            {                
+                if (visibleDirections.Contains(direction))
+                {
+                    room.SoftOpenRoom();
+                } else
+                {
+                    room.SoftCloseRoom();
+                }
+            }
+        }
+    }
+
+    public void SoftMangageDoorRooms()
+    {        
+        foreach (Direction direction in doorDirections.Keys)
+        {
+            OneRoomDoor room = doorDirections[direction];
+            if (room.IsOpen)
+            {
+                room.SoftOpenRoom();
+            }
+        }
+    }
+
     Dictionary<Direction, OneRoomDoor> doorDirections = new Dictionary<Direction, OneRoomDoor>();
 
     public OneRoomDoor GetDoor(Direction direction)

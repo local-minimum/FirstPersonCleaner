@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 public class ImportRoom : MonoBehaviour {
 
@@ -11,6 +12,80 @@ public class ImportRoom : MonoBehaviour {
 
 	[SerializeField]
 	PlayerWalkController walkController;
+
+    public void ManageDoors(PlayerWalkController playerCtrl)
+    {        
+        List<Direction> visiblDirections = new List<Direction>();
+        List<Direction> noDirections = new List<Direction>();
+
+        Direction dir = playerCtrl.LookDirection;
+        Direction back = CorridorTile.GetInverseDirection(dir);
+
+        visiblDirections.Add(dir);
+        visiblDirections.Add(CorridorTile.GetRighDirection(dir));
+
+        CorridorTile currentTile = walkController.CurrentTile;
+
+        Room thisRoom = rooms.Where(r => r.corridorTile == currentTile).FirstOrDefault();
+
+        List<Room> checkRooms = rooms.Where(r => r.corridorTile != null && r.corridorTile != currentTile).ToList();
+        Debug.Log(dir);
+        for (int i=0, l=checkRooms.Count; i< l; i++)
+        {
+            Room room = checkRooms[i];
+            
+            if (RoomInDirection(thisRoom, room, back))
+            {
+                Debug.Log("Backwards " + room.corridorTile);
+                room.corridorTile.SoftMangageDoorRooms(noDirections);
+            } else if (LineOfSight(thisRoom, room, dir))
+            {
+                Debug.Log("LineOfSigt " + room.corridorTile);
+                room.corridorTile.SoftMangageDoorRooms(visiblDirections);
+            } else
+            {
+                //Debug.Log("Other " + room.corridorTile);
+                room.corridorTile.SoftMangageDoorRooms(noDirections);
+            }
+        }        
+    }
+
+    bool LineOfSight(Room a, Room b, Direction d)
+    {
+        int dRow = a.row - b.row;
+        int dCol = a.col - b.col;
+
+        switch (d)
+        {
+            case Direction.East:
+                return dRow == 0 && dCol >= 0 && dCol < 5 || dRow == dCol && dRow == 1;
+            case Direction.West:
+                return dRow == 0 && dCol <= 0 && dCol > -5 || dRow == dCol && dRow == -1;
+            case Direction.North:
+                return dCol == 0 && dRow <= 0 && dRow > -5 || dRow == dCol && dRow == -1;
+            case Direction.South:
+                return dCol == 0 && dRow >= 0 && dRow < 5 || dRow == dCol && dRow == 1;
+            default:
+                return false;
+        }
+    }
+
+    bool RoomInDirection(Room a, Room b, Direction d)
+    {
+        switch (d)
+        {
+            case Direction.East:
+                return b.col > a.col;
+            case Direction.North:
+                return b.row < a.row;
+            case Direction.West:
+                return b.col < a.col;
+            case Direction.South:
+                return b.row < a.row;
+            default:
+                return false;  
+        }
+    }
 
 	public void createRooms(int level) {
 		if (rooms != null) {

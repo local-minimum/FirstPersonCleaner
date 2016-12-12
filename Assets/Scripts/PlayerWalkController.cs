@@ -94,6 +94,7 @@ public class PlayerWalkController : MonoBehaviour {
     {
         currentTile = tile;
         movementTransform.position = currentTile.playerPosition;
+        tile.SoftMangageDoorRooms();
         trolly.UpdateDirection();
 		var mainShader = myCamera.GetComponent<MainShader> ();
 		mainShader.hasGlitch = tile.hasGlitch;
@@ -387,6 +388,7 @@ public class PlayerWalkController : MonoBehaviour {
         }
 
         SetCurrentDirection(targetDirection);
+        importRoom.ManageDoors(this);
         transitioning = false;
     }
 
