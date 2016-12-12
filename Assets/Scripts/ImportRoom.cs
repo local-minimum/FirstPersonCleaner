@@ -193,7 +193,7 @@ public class ImportRoom : MonoBehaviour {
 			if (room == endTile) {
 				corridor = placer.PlaceEndTile (room.north == null, room.west == null, room.south == null, room.east == null);
 			} else {
-				corridor = placer.PlaceCorridor (room.north == null, room.west == null, room.south == null, room.east == null);
+				corridor = placer.PlaceCorridor (room.actions, room.north == null, room.west == null, room.south == null, room.east == null);
 			}
 			float x = room.col * size;
 			float z = -room.row * size;
