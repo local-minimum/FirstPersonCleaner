@@ -150,7 +150,15 @@ public class ImportRoom : MonoBehaviour {
 						endTile = room;
 						cell = cell.Replace ("#", "");
 					}
-					int cellType = int.Parse (cell);
+                    int cellType = 0;
+                    try {
+                        cellType = int.Parse(cell[0].ToString());
+                    } catch (System.FormatException)
+                    {
+                        Debug.LogError(string.Format("Position {0} {1}, bad type '{2}'", row, col, cell));
+                        throw;
+                    }
+
 					if (cells.Length > 1) {
 						for (int i = 1; i < cells.Length; ++i) {
 							room.actions.Add(new Action(cells[i]));
