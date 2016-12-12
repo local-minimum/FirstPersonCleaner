@@ -1,0 +1,23 @@
+fileFormatVersion: 2
+guid: 11897a68430381c418b4719425336383
+timeCreated: 1481541573
+licenseType: Free
+TrueTypeFontImporter:
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: Taviraj
+  fontNames:
+  - Taviraj
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: 00aafd94d4f29c0499d6cfe57f43e67f, type: 3}
+  - {fileID: 12800000, guid: 004bbebc5792deb4aa11d7504d3f309b, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
