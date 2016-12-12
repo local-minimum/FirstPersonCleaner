@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 public class ImportRoom : MonoBehaviour {
 
@@ -11,6 +12,107 @@ public class ImportRoom : MonoBehaviour {
 
 	[SerializeField]
 	PlayerWalkController walkController;
+
+    public void ManageDoors(CorridorTile currentTile, Direction dir)
+    {        
+        List<Direction> visiblDirections = new List<Direction>();
+        List<Direction> noDirections = new List<Direction>();
+        
+        visiblDirections.Add(dir);
+        visiblDirections.Add(CorridorTile.GetRighDirection(dir));
+
+        Room thisRoom = rooms.Where(r => r.corridorTile == currentTile).FirstOrDefault();
+
+        List<Room> checkRooms = rooms.Where(r => r.corridorTile != null && r.corridorTile != currentTile).ToList();
+        Debug.Log(dir);
+        for (int i=0, l=checkRooms.Count; i< l; i++)
+        {
+            Room room = checkRooms[i];
+            
+            if (RoomBehindMe(thisRoom, room, dir))
+            {
+
+                room.corridorTile.SoftMangageDoorRooms(noDirections);
+            } else if (LineOfSight(thisRoom, room, dir))
+            {
+
+                room.corridorTile.SoftMangageDoorRooms(visiblDirections);
+            } else
+            {
+
+                room.corridorTile.SoftMangageDoorRooms(noDirections);
+            }
+        }        
+    }
+
+    bool LineOfSight(Room thisRoom, Room otherRoom, Direction facingDirection)
+    {
+        int dRow = otherRoom.row - thisRoom.row;
+        int dCol = otherRoom.col - thisRoom.col;
+
+        switch (facingDirection)
+        {
+            case Direction.East:
+                if (dRow == 0 && dCol > 0 && dCol < 5)
+                {
+                    return true;
+                }
+                else if (dRow == 1 && Mathf.Abs(dCol) == 1)
+                {
+                    return true;
+                }
+                return false;
+            case Direction.West:
+                if (dRow == 0 && dCol < 0 && dCol > -5)
+                {
+                    return true;
+                }
+                else if (dRow == -1 && Mathf.Abs(dCol) == 1)
+                {
+                    return true;
+                }
+                return false;
+            case Direction.North:
+                if (dCol == 0 && dRow < 0 && dRow > -5)
+                {
+                    return true;
+                }
+                else if (dCol == -1 && Mathf.Abs(dRow) == 1)
+                {
+                    return true;
+                }
+                return false;
+            case Direction.South:
+                if (dCol == 0 && dRow > 0 && dRow < 5)
+                {
+                    return true;
+                }
+                else if (dCol == 1 && Mathf.Abs(dRow) == 1)
+                {
+                    return true;
+                }
+                return false;
+            default:
+                return false;
+        }
+    }
+
+    bool RoomBehindMe(Room thisRoom, Room otherRoom, Direction facingDirection)
+    {
+        switch (facingDirection)
+        {
+            case Direction.East:
+                return otherRoom.col < thisRoom.col;
+            case Direction.West:
+                return otherRoom.col > thisRoom.col;
+            case Direction.North:
+                return otherRoom.row > thisRoom.row;
+            case Direction.South:
+                return otherRoom.row < thisRoom.row;
+            default:
+                return false;  
+        }
+    }
 
 	public void createRooms(int level) {
 		if (rooms != null) {

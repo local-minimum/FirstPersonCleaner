@@ -110,6 +110,9 @@ public class MouseController : MonoBehaviour {
                 OneRoomDoor door = hit.transform.GetComponentInParent<OneRoomDoor>();                
                 if (door && playerCtrl.CurrentTile.HasDoor(door))
                 {
+                    //This is here so all potentially open doors are listed with directions
+                    playerCtrl.CurrentTile.GetDoor(playerCtrl.LookDirection);
+
                     if (playerCtrl.IsLookingIntoRoom)
                     {
                         door.CloseDoor();

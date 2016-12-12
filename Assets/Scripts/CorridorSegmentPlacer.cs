@@ -65,7 +65,7 @@ public class CorridorSegmentPlacer : MonoBehaviour {
 		}
 
 		segment.position = position;
-		CorridorTile tile = segment.gameObject.AddComponent<CorridorTile> ();        
+		segment.gameObject.AddComponent<CorridorTile> ();        
 		return segment.gameObject;
 	}
 

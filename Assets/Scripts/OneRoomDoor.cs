@@ -16,7 +16,7 @@ public class OneRoomDoor : MonoBehaviour {
     [SerializeField]
     Sounder soundCreak;
 
-    Collider col;
+    //Collider col;
 
     GameObject room;
     CorridorTile tile;
@@ -43,7 +43,7 @@ public class OneRoomDoor : MonoBehaviour {
     {
         restingRotation = transform.rotation;
         tile = GetComponentInParent<CorridorTile>();
-        col = GetComponentInChildren<Collider>();
+        //col = GetComponentInChildren<Collider>();
     }
 
     public bool OpenDoor(Direction direction)
@@ -61,13 +61,13 @@ public class OneRoomDoor : MonoBehaviour {
         isOpen = true;
         activeLayer = gameObject.layer;
         gameObject.layer = 0;
-        room.SetActive(true);        
+        room.SetActive(true);
         //col.enabled = false;
-        rotationStart = Quaternion.AngleAxis((int) CorridorTile.GetRighDirection(direction) * 90, Vector3.up);
+        rotationStart = Quaternion.AngleAxis((int)CorridorTile.GetRighDirection(direction) * 90, Vector3.up);
         rotationTarget = Quaternion.AngleAxis((int)CorridorTile.GetInverseDirection(direction) * 90, Vector3.up);
         startOfRotationTime = Time.timeSinceLevelLoad;
         rotating = true;
-        return true;   
+        return true;
     }
 
     public bool CloseDoor()
@@ -76,17 +76,28 @@ public class OneRoomDoor : MonoBehaviour {
         {
             return false;
         }
+        Debug.Log("Hard close");
         soundClose.PlayOne();
         soundCreak.ProbabilityPlayOne();
         isOpen = false;
         rotationStart = rotationTarget;
         rotationTarget = restingRotation;
-        col.enabled = true;
+        //col.enabled = true;
         gameObject.layer = activeLayer;
         startOfRotationTime = Time.timeSinceLevelLoad;
         rotating = true;
         StartCoroutine(delayDisableRoom());
         return true;
+    }
+
+    public void SoftCloseRoom() {
+
+        room.SetActive(false);
+    }
+
+    public void SoftOpenRoom()
+    {
+        room.SetActive(true);
     }
 
     IEnumerator<WaitForSeconds> delayDisableRoom()
