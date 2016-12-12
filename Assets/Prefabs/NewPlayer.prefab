@@ -103,6 +103,7 @@ GameObject:
   - component: {fileID: 4155633453490578}
   - component: {fileID: 65768167788183678}
   - component: {fileID: 114393900312886022}
+  - component: {fileID: 114337684364570182}
   m_Layer: 10
   m_Name: WorkOrder
   m_TagString: Untagged
@@ -791,7 +792,7 @@ Light:
   serializedVersion: 7
   m_Type: 2
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 0.7
+  m_Intensity: 0.1
   m_Range: 20
   m_SpotAngle: 30
   m_CookieSize: 10
@@ -1038,6 +1039,28 @@ MonoBehaviour:
   minFrequency: 0.005
   maxFrequency: 0.5
   freqDelta: 0.002
+--- !u!114 &114337684364570182
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1288914079155774}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62bee232d6a09654e973cadf0f157c1f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  alternatives:
+  - {fileID: 2800000, guid: 4b6a2f23d3aa1b440a1da964c896ffa1, type: 3}
+  - {fileID: 2800000, guid: 97110d824316a9c44889da38c3fdd3ca, type: 3}
+  - {fileID: 2800000, guid: f7f7b81f8739e684f9031241d8860484, type: 3}
+  - {fileID: 2800000, guid: 804ad7e242bb336499120d40875730b4, type: 3}
+  mRend: {fileID: 23125855575695192}
+  matIndex: 2
+  minGlitchDuration: 1
+  maxGlitchDuration: 3
+  perSecondProbability: 0.1
+  autoSpawn: 1
 --- !u!114 &114345615163645304
 MonoBehaviour:
   m_ObjectHideFlags: 1
