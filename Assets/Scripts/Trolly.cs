@@ -7,21 +7,41 @@ public class Trolly : MonoBehaviour {
     [SerializeField]
     PlayerWalkController playerCtrl;
 
+    [SerializeField]
+    Sounder sounder;
+
     Direction selfDirection = Direction.South;
 
     Quaternion target;
+
+    [SerializeField]
+    Animator walkAnim;
+
+    public void WalkForward()
+    {
+        walkAnim.SetTrigger("Walk");
+    }
 
     public void UpdateDirection(bool animateTrolley) {
         CorridorTile tile = playerCtrl.CurrentTile;
         Direction playerDirection = playerCtrl.LookDirection;
 
-        if (tile.GetEdge(playerDirection) && playerDirection != selfDirection)
+        if (tile.GetEdge(playerDirection))
         {
-            SetDirection(playerDirection, animateTrolley);
+            if (playerDirection == selfDirection)
+            {
+               //Nothing
+            } else
+            {
+                SetDirection(playerDirection, animateTrolley);
+                if (animateTrolley)
+                {
+                    sounder.PlayOne();
+                }
+            }
         } else if (tile.GetEdge(selfDirection))
         {
             return;
-            //SetDirection(selfDirection, animateTrolley);
         } else
         {
             Direction[] otherDirections = new Direction[] {
@@ -33,10 +53,18 @@ public class Trolly : MonoBehaviour {
                 if (tile.GetEdge(direction))
                 {
                     SetDirection(direction, animateTrolley);
+                    if (animateTrolley)
+                    {
+                        sounder.PlayOne();
+                    }
                     return;
                 }
             }
             SetDirection(CorridorTile.GetInverseDirection(selfDirection), false);
+            if (animateTrolley)
+            {
+                sounder.PlayOne();
+            }
         }
     }
     

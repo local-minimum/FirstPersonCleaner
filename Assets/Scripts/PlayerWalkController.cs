@@ -266,6 +266,7 @@ public class PlayerWalkController : MonoBehaviour {
                 else
                 {
                     StartCoroutine(Walk(target));
+                    trolly.WalkForward();
                 }
             }
             else if (Input.GetButton("walkReverse"))

@@ -35,6 +35,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4434353860029498}
+  - component: {fileID: 95409564320876402}
   m_Layer: 10
   m_Name: Trolly
   m_TagString: Untagged
@@ -70,7 +71,6 @@ GameObject:
   - component: {fileID: 4004190698019784}
   - component: {fileID: 33769412409709118}
   - component: {fileID: 23459810807699490}
-  - component: {fileID: 95004686841534422}
   m_Layer: 0
   m_Name: trolley
   m_TagString: Untagged
@@ -713,23 +713,6 @@ Behaviour:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1393237751781700}
   m_Enabled: 1
---- !u!95 &95004686841534422
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1187186441686730}
-  m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: f26555c69ad63584880ac161e22cbc27, type: 3}
-  m_Controller: {fileID: 0}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
 --- !u!95 &95101209877144922
 Animator:
   serializedVersion: 3
@@ -740,6 +723,23 @@ Animator:
   m_Enabled: 1
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: bc810d8e1275fd248a8fcc36555db3ec, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+--- !u!95 &95409564320876402
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1101965800745306}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 3acfd6e49e7b155438771eaa782d6188, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -874,6 +874,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerCtrl: {fileID: 114074284298593848}
+  sounder: {fileID: 114651191112684574}
+  walkAnim: {fileID: 95409564320876402}
   rotationAttack: 0.15
 --- !u!114 &114074284298593848
 MonoBehaviour:
