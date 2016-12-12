@@ -255,7 +255,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1288914079155774}
   m_LocalRotation: {x: 0, y: -0.12243224, z: 0, w: 0.9924769}
-  m_LocalPosition: {x: -0.238, y: -0.472, z: 1.108}
+  m_LocalPosition: {x: -0.24, y: -0.472, z: 1.38}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_Children:
   - {fileID: 4213319740591684}
@@ -296,7 +296,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1101965800745306}
   m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
-  m_LocalPosition: {x: 0, y: -1.399, z: 1.565}
+  m_LocalPosition: {x: 0, y: -1.399, z: 1.83}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4004190698019784}
@@ -457,7 +457,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
+  m_Size: {x: 1, y: 0.23, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!81 &81526983764977610
 AudioListener:
@@ -521,7 +521,7 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
-    m_RotationOrder: 4
+    m_RotationOrder: 0
   spreadCustomCurve:
     serializedVersion: 2
     m_Curve:
@@ -533,7 +533,7 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
-    m_RotationOrder: 4
+    m_RotationOrder: 0
   reverbZoneMixCustomCurve:
     serializedVersion: 2
     m_Curve:
@@ -545,7 +545,7 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
-    m_RotationOrder: 4
+    m_RotationOrder: 0
 --- !u!82 &82371836820672384
 AudioSource:
   m_ObjectHideFlags: 1
@@ -974,7 +974,9 @@ MonoBehaviour:
   camAnim: {fileID: 95903167480955436}
   myCamera: {fileID: 20526435948998262}
   currentLevel: 0
-  maxLevel: 2
+  maxLevel: 4
+  theEndTriggers:
+  - {fileID: 0}
 --- !u!114 &114079274672764128
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1029,7 +1031,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mat: {fileID: 0}
   shader: {fileID: 4800000, guid: 507e8e1dc1aff48449dcee51f2f95331, type: 3}
-  hasGlitch: 0
+  frequency: 0.02
+  minFrequency: 0.005
+  maxFrequency: 0.5
+  freqDelta: 0.002
 --- !u!114 &114345615163645304
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1185,9 +1190,9 @@ MonoBehaviour:
   defaultCur: {fileID: 2800000, guid: fde0bc2632a80c643873175c0cb51dd9, type: 3}
   defaultCurHotspot: {x: 0.5, y: 0.5}
   cardCur: {fileID: 2800000, guid: 7c2e6b1860c6f114ba14cd28e45a964b, type: 3}
-  cardCurHotspot: {x: 0.75, y: 0.75}
+  cardCurHotspot: {x: 0.5, y: 0.5}
   handCur: {fileID: 2800000, guid: 514c8c5a5f54fdb49bfb962d05dd2f62, type: 3}
-  handCurHotspot: {x: 0.3, y: 0.3}
+  handCurHotspot: {x: 0.5, y: 0.5}
   doorLayer:
     serializedVersion: 2
     m_Bits: 256

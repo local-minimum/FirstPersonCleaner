@@ -16,8 +16,8 @@ public class CorridorTile : MonoBehaviour {
 	public List<Action> actions = new List<Action>();
 
     Vector3 offset = Vector3.up * 0.25f;
-
-	[SerializeField]
+	
+    [HideInInspector]
 	public bool hasGlitch;
 
     public bool HasDoor(OneRoomDoor door)
