@@ -1,3 +1,4 @@
-1;1;1;;1:teleport:0:0:east,teleport:0:8:south;1;1;;1:teleport:0:4:east,teleport:0:12:south;*1;1;;1:teleport:0:8:east,teleport:0:16:south;1;1;;1:teleport:0:12:east,teleport:0:20:south;1;1;;1;1;1
-1;;1;;1;;1;;1;;1;;1;;1;;1;;1;;1;;1
-1;1;1;;1;1;1;;1;1;1;;1;1;1;;1;1;1;;;#1;1
+1,teleport:0:4:south;1;1;;1,teleport:0:0:east,teleport:0:8:south;1;1;;1,teleport:0:4:east,teleport:0:12:south;*1;1;;1,teleport:0:8:east,teleport:0:16:south;1;1;;1,teleport:0:12:east,teleport:0:20:south;1;1;;1;1;1
+1;;1;;1;;1;;1;;1;;1;;1;;1;;1;;1,teleport:1:12;;1
+1;1;1;;1;1;1;;1;1;1;;1;1;1;;1;1;1;;;;1
+;;;;;;;;;;;;;;;;;;;;;;#1
