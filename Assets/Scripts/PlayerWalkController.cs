@@ -361,6 +361,7 @@ public class PlayerWalkController : MonoBehaviour {
         Vector3 startPos = currentTile.playerPosition;
         Vector3 endPos = target.playerPosition;
         importRoom.ManageDoors(target, facingDirection);
+        Angler.HideLures();
         while (progress < 1)
         {
             
@@ -416,6 +417,7 @@ public class PlayerWalkController : MonoBehaviour {
         importRoom.ManageDoors(currentTile, targetDirection);
         Quaternion startRotation = lookTransform.rotation;
         Quaternion targetRotation = Quaternion.LookRotation(CorridorTile.GetLookDirection(targetDirection), Vector3.up);
+        Angler.HideLures(); 
         while (progress < 1)
         {
             lookTransform.rotation = Quaternion.Lerp(startRotation, targetRotation, rotateAnim.Evaluate(progress));

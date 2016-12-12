@@ -143,26 +143,8 @@ Prefab:
     - target: {fileID: 114074284298593848, guid: 80974223accd11048b420de67354cd0b,
         type: 2}
       propertyPath: maxLevel
-      value: 8
+      value: 9
       objectReference: {fileID: 0}
-    - target: {fileID: 82371836820672384, guid: 80974223accd11048b420de67354cd0b,
-        type: 2}
-      propertyPath: OutputAudioMixerGroup
-      value: 
-      objectReference: {fileID: 24300001, guid: b8cb57d0bd194454d989252398330e74,
-        type: 2}
-    - target: {fileID: 82210122001374650, guid: 80974223accd11048b420de67354cd0b,
-        type: 2}
-      propertyPath: OutputAudioMixerGroup
-      value: 
-      objectReference: {fileID: 24300001, guid: b8cb57d0bd194454d989252398330e74,
-        type: 2}
-    - target: {fileID: 82688427037181506, guid: 80974223accd11048b420de67354cd0b,
-        type: 2}
-      propertyPath: OutputAudioMixerGroup
-      value: 
-      objectReference: {fileID: 24300001, guid: b8cb57d0bd194454d989252398330e74,
-        type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 80974223accd11048b420de67354cd0b, type: 2}
   m_IsPrefabParent: 0
@@ -218,7 +200,7 @@ Prefab:
     - target: {fileID: 114784353986944100, guid: 9c10b3dfd23f44dee92b4de11fe4e412,
         type: 2}
       propertyPath: startLevel
-      value: 8
+      value: 9
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 9c10b3dfd23f44dee92b4de11fe4e412, type: 2}
