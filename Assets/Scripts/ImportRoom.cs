@@ -13,18 +13,13 @@ public class ImportRoom : MonoBehaviour {
 	[SerializeField]
 	PlayerWalkController walkController;
 
-    public void ManageDoors(PlayerWalkController playerCtrl)
+    public void ManageDoors(CorridorTile currentTile, Direction dir)
     {        
         List<Direction> visiblDirections = new List<Direction>();
         List<Direction> noDirections = new List<Direction>();
-
-        Direction dir = playerCtrl.LookDirection;
-        Direction back = CorridorTile.GetInverseDirection(dir);
-
+        
         visiblDirections.Add(dir);
         visiblDirections.Add(CorridorTile.GetRighDirection(dir));
-
-        CorridorTile currentTile = walkController.CurrentTile;
 
         Room thisRoom = rooms.Where(r => r.corridorTile == currentTile).FirstOrDefault();
 
@@ -34,54 +29,86 @@ public class ImportRoom : MonoBehaviour {
         {
             Room room = checkRooms[i];
             
-            if (RoomInDirection(thisRoom, room, back))
+            if (RoomBehindMe(thisRoom, room, dir))
             {
-                Debug.Log("Backwards " + room.corridorTile);
+
                 room.corridorTile.SoftMangageDoorRooms(noDirections);
             } else if (LineOfSight(thisRoom, room, dir))
             {
-                Debug.Log("LineOfSigt " + room.corridorTile);
+
                 room.corridorTile.SoftMangageDoorRooms(visiblDirections);
             } else
             {
-                //Debug.Log("Other " + room.corridorTile);
+
                 room.corridorTile.SoftMangageDoorRooms(noDirections);
             }
         }        
     }
 
-    bool LineOfSight(Room a, Room b, Direction d)
+    bool LineOfSight(Room thisRoom, Room otherRoom, Direction facingDirection)
     {
-        int dRow = a.row - b.row;
-        int dCol = a.col - b.col;
+        int dRow = otherRoom.row - thisRoom.row;
+        int dCol = otherRoom.col - thisRoom.col;
 
-        switch (d)
+        switch (facingDirection)
         {
             case Direction.East:
-                return dRow == 0 && dCol >= 0 && dCol < 5 || dRow == dCol && dRow == 1;
+                if (dRow == 0 && dCol > 0 && dCol < 5)
+                {
+                    return true;
+                }
+                else if (dRow == 1 && Mathf.Abs(dCol) == 1)
+                {
+                    return true;
+                }
+                return false;
             case Direction.West:
-                return dRow == 0 && dCol <= 0 && dCol > -5 || dRow == dCol && dRow == -1;
+                if (dRow == 0 && dCol < 0 && dCol > -5)
+                {
+                    return true;
+                }
+                else if (dRow == -1 && Mathf.Abs(dCol) == 1)
+                {
+                    return true;
+                }
+                return false;
             case Direction.North:
-                return dCol == 0 && dRow <= 0 && dRow > -5 || dRow == dCol && dRow == -1;
+                if (dCol == 0 && dRow < 0 && dRow > -5)
+                {
+                    return true;
+                }
+                else if (dCol == -1 && Mathf.Abs(dRow) == 1)
+                {
+                    return true;
+                }
+                return false;
             case Direction.South:
-                return dCol == 0 && dRow >= 0 && dRow < 5 || dRow == dCol && dRow == 1;
+                if (dCol == 0 && dRow > 0 && dRow < 5)
+                {
+                    return true;
+                }
+                else if (dCol == 1 && Mathf.Abs(dRow) == 1)
+                {
+                    return true;
+                }
+                return false;
             default:
                 return false;
         }
     }
 
-    bool RoomInDirection(Room a, Room b, Direction d)
+    bool RoomBehindMe(Room thisRoom, Room otherRoom, Direction facingDirection)
     {
-        switch (d)
+        switch (facingDirection)
         {
             case Direction.East:
-                return b.col > a.col;
-            case Direction.North:
-                return b.row < a.row;
+                return otherRoom.col < thisRoom.col;
             case Direction.West:
-                return b.col < a.col;
+                return otherRoom.col > thisRoom.col;
+            case Direction.North:
+                return otherRoom.row > thisRoom.row;
             case Direction.South:
-                return b.row < a.row;
+                return otherRoom.row < thisRoom.row;
             default:
                 return false;  
         }

@@ -329,7 +329,7 @@ public class PlayerWalkController : MonoBehaviour {
         float progress = 0;
         Vector3 startPos = currentTile.playerPosition;
         Vector3 endPos = target.playerPosition;
-
+        importRoom.ManageDoors(target, facingDirection);
         while (progress < 1)
         {
             
@@ -348,10 +348,14 @@ public class PlayerWalkController : MonoBehaviour {
 					SetCurrentTile (action.tile);
 					break;
 				case "rotate":
-					SetCurrentDirection ((Direction)(((int)facingDirection + action.GetInteger (0)) % 4));
+                        Direction targetDirection = (Direction)(((int)facingDirection + action.GetInteger(0)) % 4);
+                        importRoom.ManageDoors(currentTile, targetDirection);
+                        SetCurrentDirection (targetDirection);
 					break;
 				case "lookat":
-					SetCurrentDirection (action.GetDirection (0));
+                        targetDirection = action.GetDirection(0);
+                        importRoom.ManageDoors(currentTile, targetDirection);
+                        SetCurrentDirection (targetDirection);
 					break;
 				default:
 					break;
@@ -364,7 +368,7 @@ public class PlayerWalkController : MonoBehaviour {
     IEnumerator<WaitForSeconds> Rotate(bool rotateRight)
     {
         walkSounds.PlayInSequence(2);
-        transitioning = true;
+        transitioning = true;      
         if (isLookingIntoRoom)
         {
             StopLookingIntoOneRoom();
@@ -378,6 +382,7 @@ public class PlayerWalkController : MonoBehaviour {
         float progress = 0;
         Direction targetDirection;
         CorridorTile.GetRotation(facingDirection, rotateRight, out targetDirection);
+        importRoom.ManageDoors(currentTile, targetDirection);
         Quaternion startRotation = lookTransform.rotation;
         Quaternion targetRotation = Quaternion.LookRotation(CorridorTile.GetLookDirection(targetDirection), Vector3.up);
         while (progress < 1)
@@ -387,8 +392,7 @@ public class PlayerWalkController : MonoBehaviour {
             yield return new WaitForSeconds(animSpeed);
         }
 
-        SetCurrentDirection(targetDirection);
-        importRoom.ManageDoors(this);
+        SetCurrentDirection(targetDirection);        
         transitioning = false;
     }
 
