@@ -98,7 +98,7 @@ public class PlayerWalkController : MonoBehaviour {
         currentTile = tile;
         movementTransform.position = currentTile.playerPosition;
         tile.SoftMangageDoorRooms();
-        trolly.UpdateDirection();
+        trolly.UpdateDirection(true);
         if (glitchShader)
         {
             if (tile.hasGlitch)
@@ -131,11 +131,11 @@ public class PlayerWalkController : MonoBehaviour {
         //camAnim.ResetTrigger("Elevator");
     }
 
-    public void SetCurrentDirection(Direction direction)
+    public void SetCurrentDirection(Direction direction, bool animateTrolley)
     {
         lookTransform.rotation = Quaternion.LookRotation(CorridorTile.GetLookDirection(direction), Vector3.up);
         facingDirection = direction;
-        trolly.UpdateDirection();
+        trolly.UpdateDirection(animateTrolley);
     }
 
     float animSpeed = 0.01f;
@@ -380,12 +380,12 @@ public class PlayerWalkController : MonoBehaviour {
 				case "rotate":
                         Direction targetDirection = (Direction)(((int)facingDirection + action.GetInteger(0)) % 4);
                         importRoom.ManageDoors(currentTile, targetDirection);
-                        SetCurrentDirection (targetDirection);
+                        SetCurrentDirection (targetDirection, false);
 					break;
 				case "lookat":
                         targetDirection = action.GetDirection(0);
                         importRoom.ManageDoors(currentTile, targetDirection);
-                        SetCurrentDirection (targetDirection);
+                        SetCurrentDirection (targetDirection, false);
 					break;
 				default:
 					break;
@@ -422,7 +422,7 @@ public class PlayerWalkController : MonoBehaviour {
             yield return new WaitForSeconds(animSpeed);
         }
 
-        SetCurrentDirection(targetDirection);        
+        SetCurrentDirection(targetDirection, true);        
         transitioning = false;
     }
 
