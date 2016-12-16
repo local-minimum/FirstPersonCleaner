@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class PlayerInventory : MonoBehaviour {
 
-    [SerializeField, Range(0, 99)]
+    [SerializeField, Range(0, 9999)]
     int capacityTowels = 5;
 
-    [SerializeField, Range(0, 99)]
+    [SerializeField, Range(0, 9999)]
     int capacityDND = 5;
 
-    [SerializeField, Range(0, 99)]
+    [SerializeField, Range(0, 9999)]
     int capacityWetFloor = 5;
 
     [SerializeField]

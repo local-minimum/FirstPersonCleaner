@@ -252,7 +252,7 @@ public class PlayerWalkController : MonoBehaviour {
             {
 
                 CorridorTile target = currentTile.GetEdge(facingDirection);
-				if (target == null || currentTile == endTile)
+				if (target == null)
                 {
                     OneRoomDoor door = currentTile.GetDoor(facingDirection);
                     if (IsLookingIntoRoom || door == null)
@@ -278,7 +278,7 @@ public class PlayerWalkController : MonoBehaviour {
                 else {
 
                     CorridorTile target = currentTile.GetEdge(CorridorTile.GetInverseDirection(facingDirection));
-                    if (target == null || currentTile == endTile)
+                    if (target == null)
                     {
                         StartCoroutine(RefuseWalk());
                     }
@@ -288,11 +288,11 @@ public class PlayerWalkController : MonoBehaviour {
                     }
                 }
             }
-            else if (Input.GetButton("rotateLeft") && currentTile != endTile)
+            else if (Input.GetButton("rotateLeft"))
             {
                 StartCoroutine(Rotate(false));
             }
-            else if (Input.GetButton("rotateRight") && currentTile != endTile)
+            else if (Input.GetButton("rotateRight"))
             {
                 StartCoroutine(Rotate(true));
             }

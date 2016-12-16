@@ -1142,7 +1142,7 @@ Light:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1005133559780346}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 7
   m_Type: 2
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -1333,7 +1333,7 @@ MonoBehaviour:
   camAnim: {fileID: 95903167480955436}
   myCamera: {fileID: 20526435948998262}
   currentLevel: 0
-  maxLevel: 8
+  maxLevel: 9
   theEndTriggers:
   - {fileID: 0}
 --- !u!114 &114079274672764128
@@ -1347,9 +1347,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd8f1589ae2be6d49bd2eef6d0242a75, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  capacityTowels: 99
-  capacityDND: 99
-  capacityWetFloor: 99
+  capacityTowels: 9999
+  capacityDND: 9999
+  capacityWetFloor: 9999
   prefabTowels: {fileID: 1625624083918936, guid: 0bbb89a4269322d4087c5d033d8e5521,
     type: 2}
   prefabDND: {fileID: 1292780473806070, guid: 839ba535a4222b448a9ebeba7d5a23a5, type: 2}
@@ -1505,7 +1505,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 0
-  flickerProbPerSec: 0.001
+  flickerProbPerSec: 0.00753
 --- !u!114 &114448741136708844
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1666,7 +1666,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 0
-  flickerProbPerSec: 0.001
+  flickerProbPerSec: 0.00753
 --- !u!114 &114784642138612772
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1782,7 +1782,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 0
-  flickerProbPerSec: 0.001
+  flickerProbPerSec: 0.00753
 --- !u!124 &124308932172978108
 Behaviour:
   m_ObjectHideFlags: 1
