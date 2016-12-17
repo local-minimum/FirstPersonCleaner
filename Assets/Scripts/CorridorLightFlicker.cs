@@ -21,16 +21,23 @@ public class CorridorLightFlicker : MonoBehaviour {
     float offEmissionFactor = 0.1f;
 
     [SerializeField]
-    float minOn = 0.05f;
+    float minFlicker = 0.05f;
 
     [SerializeField]
-    float maxOn = 0.4f;
+    float maxFlicker = 0.4f;
+
+    [SerializeField]
+    int minNFlick = 1;
+
+    [SerializeField]
+    int maxNFlick = 5;
 
     [SerializeField]
     float minOff = 0.2f;
 
     [SerializeField]
     float maxOff = 2f;
+
 
     void Start () {
 
@@ -53,15 +60,24 @@ public class CorridorLightFlicker : MonoBehaviour {
         bool isOn = true;
 
         while (true)
-        {            
+        {
+            for (int i = 0, l = Random.Range(minNFlick, maxNFlick) * 2 - 1; i < l; i++)
+            {
+                myLight.intensity = isOn ? onIntencity : 0;
+                lightMat.SetColor("_Color", onColor * (isOn ? 1 : offColorFactor));
+                lightMat.SetColor("_EmissionColor", onEmission * (isOn ? 1 : offEmissionFactor));
+
+                yield return new WaitForSeconds(Random.Range(minFlicker, maxFlicker));
+                isOn = !isOn;
+            }
 
             myLight.intensity = isOn ? onIntencity : 0;
             lightMat.SetColor("_Color", onColor * (isOn ? 1 : offColorFactor));
             lightMat.SetColor("_EmissionColor", onEmission * (isOn ? 1 : offEmissionFactor));
 
-            yield return new WaitForSeconds(!isOn ? Random.Range(minOn, minOff) : Random.Range(minOff, maxOff));
+            yield return new WaitForSeconds(Random.Range(minOff, maxOff));
 
-            isOn = !isOn;
+            isOn = true;
         }
     }
 }
