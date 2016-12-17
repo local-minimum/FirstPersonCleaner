@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 public class PlayerStatsCollector : MonoBehaviour {
 
@@ -25,6 +26,7 @@ public class PlayerStatsCollector : MonoBehaviour {
     {
 
         playerWalkCtrl.OnWalk += PlayerWalkCtrl_OnWalk;
+        playerWalkCtrl.OnMazeEvent += PlayerWalkCtrl_OnMazeEvent;
         glitchShader.OnGlitchLevelChange += GlitchShader_OnGlitchLevelChange;
         playerMouseCtrl.OnMouseClickEvent += PlayerMouseCtrl_OnMouseClickEvent;
 
@@ -33,6 +35,7 @@ public class PlayerStatsCollector : MonoBehaviour {
     void OnDisable()
     {
         playerWalkCtrl.OnWalk -= PlayerWalkCtrl_OnWalk;
+        playerWalkCtrl.OnMazeEvent -= PlayerWalkCtrl_OnMazeEvent;
         glitchShader.OnGlitchLevelChange -= GlitchShader_OnGlitchLevelChange;
         playerMouseCtrl.OnMouseClickEvent -= PlayerMouseCtrl_OnMouseClickEvent;
     }
@@ -42,13 +45,39 @@ public class PlayerStatsCollector : MonoBehaviour {
     int turns = 0;
     int successfulWalkForward = 0;
     int successfulWalkBackward = 0;
-    int peaksIntoDiorama = 0;
+    int peeksIntoDiorama = 0;
     int inspectedWorkOrder = 0;
     int nothingClicks;
     int cleaned;
     int uncleaned;
     float glitchLvl;
+    int mazeTeleportations;
+    int mazeRotations;
+    int mazeLookats;
 
+    Dictionary<CorridorTile, int> mazeStats = new Dictionary<CorridorTile, int>();
+
+
+    private void PlayerWalkCtrl_OnMazeEvent(MazeEventTypes eventType, CorridorTile causeTile)
+    {
+        if (!mazeStats.ContainsKey(causeTile))
+        {
+            mazeStats[causeTile] = 1;
+        } else
+        {
+            mazeStats[causeTile]++;
+        }
+
+        if (eventType == MazeEventTypes.Teleport)
+        {
+            mazeTeleportations++;
+        } else if (eventType == MazeEventTypes.Rotate)
+        {
+            mazeRotations++;
+        } else if (eventType == MazeEventTypes.LookAt) {
+            mazeLookats++;
+        }
+    }
 
     private void PlayerMouseCtrl_OnMouseClickEvent(MouseInteractionTypes interaction, bool refused, bool returnToNativeState)
     {
@@ -56,7 +85,7 @@ public class PlayerStatsCollector : MonoBehaviour {
         {
             if (!returnToNativeState)
             {
-                peaksIntoDiorama++;
+                peeksIntoDiorama++;
             }
         } else if (interaction == MouseInteractionTypes.WorkOrder)
         {
@@ -113,7 +142,7 @@ public class PlayerStatsCollector : MonoBehaviour {
             successfulWalkBackward++;
         } else if (instruction == WalkInstruction.Forward && !isLookingIntoDoor)
         {
-            peaksIntoDiorama++;
+            peeksIntoDiorama++;
         } else if (instruction == WalkInstruction.RotateLeft || instruction == WalkInstruction.RotateRight) {
             turns++;
         }
@@ -131,30 +160,44 @@ public class PlayerStatsCollector : MonoBehaviour {
         {
             GUILayout.BeginHorizontal();
 
+
             GUILayout.BeginVertical();
             GUILayout.Label("Success Forward");
             GUILayout.Label("Success Backward");
             GUILayout.Label("Turns");
-            GUILayout.Label("Peaks");
+            GUILayout.Label("Peeks");
             GUILayout.Label("Fail enter room");
             GUILayout.Label("Reveres into wall");
+
             GUILayout.Label("Glitch level");
+
             GUILayout.Label("Cleaned");
             GUILayout.Label("Uncleaned");
             GUILayout.Label("Nothing clicks");
+
+            GUILayout.Label("Maze Teleports");
+            GUILayout.Label("Maze Rotations");
+            GUILayout.Label("Maze Look at:s");
+            GUILayout.Label("Most invoked maze thing");
+
             GUILayout.EndVertical();
 
             GUILayout.BeginVertical();
             GUILayout.Label(successfulWalkForward.ToString());
             GUILayout.Label(successfulWalkBackward.ToString());
             GUILayout.Label(turns.ToString());
-            GUILayout.Label(peaksIntoDiorama.ToString());
+            GUILayout.Label(peeksIntoDiorama.ToString());
             GUILayout.Label(attemptedEnterDiorama.ToString());
             GUILayout.Label(reversedIntoRoom.ToString());
             GUILayout.Label(glitchLvl.ToString());
             GUILayout.Label(cleaned.ToString());
             GUILayout.Label(uncleaned.ToString());
             GUILayout.Label(nothingClicks.ToString());
+            GUILayout.Label(mazeTeleportations.ToString());
+            GUILayout.Label(mazeRotations.ToString());
+            GUILayout.Label(mazeLookats.ToString());
+
+            GUILayout.Label(mazeStats.Values.Any() ? mazeStats.Values.Max().ToString() : "--");
             GUILayout.EndVertical();
 
             GUILayout.EndHorizontal();

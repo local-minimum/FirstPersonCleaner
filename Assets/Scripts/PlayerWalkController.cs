@@ -7,9 +7,14 @@ public enum WalkInstruction { Forward, Reverse, RotateLeft, RotateRight};
 
 public delegate void WalkEvent(WalkInstruction instruction, bool refused, bool wasFacingDoor, bool isLookingIntoDoor);
 
+public enum MazeEventTypes {Teleport, Rotate, LookAt};
+
+public delegate void MazeEvent(MazeEventTypes eventType, CorridorTile causeTile);
+
 public class PlayerWalkController : MonoBehaviour {
 
     public event WalkEvent OnWalk;
+    public event MazeEvent OnMazeEvent;
 
     [SerializeField]
     Sounder walkSounds;
@@ -425,22 +430,37 @@ public class PlayerWalkController : MonoBehaviour {
 		foreach (Action action in currentTile.actions) {
 			if (action.IsActive (from)) {
 				switch (action.action) {
-				case "teleport":				
-					SetCurrentTile (action.tile);
-					break;
-				case "rotate":
+				    case "teleport":
+                        if (OnMazeEvent != null)
+                        {
+                            OnMazeEvent(MazeEventTypes.Teleport, currentTile);
+                        }                
+					    SetCurrentTile (action.tile);                  
+                        break;
+
+				    case "rotate":
+                        if (OnMazeEvent != null)
+                        {
+                            OnMazeEvent(MazeEventTypes.Rotate, currentTile);
+                        }
                         Direction targetDirection = (Direction)(((int)facingDirection + action.GetInteger(0)) % 4);
                         importRoom.ManageDoors(currentTile, targetDirection);
                         SetCurrentDirection (targetDirection, false);
-					break;
-				case "lookat":
+					    break;
+
+				    case "lookat":
+                        if (OnMazeEvent != null)
+                        {
+                            OnMazeEvent(MazeEventTypes.LookAt, currentTile);
+                        }
                         targetDirection = action.GetDirection(0);
                         importRoom.ManageDoors(currentTile, targetDirection);
                         SetCurrentDirection (targetDirection, false);
-					break;
-				default:
-					break;
-				}
+					    break;
+
+				    default:
+					    break;
+				    }
 			}
 		}
         transitioning = false;
