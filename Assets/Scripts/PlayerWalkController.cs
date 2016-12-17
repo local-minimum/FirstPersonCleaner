@@ -26,13 +26,13 @@ public class PlayerWalkController : MonoBehaviour {
     [SerializeField]
     Transform lookTransform;
 
-    [SerializeField]
+    //[SerializeField]
     CorridorTile currentTile;
 
-	[SerializeField]
-	CorridorTile endTile;
+	//[SerializeField]
+	//CorridorTile endTile;
 
-    [SerializeField]
+    //[SerializeField]
     Direction facingDirection;
 
     [SerializeField]
@@ -113,7 +113,7 @@ public class PlayerWalkController : MonoBehaviour {
     }
 
 	public void SetEndTile(CorridorTile tile) {
-		endTile = tile;
+		//endTile = tile;
 	}
 
     public Direction LookDirection

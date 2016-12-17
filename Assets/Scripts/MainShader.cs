@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class MainShader : MonoBehaviour {
 
+    [SerializeField]
+    KeyCode muteEffectsToggle = KeyCode.G;
+
 	public Material mat;
 	public Shader shader;
     bool hasGlitch = true;
@@ -24,6 +27,8 @@ public class MainShader : MonoBehaviour {
 	}
 
     float startFreq;
+
+    bool glitching = true;
 
     public void ResetFrequency() {
         frequency = startFreq;
@@ -54,10 +59,18 @@ public class MainShader : MonoBehaviour {
     }
 
     void OnRenderImage(RenderTexture src, RenderTexture dest) {
-		if (hasGlitch) {
+		if (hasGlitch && glitching) {
 			Graphics.Blit (src, dest, mat);
 		} else {
 			Graphics.Blit(src, dest);			
 		}
 	}
+
+    void Update()
+    {
+        if (Input.GetKeyDown(muteEffectsToggle))
+        {
+            glitching = !glitching;
+        }
+    }
 }
