@@ -20,7 +20,19 @@ public class CorridorLightFlicker : MonoBehaviour {
     [SerializeField]
     float offEmissionFactor = 0.1f;
 
-	void Start () {
+    [SerializeField]
+    float minOn = 0.05f;
+
+    [SerializeField]
+    float maxOn = 0.4f;
+
+    [SerializeField]
+    float minOff = 0.2f;
+
+    [SerializeField]
+    float maxOff = 2f;
+
+    void Start () {
 
         if (myLight == null)
         {
@@ -41,11 +53,14 @@ public class CorridorLightFlicker : MonoBehaviour {
         bool isOn = true;
 
         while (true)
-        {
-            yield return new WaitForSeconds(Random.Range(0.2f, 1));
+        {            
+
             myLight.intensity = isOn ? onIntencity : 0;
             lightMat.SetColor("_Color", onColor * (isOn ? 1 : offColorFactor));
             lightMat.SetColor("_EmissionColor", onEmission * (isOn ? 1 : offEmissionFactor));
+
+            yield return new WaitForSeconds(!isOn ? Random.Range(minOn, minOff) : Random.Range(minOff, maxOff));
+
             isOn = !isOn;
         }
     }
