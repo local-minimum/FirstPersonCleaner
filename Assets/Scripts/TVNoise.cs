@@ -27,6 +27,15 @@ public class TVNoise : MonoBehaviour {
     float flickerMagnitude = 4;
 
     bool tvIsOn = true;
+
+    public bool TvIsOn
+    {
+        get
+        {
+            return tvIsOn;
+        }
+    }
+
     AudioSource aSource;
     void Start () {
         aSource = GetComponent<AudioSource>();

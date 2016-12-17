@@ -2,7 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum MouseInteractionTypes { None, Elevator, Door, Room, WorkOrder };
+
+public delegate void MouseClick(MouseInteractionTypes interaction, bool refused, bool returnToNativeState);
+
 public class MouseController : MonoBehaviour {
+
+    public event MouseClick OnMouseClickEvent;
 
     public static LayerMask DoorLayer;
 
@@ -65,9 +71,8 @@ public class MouseController : MonoBehaviour {
         playerCtrl = GetComponentInParent<PlayerWalkController>();
     }
 
-    enum MouseInteractionTypes { None, Elevator, Door,  Room, WorkOrder};
-
     MouseInteractionTypes interaction = MouseInteractionTypes.None;
+
     void Update()
     {
         if (playerCtrl.frozen)
@@ -103,6 +108,10 @@ public class MouseController : MonoBehaviour {
                 if (elevator)
                 {
                     elevator.PressForElevator(playerCtrl);
+                    if (OnMouseClickEvent != null)
+                    {
+                        OnMouseClickEvent(MouseInteractionTypes.Elevator, false, false);
+                    }
                 }
             }
             else if (interaction == MouseInteractionTypes.Door)
@@ -110,7 +119,7 @@ public class MouseController : MonoBehaviour {
                 OneRoomDoor door = hit.transform.GetComponentInParent<OneRoomDoor>();                
                 if (door && playerCtrl.CurrentTile.HasDoor(door))
                 {
-                    //This is here so all potentially open doors are listed with directions                    
+                                    
                     OneRoomDoor lookDirDoor = playerCtrl.CurrentTile.GetDoor(playerCtrl.LookDirection);
                     if (lookDirDoor == door && !door.IsOpen)
                     {
@@ -118,14 +127,26 @@ public class MouseController : MonoBehaviour {
                         {
                             door.CloseDoor();
                             playerCtrl.StopLookingIntoOneRoom();
+                            if (OnMouseClickEvent != null)
+                            {
+                                OnMouseClickEvent(MouseInteractionTypes.Door, false, true);
+                            }
                         }
                         else {
                             door.OpenDoor(playerCtrl.LookDirection);
                             playerCtrl.LookIntoOneRoom();
+                            if (OnMouseClickEvent != null)
+                            {
+                                OnMouseClickEvent(MouseInteractionTypes.Door, false, false);
+                            }
                         }
                     } else
                     {
                         door.CloseDoor();
+                        if (OnMouseClickEvent != null)
+                        {
+                            OnMouseClickEvent(MouseInteractionTypes.Door, false, true);
+                        }
                     }
                 }
             }
@@ -139,6 +160,10 @@ public class MouseController : MonoBehaviour {
                     if (tv)
                     {
                         tv.ToggleTV();
+                        if (OnMouseClickEvent != null)
+                        {
+                            OnMouseClickEvent(MouseInteractionTypes.Room, false, tv.TvIsOn);
+                        }
                     }                    
                 }
                 else if (hit.transform.gameObject.tag == "Cupboard")
@@ -148,6 +173,10 @@ public class MouseController : MonoBehaviour {
                     {
                         playerCtrl.Inventory.ReturnDND(target.GetChild(0).gameObject);
                         dndSounder.PlayOne();
+                        if (OnMouseClickEvent != null)
+                        {
+                            OnMouseClickEvent(MouseInteractionTypes.Room, false, true);
+                        }
                     }
                     else if (target)
                     {
@@ -158,6 +187,16 @@ public class MouseController : MonoBehaviour {
                             dnd.transform.rotation = target.rotation;
                             dnd.transform.position = target.position;
                             dndSounder.PlayOne();
+                            if (OnMouseClickEvent != null)
+                            {
+                                OnMouseClickEvent(MouseInteractionTypes.Room, false, false);
+                            }
+                        } else
+                        {
+                            if (OnMouseClickEvent != null)
+                            {
+                                OnMouseClickEvent(MouseInteractionTypes.Room, true, false);
+                            }
                         }
                     }
                 }
@@ -168,6 +207,10 @@ public class MouseController : MonoBehaviour {
                     {
                         wetSounderUp.PlayOne();
                         playerCtrl.Inventory.ReturnWetFloor(target.GetChild(0).gameObject);
+                        if (OnMouseClickEvent != null)
+                        {
+                            OnMouseClickEvent(MouseInteractionTypes.Room, false, true);
+                        }
                     }
                     else if (target)
                     {
@@ -179,6 +222,16 @@ public class MouseController : MonoBehaviour {
                             wetFloor.transform.rotation = target.rotation;
                             wetFloor.transform.position = target.position;
                             wetSounderDown.PlayOne();
+                            if (OnMouseClickEvent != null)
+                            {
+                                OnMouseClickEvent(MouseInteractionTypes.Room, false, false);
+                            }
+                        } else
+                        {
+                            if (OnMouseClickEvent != null)
+                            {
+                                OnMouseClickEvent(MouseInteractionTypes.Room, true, false);
+                            }
                         }
                     }
                 }
@@ -189,6 +242,10 @@ public class MouseController : MonoBehaviour {
                     {
                         playerCtrl.Inventory.ReturnTowel(target.GetChild(0).gameObject);
                         towelSounderUp.PlayOne();
+                        if (OnMouseClickEvent != null)
+                        {
+                            OnMouseClickEvent(MouseInteractionTypes.Room, false, true);
+                        }
                     }
                     else if (target)
                     {
@@ -199,6 +256,16 @@ public class MouseController : MonoBehaviour {
                             towel.transform.rotation = target.rotation;
                             towel.transform.position = target.position;
                             towelSounderDown.PlayOne();
+                            if (OnMouseClickEvent != null)
+                            {
+                                OnMouseClickEvent(MouseInteractionTypes.Room, false, false);
+                            }
+                        } else
+                        {
+                            if (OnMouseClickEvent != null)
+                            {
+                                OnMouseClickEvent(MouseInteractionTypes.Room, true, false);
+                            }
                         }
                     }
                 }
@@ -206,6 +273,16 @@ public class MouseController : MonoBehaviour {
             else if (interaction == MouseInteractionTypes.WorkOrder)
             {
                 workInstructions.Toggle();
+                if (OnMouseClickEvent != null)
+                {
+                    OnMouseClickEvent(MouseInteractionTypes.WorkOrder, false, !workInstructions.IsShowing);
+                }
+            } else
+            {
+                if (OnMouseClickEvent != null)
+                {
+                    OnMouseClickEvent(MouseInteractionTypes.None, true, false);
+                }
             }
         }
     }

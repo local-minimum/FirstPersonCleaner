@@ -7,10 +7,18 @@ public class WorkInstructions : MonoBehaviour {
 
     Animator anim;
 
-	[SerializeField]
-	Camera myCamera;
+    [SerializeField]
+    Camera myCamera;
 
     bool isShowing;
+
+    public bool IsShowing
+    {
+        get
+        {
+            return isShowing;
+        }
+    }
 
     void Start()
     {

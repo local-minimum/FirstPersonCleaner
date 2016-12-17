@@ -3,7 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityStandardAssets.ImageEffects;
 
+public enum WalkInstruction { Forward, Reverse, RotateLeft, RotateRight};
+
+public delegate void WalkEvent(WalkInstruction instruction, bool refused, bool wasFacingDoor, bool isLookingIntoDoor);
+
 public class PlayerWalkController : MonoBehaviour {
+
+    public event WalkEvent OnWalk;
 
     [SerializeField]
     Sounder walkSounds;
@@ -61,6 +67,14 @@ public class PlayerWalkController : MonoBehaviour {
 
 	[SerializeField]
 	Camera myCamera;
+
+    public Camera PlayerCam
+    {
+        get
+        {
+            return myCamera;
+        }
+    }
 
 	[SerializeField]
 	public int currentLevel;
@@ -257,14 +271,26 @@ public class PlayerWalkController : MonoBehaviour {
                     OneRoomDoor door = currentTile.GetDoor(facingDirection);
                     if (IsLookingIntoRoom || door == null)
                     {
+                        if (OnWalk != null)
+                        {
+                            OnWalk(WalkInstruction.Forward, true, true, IsLookingIntoRoom);
+                        }
                         StartCoroutine(RefuseWalk());
                     } else
                     {
+                        if (OnWalk != null)
+                        {
+                            OnWalk(WalkInstruction.Forward, false, true, false);
+                        }
                         StartCoroutine(WalkOpenDoor(door, facingDirection));
                     }
                 }
                 else
                 {
+                    if (OnWalk != null)
+                    {
+                        OnWalk(WalkInstruction.Forward, false, false, false);
+                    }
                     StartCoroutine(Walk(target));
                     trolly.WalkForward();
                 }
@@ -273,6 +299,10 @@ public class PlayerWalkController : MonoBehaviour {
             {
                 if (isLookingIntoRoom)
                 {
+                    if (OnWalk != null)
+                    {
+                        OnWalk(WalkInstruction.Reverse, false, true, true);
+                    }
                     StartCoroutine(WalkOutOfRoom());
                 }
                 else {
@@ -280,20 +310,38 @@ public class PlayerWalkController : MonoBehaviour {
                     CorridorTile target = currentTile.GetEdge(CorridorTile.GetInverseDirection(facingDirection));
                     if (target == null)
                     {
+                        if (OnWalk != null)
+                        {
+                            OnWalk(WalkInstruction.Reverse, true, currentTile.GetEdge(facingDirection) == null, false);
+                        }
+
                         StartCoroutine(RefuseWalk());
                     }
                     else
                     {
+                        if (OnWalk != null)
+                        {
+                            OnWalk(WalkInstruction.Reverse, false, currentTile.GetEdge(facingDirection) == null, false);
+                        }
+
                         StartCoroutine(Walk(target));
                     }
                 }
             }
             else if (Input.GetButton("rotateLeft"))
             {
+                if (OnWalk != null)
+                {
+                    OnWalk(WalkInstruction.RotateLeft, false, true, true);
+                }
                 StartCoroutine(Rotate(false));
             }
             else if (Input.GetButton("rotateRight"))
             {
+                if (OnWalk != null)
+                {
+                    OnWalk(WalkInstruction.RotateRight, false, true, true);
+                }
                 StartCoroutine(Rotate(true));
             }
         }
@@ -348,6 +396,7 @@ public class PlayerWalkController : MonoBehaviour {
 
     IEnumerator<WaitForSeconds> Walk(CorridorTile target)
     {
+
         if (isLookingIntoRoom)
         {
             StopLookingIntoOneRoom();

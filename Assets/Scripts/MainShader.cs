@@ -2,7 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+public delegate void GlithLevelChange(bool isActive, float frequency);
+
 public class MainShader : MonoBehaviour {
+
+    public event GlithLevelChange OnGlitchLevelChange;
 
     [SerializeField]
     KeyCode muteEffectsToggle = KeyCode.G;
@@ -28,18 +32,26 @@ public class MainShader : MonoBehaviour {
 
     float startFreq;
 
-    bool glitching = true;
+    bool glitchIsActive = true;
 
     public void ResetFrequency() {
         frequency = startFreq;
         mat.SetFloat("_DispProbability", frequency);
+        if (OnGlitchLevelChange != null)
+        {
+            OnGlitchLevelChange(glitchIsActive, frequency);
+        }
     }
 
     public void IncreaseFrequency()
     {
         frequency = Mathf.Clamp(frequency + freqDelta, minFrequency, maxFrequency);
         mat.SetFloat("_DispProbability", frequency);
-        hasGlitch = true;        
+        hasGlitch = true;
+        if (OnGlitchLevelChange != null)
+        {
+            OnGlitchLevelChange(glitchIsActive, frequency);
+        }
     }
 
     public void DecreaseFrequency()
@@ -49,17 +61,25 @@ public class MainShader : MonoBehaviour {
         {
             hasGlitch = false;
         }
-        mat.SetFloat("_DispProbability", frequency);        
+        mat.SetFloat("_DispProbability", frequency);
+        if (OnGlitchLevelChange != null)
+        {
+            OnGlitchLevelChange(glitchIsActive, frequency);
+        }
     }
 
     public void SetMaxGlitchFrequency()
     {
         frequency = maxFrequency;
         mat.SetFloat("_DispProbability", frequency);
+        if (OnGlitchLevelChange != null)
+        {
+            OnGlitchLevelChange(glitchIsActive, frequency);
+        }
     }
 
     void OnRenderImage(RenderTexture src, RenderTexture dest) {
-		if (hasGlitch && glitching) {
+		if (hasGlitch && glitchIsActive) {
 			Graphics.Blit (src, dest, mat);
 		} else {
 			Graphics.Blit(src, dest);			
@@ -70,7 +90,11 @@ public class MainShader : MonoBehaviour {
     {
         if (Input.GetKeyDown(muteEffectsToggle))
         {
-            glitching = !glitching;
+            glitchIsActive = !glitchIsActive;
+            if (OnGlitchLevelChange != null)
+            {
+                OnGlitchLevelChange(glitchIsActive, frequency);
+            }
         }
     }
 }

@@ -15,10 +15,10 @@ public class CorridorLightFlicker : MonoBehaviour {
     Color onColor;
 
     [SerializeField]
-    float offColorFactor = 0.5f;
+    float offColorFactor = 0.9f;
 
     [SerializeField]
-    float offEmissionFactor = 0.1f;
+    float offEmissionFactor = 0.3f;
 
     [SerializeField]
     float minFlicker = 0.05f;
