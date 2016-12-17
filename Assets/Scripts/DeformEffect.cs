@@ -8,7 +8,7 @@ public class DeformEffect : MonoBehaviour {
     Transform[] effectSources;
 
     [SerializeField]
-    float effectScale = 1f;
+    float effectScale = 4f;
 
     [SerializeField]
     MeshFilter deformee;
@@ -17,10 +17,10 @@ public class DeformEffect : MonoBehaviour {
     float minSpeed = 1;
 
     [SerializeField]
-    float maxSpeed = 2;
+    float maxSpeed = 5;
 
     [SerializeField]
-    float proximityPower = 2f;
+    float proximityPower = 0.5f;
 
     Mesh mesh;
 
