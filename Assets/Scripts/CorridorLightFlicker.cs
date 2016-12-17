@@ -46,7 +46,7 @@ public class CorridorLightFlicker : MonoBehaviour {
             myLight = GetComponent<Light>();
         }
 
-        lightMat = GetComponent<MeshRenderer>().material;
+        lightMat = GetComponentInParent<MeshRenderer>().material;
 
         onColor = lightMat.GetColor("_Color");
         onEmission = lightMat.GetColor("_EmissionColor");
