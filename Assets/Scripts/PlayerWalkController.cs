@@ -13,6 +13,20 @@ public delegate void MazeEvent(MazeEventTypes eventType, CorridorTile causeTile)
 
 public class PlayerWalkController : MonoBehaviour {
 
+    static PlayerWalkController _playerCTRL;
+
+    public static PlayerWalkController PlayerCTRL
+    {
+        get
+        {
+            if (_playerCTRL == null)
+            {
+                _playerCTRL = FindObjectOfType<PlayerWalkController>();
+            }
+            return _playerCTRL;
+        }
+    }
+
     public event WalkEvent OnWalk;
     public event MazeEvent OnMazeEvent;
 
@@ -236,8 +250,14 @@ public class PlayerWalkController : MonoBehaviour {
 
     void Start()
     {
+        _playerCTRL = this;
         inventory = GetComponentInParent<PlayerInventory>();
         glitchShader = myCamera.GetComponent<MainShader>();
+    }
+
+    void OnDestory()
+    {
+        _playerCTRL = null;
     }
 
     bool isLookingIntoRoom = false;

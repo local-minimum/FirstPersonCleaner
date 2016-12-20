@@ -862,6 +862,7 @@ MonoBehaviour:
   volume: 1
   sequenceDelay: 0
   probabilityPlay: 0.5
+  emit: 0
 --- !u!114 &114369326444391096
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -879,6 +880,7 @@ MonoBehaviour:
   volume: 1
   sequenceDelay: 0
   probabilityPlay: 0.5
+  emit: 0
 --- !u!114 &114440072779058206
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -896,6 +898,7 @@ MonoBehaviour:
   volume: 1
   sequenceDelay: 0
   probabilityPlay: 0.5
+  emit: 0
 --- !u!114 &114593325053507356
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -928,6 +931,7 @@ MonoBehaviour:
   volume: 1
   sequenceDelay: 0
   probabilityPlay: 0.5
+  emit: 0
 --- !u!114 &114771131174899162
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -949,6 +953,7 @@ MonoBehaviour:
   volume: 1
   sequenceDelay: 0
   probabilityPlay: 0.05
+  emit: 0
 --- !u!114 &114943509889471742
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -970,3 +975,4 @@ MonoBehaviour:
   volume: 1
   sequenceDelay: 0
   probabilityPlay: 0.05
+  emit: 0

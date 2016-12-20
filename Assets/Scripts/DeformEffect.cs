@@ -8,9 +8,6 @@ public class DeformEffect : MonoBehaviour {
     Transform[] effectSources;
 
     [SerializeField]
-    float effectScale = 4f;
-
-    [SerializeField]
     MeshFilter deformee;
 
     [SerializeField]
