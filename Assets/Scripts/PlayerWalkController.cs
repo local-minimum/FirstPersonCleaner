@@ -95,6 +95,20 @@ public class PlayerWalkController : MonoBehaviour {
         }
     }
 
+    PlayerStatsCollector _stats;
+
+    public PlayerStatsCollector PlayerStats
+    {
+        get
+        {
+            if (_stats == null)
+            {
+                _stats = GetComponentInChildren<PlayerStatsCollector>();
+            }
+            return _stats;
+        }
+    }
+
 	[SerializeField]
 	public int currentLevel;
 

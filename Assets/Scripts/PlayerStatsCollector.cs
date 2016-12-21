@@ -43,14 +43,28 @@ public class PlayerStatsCollector : MonoBehaviour {
     int attemptedEnterDiorama = 0;
     int reversedIntoRoom = 0;
     int turns = 0;
+
     int successfulWalkForward = 0;
+    
     int successfulWalkBackward = 0;
+    public int SuccessfulWalkBackward
+    {
+        get
+        {
+            return successfulWalkBackward;
+        }
+    }
+
     int peeksIntoDiorama = 0;
     int inspectedWorkOrder = 0;
+
     int nothingClicks;
+
     int cleaned;
     int uncleaned;
+
     float glitchLvl;
+
     int mazeTeleportations;
     int mazeRotations;
     int mazeLookats;

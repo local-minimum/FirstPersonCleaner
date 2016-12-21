@@ -14,6 +14,8 @@ public class DNDdoor : MonoBehaviour {
     
     float triggerProbability = .5f;
 
+    int requireNBackwards = 20;
+
     OneRoomDoor oneRoomDoor;
 
     PlayerWalkController playerCTRL;
@@ -40,7 +42,7 @@ public class DNDdoor : MonoBehaviour {
 
     private void PlayerCTRL_OnWalk(WalkInstruction instruction, bool refused, bool wasFacingDoor, bool isLookingIntoDoor)
     {
-        if (!triggered && instruction == WalkInstruction.Reverse && !isLookingIntoDoor && !refused)
+        if (!triggered && instruction == WalkInstruction.Reverse && !isLookingIntoDoor && !refused && playerCTRL.PlayerStats.SuccessfulWalkBackward > requireNBackwards)
         {
             if (oneRoomDoor.IsOpen && Random.value < triggerProbability)
             {
