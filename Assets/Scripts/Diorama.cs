@@ -6,8 +6,7 @@ public enum CamLookMode { DioramaAlignToMain, DioramaLookAtFocus, DioramaCounter
 public enum CamFieldOfViewMode { Sync, Static, Relative};
 public enum CamTranslateMode {Relative, RelativeScaled, FixedPlaneRelative, FixedPlaneInverseScale};
 public class Diorama : MonoBehaviour {
-
-    [SerializeField]
+    
     Camera mainCam;
 
     [SerializeField]
@@ -38,8 +37,17 @@ public class Diorama : MonoBehaviour {
     [SerializeField]
     CamTranslateMode camTranslateMode = CamTranslateMode.FixedPlaneRelative;
 
+    float worldRayDistMax = 8f;
+
+    MouseController mouseCtrl;
+
+    [SerializeField]
+    LayerMask worldDioramaHitLayers;
+
     void Start()
     {
+        mouseCtrl = PlayerWalkController.PlayerCTRL.MouseCtrl;
+        mainCam = mouseCtrl.Cam;
         originalDioramaCamRotation = dioramaCam.transform.rotation;
         originalDioramaCamFoV = dioramaCam.fieldOfView;
     }
@@ -104,6 +112,36 @@ public class Diorama : MonoBehaviour {
         }
         else {
             dioramaCam.fieldOfView = originalDioramaCamFoV;
+        }
+    }
+
+    void OnDrawGizmos()
+    {
+        if (mouseCtrl == null)
+        {
+            return;
+        }
+
+        Ray ray = mouseCtrl.MouseRay;
+        RaycastHit hit;
+        
+        if (Physics.Raycast(ray, out hit, worldRayDistMax, worldDioramaHitLayers))
+        {
+            Gizmos.color = Color.red;
+            Gizmos.DrawLine(ray.origin, hit.point);
+
+            //Calculate rotation of world cam to ray direction with regards to world cam forward
+            Quaternion worldRotation = Quaternion.FromToRotation(mainCam.transform.forward, ray.direction);            
+            
+            //Get Relevant cam to cam rotation
+
+            //Scale orignal rotation with relation to FoV of both.
+
+            //Get new direction
+
+
+            Ray dioramaRay = new Ray(dioramaCam.transform.position, ray.direction);
+            Gizmos.DrawLine(dioramaRay.origin, dioramaRay.GetPoint(10));
         }
     }
 }

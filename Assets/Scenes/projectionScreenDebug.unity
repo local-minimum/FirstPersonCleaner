@@ -103,7 +103,7 @@ GameObject:
   - component: {fileID: 67255555}
   - component: {fileID: 67255554}
   - component: {fileID: 67255557}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: ProjectionQuad
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -187,7 +187,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24ecbe0e4675d954eb73b02279b1ba35, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mainCam: {fileID: 907435629}
   referenceWorldPosition: {fileID: 358370359}
   dioramaCam: {fileID: 1237612720}
   dioramaReferenecPosition: {fileID: 1828661808}
@@ -196,6 +195,9 @@ MonoBehaviour:
   camLookMode: 3
   camFieldOfViewMode: 2
   camTranslateMode: 2
+  worldDioramaHitLayers:
+    serializedVersion: 2
+    m_Bits: 4096
 --- !u!1 &74689825
 GameObject:
   m_ObjectHideFlags: 0
@@ -208,7 +210,7 @@ GameObject:
   - component: {fileID: 74689829}
   - component: {fileID: 74689828}
   - component: {fileID: 74689827}
-  m_Layer: 12
+  m_Layer: 20
   m_Name: Cube
   m_TagString: Floor
   m_Icon: {fileID: 0}
@@ -295,7 +297,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 198060366}
-  m_Layer: 12
+  m_Layer: 20
   m_Name: BedPosition
   m_TagString: Bed
   m_Icon: {fileID: 0}
@@ -377,8 +379,59 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+--- !u!1001 &339324842
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4439546919182850, guid: 80974223accd11048b420de67354cd0b, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 7.55
+      objectReference: {fileID: 0}
+    - target: {fileID: 4439546919182850, guid: 80974223accd11048b420de67354cd0b, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4439546919182850, guid: 80974223accd11048b420de67354cd0b, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: -2.86
+      objectReference: {fileID: 0}
+    - target: {fileID: 4439546919182850, guid: 80974223accd11048b420de67354cd0b, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4439546919182850, guid: 80974223accd11048b420de67354cd0b, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4439546919182850, guid: 80974223accd11048b420de67354cd0b, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4439546919182850, guid: 80974223accd11048b420de67354cd0b, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4439546919182850, guid: 80974223accd11048b420de67354cd0b, type: 2}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 20526435948998262, guid: 80974223accd11048b420de67354cd0b,
+        type: 2}
+      propertyPath: m_CullingMask.m_Bits
+      value: 4293918719
+      objectReference: {fileID: 0}
+    - target: {fileID: 4757317454081268, guid: 80974223accd11048b420de67354cd0b, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 80974223accd11048b420de67354cd0b, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1 &358370358
 GameObject:
   m_ObjectHideFlags: 0
@@ -480,7 +533,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400006, guid: afd44812248ccf6489e6608d9c14d770, type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 400004, guid: afd44812248ccf6489e6608d9c14d770, type: 3}
       propertyPath: m_RootOrder
@@ -488,7 +541,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: afd44812248ccf6489e6608d9c14d770, type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: afd44812248ccf6489e6608d9c14d770, type: 3}
@@ -509,7 +562,7 @@ GameObject:
   - component: {fileID: 555612410}
   - component: {fileID: 555612409}
   - component: {fileID: 555612408}
-  m_Layer: 12
+  m_Layer: 20
   m_Name: Cubboard
   m_TagString: Cupboard
   m_Icon: {fileID: 0}
@@ -594,7 +647,7 @@ GameObject:
   m_Component:
   - component: {fileID: 557191767}
   - component: {fileID: 557191768}
-  m_Layer: 12
+  m_Layer: 20
   m_Name: Spotlight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -659,7 +712,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 559699028}
-  m_Layer: 12
+  m_Layer: 20
   m_Name: FloorPosition
   m_TagString: Floor
   m_Icon: {fileID: 0}
@@ -688,7 +741,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 630373852}
-  m_Layer: 12
+  m_Layer: 20
   m_Name: CamLookAt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -708,93 +761,6 @@ Transform:
   m_Father: {fileID: 1035142959}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &907435625
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 5
-  m_Component:
-  - component: {fileID: 907435630}
-  - component: {fileID: 907435629}
-  - component: {fileID: 907435628}
-  - component: {fileID: 907435627}
-  - component: {fileID: 907435626}
-  m_Layer: 0
-  m_Name: Main Camera
-  m_TagString: MainCamera
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!81 &907435626
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 907435625}
-  m_Enabled: 1
---- !u!124 &907435627
-Behaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 907435625}
-  m_Enabled: 1
---- !u!92 &907435628
-Behaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 907435625}
-  m_Enabled: 1
---- !u!20 &907435629
-Camera:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 907435625}
-  m_Enabled: 1
-  serializedVersion: 2
-  m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
-  m_NormalizedViewPortRect:
-    serializedVersion: 2
-    x: 0
-    y: 0
-    width: 1
-    height: 1
-  near clip plane: 0.3
-  far clip plane: 1000
-  field of view: 60
-  orthographic: 0
-  orthographic size: 5
-  m_Depth: 100
-  m_CullingMask:
-    serializedVersion: 2
-    m_Bits: 4294963199
-  m_RenderingPath: -1
-  m_TargetTexture: {fileID: 0}
-  m_TargetDisplay: 0
-  m_TargetEye: 3
-  m_HDR: 0
-  m_OcclusionCulling: 1
-  m_StereoConvergence: 10
-  m_StereoSeparation: 0.022
-  m_StereoMirrorMode: 0
---- !u!4 &907435630
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 907435625}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 7.54, y: 0.4, z: -6.63}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &941510769
 GameObject:
   m_ObjectHideFlags: 0
@@ -804,7 +770,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 941510770}
-  m_Layer: 12
+  m_Layer: 20
   m_Name: CupboardPosition
   m_TagString: Cupboard
   m_Icon: {fileID: 0}
@@ -833,7 +799,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 1035142959}
-  m_Layer: 12
+  m_Layer: 20
   m_Name: Diorama
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -866,7 +832,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1237612716}
   - component: {fileID: 1237612720}
-  m_Layer: 0
+  m_Layer: 20
   m_Name: Camera
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -910,7 +876,7 @@ Camera:
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 4096
+    m_Bits: 1048576
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 8400000, guid: 8ca2b9dca698dc944948b8e710e8e027, type: 2}
   m_TargetDisplay: 0
@@ -932,7 +898,7 @@ GameObject:
   - component: {fileID: 1809930887}
   - component: {fileID: 1809930886}
   - component: {fileID: 1809930885}
-  m_Layer: 12
+  m_Layer: 20
   m_Name: Bed
   m_TagString: Bed
   m_Icon: {fileID: 0}
@@ -1015,7 +981,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 1828661808}
-  m_Layer: 12
+  m_Layer: 20
   m_Name: CamReferencePosition
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1045,7 +1011,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1855495205}
   - component: {fileID: 1855495206}
-  m_Layer: 12
+  m_Layer: 20
   m_Name: Spotlight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1111,7 +1077,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1872921807}
   - component: {fileID: 1872921808}
-  m_Layer: 12
+  m_Layer: 20
   m_Name: oneRoom
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1163,7 +1129,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 2023980014}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: WorldFocus
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1197,7 +1163,7 @@ GameObject:
   - component: {fileID: 2065919374}
   - component: {fileID: 2065919373}
   - component: {fileID: 2065919372}
-  m_Layer: 12
+  m_Layer: 20
   m_Name: TV
   m_TagString: TV
   m_Icon: {fileID: 0}

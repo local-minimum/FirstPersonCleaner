@@ -14,6 +14,18 @@ public class MouseController : MonoBehaviour {
 
     Camera cam;
 
+    public Camera Cam
+    {
+        get
+        {
+            if (cam == null)
+            {
+                cam = GetComponentInParent<Camera>();
+            }
+            return cam;
+        }
+    }
+
     [SerializeField]
     Sounder towelSounderDown;
 
@@ -67,7 +79,11 @@ public class MouseController : MonoBehaviour {
     void Start()
     {
         DoorLayer = doorLayer;
-        cam = GetComponentInParent<Camera>();
+        if (cam == null)
+        {
+            cam = Cam;
+        }
+        
         playerCtrl = GetComponentInParent<PlayerWalkController>();
     }
 
@@ -287,9 +303,17 @@ public class MouseController : MonoBehaviour {
         }
     }
 
+    public Ray MouseRay
+    {
+        get
+        {
+            return cam.ScreenPointToRay(Input.mousePosition);
+        }
+    }
+
     MouseInteractionTypes GetMouseHover(out Ray ray, out RaycastHit hit)
     {
-        ray = cam.ScreenPointToRay(Input.mousePosition);
+        ray = MouseRay;
         if (Physics.Raycast(ray, out hit, 3, elevatorInteractions))
         {
             return MouseInteractionTypes.Elevator;

@@ -51,13 +51,8 @@ public class PlayerWalkController : MonoBehaviour {
     [SerializeField]
     Transform lookTransform;
 
-    //[SerializeField]
     CorridorTile currentTile;
 
-	//[SerializeField]
-	//CorridorTile endTile;
-
-    //[SerializeField]
     Direction facingDirection;
 
     [SerializeField]
@@ -106,6 +101,20 @@ public class PlayerWalkController : MonoBehaviour {
                 _stats = GetComponentInChildren<PlayerStatsCollector>();
             }
             return _stats;
+        }
+    }
+
+    MouseController _mouseCtrl;
+
+    public MouseController MouseCtrl
+    {
+        get
+        {
+            if (_mouseCtrl == null)
+            {
+                _mouseCtrl = GetComponentInChildren<MouseController>();
+            }
+            return _mouseCtrl;
         }
     }
 
