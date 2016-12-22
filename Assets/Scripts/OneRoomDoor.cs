@@ -27,6 +27,9 @@ public class OneRoomDoor : MonoBehaviour {
     Quaternion rotationTarget;
     Quaternion restingRotation;
 
+    [SerializeField]
+    Diorama diorama;
+
     bool rotating = false;
     float startOfRotationTime;
     bool isOpen = false;
@@ -52,16 +55,23 @@ public class OneRoomDoor : MonoBehaviour {
         {
             return false;
         }
-        if (room == null)
+
+        if (diorama != null)
         {
-            SpawnRoom(direction);
+            //TODO: Activate
+        }
+        else {
+            if (room == null)
+            {
+                SpawnRoom(direction);
+            }
+            room.SetActive(true);
         }
         soundOpen.PlayOne();
         soundCreak.ProbabilityPlayOne();
         isOpen = true;
         activeLayer = gameObject.layer;
-        gameObject.layer = 0;
-        room.SetActive(true);
+        gameObject.layer = 0;      
         //col.enabled = false;
         rotationStart = Quaternion.AngleAxis((int)CorridorTile.GetRighDirection(direction) * 90, Vector3.up);
         rotationTarget = Quaternion.AngleAxis((int)CorridorTile.GetInverseDirection(direction) * 90, Vector3.up);
@@ -86,18 +96,29 @@ public class OneRoomDoor : MonoBehaviour {
         gameObject.layer = activeLayer;
         startOfRotationTime = Time.timeSinceLevelLoad;
         rotating = true;
-        StartCoroutine(delayDisableRoom());
+        if (diorama)
+        {
+
+        }
+        else {
+            StartCoroutine(delayDisableRoom());
+        }
         return true;
     }
 
     public void SoftCloseRoom() {
-
-        room.SetActive(false);
+        if (room)
+        {
+            room.SetActive(false);
+        }
     }
 
     public void SoftOpenRoom()
     {
-        room.SetActive(true);
+        if (room)
+        {
+            room.SetActive(true);
+        }
     }
 
     IEnumerator<WaitForSeconds> delayDisableRoom()

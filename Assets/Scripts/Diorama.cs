@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public enum CamLookMode { DioramaAlignToMain, DioramaLookAtFocus, DioramaCounterRotate, None};
-public enum CamFieldOfViewMode { Sync, Static, Relative};
+public enum CamFieldOfViewMode { Sync, Static, Relative, RelativeInverted};
 public enum CamTranslateMode {Relative, RelativeScaled, FixedPlaneRelative, FixedPlaneInverseScale};
 public class Diorama : MonoBehaviour {
     
@@ -48,11 +48,18 @@ public class Diorama : MonoBehaviour {
     {
         mouseCtrl = PlayerWalkController.PlayerCTRL.MouseCtrl;
         mainCam = mouseCtrl.Cam;
-        originalDioramaCamRotation = dioramaCam.transform.rotation;
-        originalDioramaCamFoV = dioramaCam.fieldOfView;
+        if (dioramaCam != null)
+        {
+            originalDioramaCamRotation = dioramaCam.transform.rotation;
+            originalDioramaCamFoV = dioramaCam.fieldOfView;
+        }
     }
 
 	void Update () {
+        if (dioramaCam == null)
+        {
+            return;
+        }
         float factor = TranslateDioramaCam();
         SyncDioramaCamProperties(factor);
 	}
@@ -108,7 +115,11 @@ public class Diorama : MonoBehaviour {
         }
         else if (camFieldOfViewMode == CamFieldOfViewMode.Relative)
         {
-            dioramaCam.fieldOfView = mainCam.fieldOfView / distanceFactor;
+            dioramaCam.fieldOfView = Mathf.Clamp(mainCam.fieldOfView / distanceFactor, 10, 120);
+        }
+        else if (camFieldOfViewMode == CamFieldOfViewMode.RelativeInverted)
+        {
+            dioramaCam.fieldOfView = Mathf.Clamp(mainCam.fieldOfView * distanceFactor, 10, 120);
         }
         else {
             dioramaCam.fieldOfView = originalDioramaCamFoV;
@@ -117,7 +128,7 @@ public class Diorama : MonoBehaviour {
 
     void OnDrawGizmos()
     {
-        if (mouseCtrl == null)
+        if (mouseCtrl == null || dioramaCam == null)
         {
             return;
         }
@@ -131,16 +142,19 @@ public class Diorama : MonoBehaviour {
             Gizmos.DrawLine(ray.origin, hit.point);
 
             //Calculate rotation of world cam to ray direction with regards to world cam forward
-            Quaternion worldRotation = Quaternion.FromToRotation(mainCam.transform.forward, ray.direction);            
-            
-            //Get Relevant cam to cam rotation
-
+            Quaternion worldRotation = Quaternion.FromToRotation(mainCam.transform.forward, ray.direction);
+            float angle = Quaternion.Angle(Quaternion.identity, worldRotation) * Mathf.Deg2Rad;
             //Scale orignal rotation with relation to FoV of both.
-
+            float scale = 2 * Mathf.PI * dioramaCam.fieldOfView / mainCam.fieldOfView * (angle / Mathf.PI); // / angle;
+            Debug.Log(scale);
+            Debug.Log(dioramaCam.fieldOfView / mainCam.fieldOfView);
+            Vector3 euler = worldRotation.eulerAngles / scale;
+            Quaternion dioramaRotation = Quaternion.SlerpUnclamped(Quaternion.identity, worldRotation, scale);
+            Debug.Log(dioramaRotation);
             //Get new direction
+            Vector3 dioramaRayDirection = dioramaRotation * dioramaCam.transform.forward;
 
-
-            Ray dioramaRay = new Ray(dioramaCam.transform.position, ray.direction);
+            Ray dioramaRay = new Ray(dioramaCam.transform.position, dioramaRayDirection);
             Gizmos.DrawLine(dioramaRay.origin, dioramaRay.GetPoint(10));
         }
     }
