@@ -359,9 +359,36 @@ Prefab:
       propertyPath: sceneFocus
       value: 
       objectReference: {fileID: 630373852}
+    - target: {fileID: 4678782972748852, guid: 1ad95d80ab1c4f545b3f00f95fc5e7e4, type: 2}
+      propertyPath: m_LocalScale.x
+      value: 3.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114987143997253980, guid: 1ad95d80ab1c4f545b3f00f95fc5e7e4,
+        type: 2}
+      propertyPath: camFieldOfViewMode
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 1ad95d80ab1c4f545b3f00f95fc5e7e4, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &1681854672 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 100000, guid: afd44812248ccf6489e6608d9c14d770, type: 3}
+  m_PrefabInternal: {fileID: 450274994}
+--- !u!64 &1681854676
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1681854672}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Convex: 0
+  m_InflateMesh: 0
+  m_SkinWidth: 0.01
+  m_Mesh: {fileID: 4300004, guid: afd44812248ccf6489e6608d9c14d770, type: 3}
 --- !u!4 &1828661808 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4876942072342774, guid: 110467e42be30d04dbc8349707a2d03b,

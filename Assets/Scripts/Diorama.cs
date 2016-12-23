@@ -126,6 +126,11 @@ public class Diorama : MonoBehaviour {
         }
     }
 
+    bool HitValidLayer(int hitLayer)
+    {
+        return worldDioramaHitLayers.value == (worldDioramaHitLayers.value |  (1 << hitLayer));
+    }
+
     void OnDrawGizmos()
     {
         if (mouseCtrl == null || dioramaCam == null)
@@ -136,8 +141,12 @@ public class Diorama : MonoBehaviour {
         Ray ray = mouseCtrl.MouseRay;
         RaycastHit hit;
         
-        if (Physics.Raycast(ray, out hit, worldRayDistMax, worldDioramaHitLayers))
+        if (Physics.Raycast(ray, out hit, worldRayDistMax))
         {
+            if (!HitValidLayer(hit.transform.gameObject.layer))
+            {
+                return;
+            }
             Gizmos.color = Color.red;
             Gizmos.DrawLine(ray.origin, hit.point);
 
@@ -145,7 +154,7 @@ public class Diorama : MonoBehaviour {
             Quaternion worldRotation = Quaternion.FromToRotation(mainCam.transform.forward, ray.direction);
             float angle = Quaternion.Angle(Quaternion.identity, worldRotation) * Mathf.Deg2Rad;
             //Scale orignal rotation with relation to FoV of both.
-            float scale = 2 * Mathf.PI * dioramaCam.fieldOfView / mainCam.fieldOfView * (angle / Mathf.PI); // / angle;
+            float scale = dioramaCam.fieldOfView / mainCam.fieldOfView; // / angle;
             Debug.Log(scale);
             Debug.Log(dioramaCam.fieldOfView / mainCam.fieldOfView);
             Vector3 euler = worldRotation.eulerAngles / scale;
