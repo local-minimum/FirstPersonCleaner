@@ -204,11 +204,12 @@ MonoBehaviour:
   bottomText: {fileID: 957847617}
   bottomInstructions:
   - Use WASD/Arrows and mouse. Escape to quit.
+  - If the game hurts your eyes, press 'G'
   - Enter the door!
   bottomInstructionTimes:
   - 3
   - 4
-  loadScene: martin_dev
+  loadScene: NewLevel
   defaultCursor: {fileID: 2800000, guid: fde0bc2632a80c643873175c0cb51dd9, type: 3}
   hoverCursor: {fileID: 2800000, guid: 7c2e6b1860c6f114ba14cd28e45a964b, type: 3}
   cursorHotspot: {x: 0.5, y: 0.5}

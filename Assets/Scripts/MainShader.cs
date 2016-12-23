@@ -11,8 +11,14 @@ public class MainShader : MonoBehaviour {
     [SerializeField]
     KeyCode muteEffectsToggle = KeyCode.G;
 
-	public Material mat;
-	public Shader shader;
+    [SerializeField]
+    Animator canvasAnimator;
+
+	Material mat;
+
+    [SerializeField]
+	Shader shader;
+
     bool hasGlitch = true;
 
     [SerializeField]
@@ -91,6 +97,11 @@ public class MainShader : MonoBehaviour {
         if (Input.GetKeyDown(muteEffectsToggle))
         {
             glitchIsActive = !glitchIsActive;
+
+            canvasAnimator.ResetTrigger("GlitchOn");
+            canvasAnimator.ResetTrigger("GlitchOff");
+            canvasAnimator.SetTrigger(glitchIsActive ? "GlitchOn" : "GlitchOff");
+
             if (OnGlitchLevelChange != null)
             {
                 OnGlitchLevelChange(glitchIsActive, frequency);
