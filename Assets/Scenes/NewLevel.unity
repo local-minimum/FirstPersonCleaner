@@ -164,6 +164,11 @@ Prefab:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 114159914554527762, guid: 80974223accd11048b420de67354cd0b,
+        type: 2}
+      propertyPath: canvasAnimator
+      value: 
+      objectReference: {fileID: 397403593}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 80974223accd11048b420de67354cd0b, type: 2}
   m_IsPrefabParent: 0
@@ -258,7 +263,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 355056855}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 1077351063, guid: f70555f144d8491a825f0804e09c671c, type: 3}
   m_Name: 
@@ -276,7 +281,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 355056855}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: -619905303, guid: f70555f144d8491a825f0804e09c671c, type: 3}
   m_Name: 
