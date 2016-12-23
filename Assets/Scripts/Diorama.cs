@@ -156,7 +156,8 @@ public class Diorama : MonoBehaviour {
 
     public bool RayCastDiorama(RaycastHit worldHit, out RaycastHit dioramaHit)
     {
-        if (!HitValidLayer(worldHit.transform.gameObject.layer))
+
+        if (dioramaCam == null || !HitValidLayer(worldHit.transform.gameObject.layer))
         {
             dioramaHit = new RaycastHit();
             return false;
