@@ -39,6 +39,8 @@ public class Diorama : MonoBehaviour {
 
     float worldRayDistMax = 8f;
 
+    float dioramaRayDistMax = 20f;
+
     MouseController mouseCtrl;
 
     [SerializeField]
@@ -131,6 +133,27 @@ public class Diorama : MonoBehaviour {
         return worldDioramaHitLayers.value == (worldDioramaHitLayers.value |  (1 << hitLayer));
     }
 
+    public bool RayCastDiorama(out RaycastHit worldHit, out RaycastHit dioramaHit)
+    {
+        Ray ray = mouseCtrl.MouseRay;
+        if (Physics.Raycast(ray, out worldHit, worldRayDistMax))
+        {
+            if (!HitValidLayer(worldHit.transform.gameObject.layer))
+            {
+                dioramaHit = new RaycastHit();
+                return false;
+            }
+
+            //TODO: Something better maybe?
+            Vector3 pt = worldHit.transform.InverseTransformPoint(worldHit.point);
+            Ray dioramaRay = dioramaCam.ViewportPointToRay(new Vector2(pt.x + 0.5f, pt.y + 0.5f));
+
+            return Physics.Raycast(dioramaRay, out dioramaHit, dioramaRayDistMax, dioramaCam.cullingMask);
+        }
+        dioramaHit = new RaycastHit();
+        return false;
+    }
+
     void OnDrawGizmos()
     {
         if (mouseCtrl == null || dioramaCam == null)
@@ -138,33 +161,14 @@ public class Diorama : MonoBehaviour {
             return;
         }
 
-        Ray ray = mouseCtrl.MouseRay;
-        RaycastHit hit;
-        
-        if (Physics.Raycast(ray, out hit, worldRayDistMax))
+        RaycastHit worldHit;
+        RaycastHit dioramaHit;
+
+        if (RayCastDiorama(out worldHit, out dioramaHit))
         {
-            if (!HitValidLayer(hit.transform.gameObject.layer))
-            {
-                return;
-            }
             Gizmos.color = Color.red;
-            Gizmos.DrawLine(ray.origin, hit.point);
-
-            //Calculate rotation of world cam to ray direction with regards to world cam forward
-            Quaternion worldRotation = Quaternion.FromToRotation(mainCam.transform.forward, ray.direction);
-            float angle = Quaternion.Angle(Quaternion.identity, worldRotation) * Mathf.Deg2Rad;
-            //Scale orignal rotation with relation to FoV of both.
-            float scale = dioramaCam.fieldOfView / mainCam.fieldOfView; // / angle;
-            Debug.Log(scale);
-            Debug.Log(dioramaCam.fieldOfView / mainCam.fieldOfView);
-            Vector3 euler = worldRotation.eulerAngles / scale;
-            Quaternion dioramaRotation = Quaternion.SlerpUnclamped(Quaternion.identity, worldRotation, scale);
-            Debug.Log(dioramaRotation);
-            //Get new direction
-            Vector3 dioramaRayDirection = dioramaRotation * dioramaCam.transform.forward;
-
-            Ray dioramaRay = new Ray(dioramaCam.transform.position, dioramaRayDirection);
-            Gizmos.DrawLine(dioramaRay.origin, dioramaRay.GetPoint(10));
+            Gizmos.DrawLine(mainCam.transform.position, worldHit.point);            
+            Gizmos.DrawLine(dioramaCam.transform.position, dioramaHit.point);
         }
     }
 }
