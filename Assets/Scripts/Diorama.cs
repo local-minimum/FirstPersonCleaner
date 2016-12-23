@@ -154,6 +154,21 @@ public class Diorama : MonoBehaviour {
         return false;
     }
 
+    public bool RayCastDiorama(RaycastHit worldHit, out RaycastHit dioramaHit)
+    {
+        if (!HitValidLayer(worldHit.transform.gameObject.layer))
+        {
+            dioramaHit = new RaycastHit();
+            return false;
+        }
+
+        //TODO: Something better maybe?
+        Vector3 pt = worldHit.transform.InverseTransformPoint(worldHit.point);
+        Ray dioramaRay = dioramaCam.ViewportPointToRay(new Vector2(pt.x + 0.5f, pt.y + 0.5f));
+
+        return Physics.Raycast(dioramaRay, out dioramaHit, dioramaRayDistMax, dioramaCam.cullingMask);
+    }
+
     void OnDrawGizmos()
     {
         if (mouseCtrl == null || dioramaCam == null)
