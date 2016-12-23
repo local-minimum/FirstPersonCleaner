@@ -89,6 +89,15 @@ public class MouseController : MonoBehaviour {
 
     MouseInteractionTypes interaction = MouseInteractionTypes.None;
 
+    static void SetLayerHierarchy(Transform node, int layer)
+    {
+        node.gameObject.layer = layer;
+        for (int i=0, l=node.childCount; i<l; i++)
+        {
+            SetLayerHierarchy(node.GetChild(i), layer);
+        }
+    }
+
     void Update()
     {
         if (playerCtrl.frozen)
@@ -96,10 +105,9 @@ public class MouseController : MonoBehaviour {
             return;
         }
 
-        Ray r;
         RaycastHit hit;
 
-        MouseInteractionTypes newInteraction = GetMouseHover(out r, out hit);
+        MouseInteractionTypes newInteraction = GetMouseHover(out hit);
         if (newInteraction != interaction)
         {
             if (newInteraction == MouseInteractionTypes.None) {
@@ -202,6 +210,7 @@ public class MouseController : MonoBehaviour {
                             dnd.transform.SetParent(target);
                             dnd.transform.rotation = target.rotation;
                             dnd.transform.position = target.position;
+                            SetLayerHierarchy(dnd.transform, target.gameObject.layer);
                             dndSounder.PlayOne();
                             if (OnMouseClickEvent != null)
                             {
@@ -237,6 +246,7 @@ public class MouseController : MonoBehaviour {
                             wetFloor.transform.SetParent(target);
                             wetFloor.transform.rotation = target.rotation;
                             wetFloor.transform.position = target.position;
+                            SetLayerHierarchy(wetFloor.transform, target.gameObject.layer);
                             wetSounderDown.PlayOne();
                             if (OnMouseClickEvent != null)
                             {
@@ -271,6 +281,8 @@ public class MouseController : MonoBehaviour {
                             towel.transform.SetParent(target);
                             towel.transform.rotation = target.rotation;
                             towel.transform.position = target.position;
+                            SetLayerHierarchy(towel.transform, target.gameObject.layer);
+                            
                             towelSounderDown.PlayOne();
                             if (OnMouseClickEvent != null)
                             {
@@ -311,25 +323,57 @@ public class MouseController : MonoBehaviour {
         }
     }
 
-    MouseInteractionTypes GetMouseHover(out Ray ray, out RaycastHit hit)
+    static bool HitValidLayer(int hitLayer, int maskLayer)
     {
-        ray = MouseRay;
-        if (Physics.Raycast(ray, out hit, 3, elevatorInteractions))
-        {
-            return MouseInteractionTypes.Elevator;
-        }
-        else if (Physics.Raycast(ray, out hit, 3, doorLayer))
+        return maskLayer == (maskLayer | (1 << hitLayer));
+    }
+
+    MouseInteractionTypes ResolveInteractionType(LayerMask hitLayer)
+    {
+        if (HitValidLayer(hitLayer, doorLayer))
         {
             return MouseInteractionTypes.Door;
         }
-        else if (Physics.Raycast(ray, out hit, 10, roomLayer))
+        else if (HitValidLayer(hitLayer, elevatorInteractions.value))
+        {
+            return MouseInteractionTypes.Elevator;
+        }
+        else if (HitValidLayer(hitLayer, roomLayer))
         {
             return MouseInteractionTypes.Room;
         }
-        else if (Physics.Raycast(ray, out hit, 10, workInstructionsLayer))
+        else if (HitValidLayer(hitLayer, workInstructionsLayer))
         {
             return MouseInteractionTypes.WorkOrder;
-        } else
+        }
+        else
+        {
+            return MouseInteractionTypes.None;
+        }
+    }
+
+    MouseInteractionTypes GetMouseHover(out RaycastHit hit)
+    {
+                
+        if (Physics.Raycast(MouseRay, out hit, 10))
+        {
+            Diorama diorama = hit.transform.GetComponent<Diorama>();
+            if (diorama)
+            {
+                RaycastHit dioramaHit;
+                if (diorama.RayCastDiorama(hit, out dioramaHit))
+                {
+                    hit = dioramaHit;
+                    return ResolveInteractionType(hit.transform.gameObject.layer);
+                } else {
+                    return MouseInteractionTypes.None;
+                }
+            } else
+            {
+                return ResolveInteractionType(hit.transform.gameObject.layer);
+            }
+        }
+        else
         {
             return MouseInteractionTypes.None;
         }

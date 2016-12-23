@@ -202,6 +202,11 @@ Prefab:
       propertyPath: m_LocalPosition.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 114840121985312650, guid: 80974223accd11048b420de67354cd0b,
+        type: 2}
+      propertyPath: roomLayer.m_Bits
+      value: 4293919232
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 80974223accd11048b420de67354cd0b, type: 2}
   m_IsPrefabParent: 0
@@ -366,7 +371,7 @@ Prefab:
     - target: {fileID: 114987143997253980, guid: 1ad95d80ab1c4f545b3f00f95fc5e7e4,
         type: 2}
       propertyPath: camFieldOfViewMode
-      value: 0
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 1ad95d80ab1c4f545b3f00f95fc5e7e4, type: 2}
