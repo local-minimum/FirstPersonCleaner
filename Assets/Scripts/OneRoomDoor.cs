@@ -57,6 +57,7 @@ public class OneRoomDoor : MonoBehaviour {
         {
             Room room = tile.RoomData;
             name = string.Format("Door {0}:{1}, {2}, {3}", room.level, room.row, room.col, direction);
+            neverOpened = false;
         }
 
         if (isOpen)
