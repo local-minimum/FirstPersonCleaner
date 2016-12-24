@@ -142,6 +142,7 @@ public class ImportRoom : MonoBehaviour {
 					matrix [row] [col] = room;
 					room.col = col;
 					room.row = row;
+                    room.level = level;
 					if (cell.StartsWith ("*")) {
 						startTile = room;
 						cell = cell.Replace ("*", "");
@@ -208,10 +209,11 @@ public class ImportRoom : MonoBehaviour {
 			corridor.transform.parent = transform;
 			corridor.transform.position = (new Vector3(x, 0, z));
 			var tile = corridor.GetComponent<CorridorTile> ();
-			room.corridorObject = corridor;
+
+            room.corridorObject = corridor;
 			room.corridorTile = tile;
-			tile.hasGlitch = room.HasGlitch;
-			tile.actions.AddRange (room.actions);
+
+            tile.Initiate(room);
 		}
 
 		foreach (var room in rooms) {

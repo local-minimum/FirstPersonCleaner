@@ -16,6 +16,7 @@ public class Room {
 
 	public int col;
 	public int row;
+    public int level;
 
 	public bool HasGlitch {
 		get {

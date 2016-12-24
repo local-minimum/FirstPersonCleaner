@@ -12,13 +12,15 @@ public class CorridorTile : MonoBehaviour {
 	[SerializeField]
     CorridorTile[] edges = new CorridorTile[4];
 
-	[SerializeField]
-	public List<Action> actions = new List<Action>();
-
     Vector3 offset = Vector3.up * 0.25f;
-	
-    [HideInInspector]
-	public bool hasGlitch;
+	    
+	public bool hasGlitch
+    {
+        get
+        {
+            return _roomData == null ? false : _roomData.HasGlitch;
+        }
+    }
 
     public bool HasDoor(OneRoomDoor door)
     {
@@ -40,6 +42,23 @@ public class CorridorTile : MonoBehaviour {
                     room.SoftCloseRoom();
                 }
             }
+        }
+    }
+
+    Room _roomData;
+
+    public void Initiate(Room room)
+    {
+        _roomData = room;
+
+
+    }
+
+    public List<Action> actions
+    {
+        get
+        {
+            return _roomData.actions;
         }
     }
 
