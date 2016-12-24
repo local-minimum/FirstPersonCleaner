@@ -330,7 +330,7 @@ public class PlayerWalkController : MonoBehaviour {
                         {
                             OnWalk(WalkInstruction.Forward, false, true, false);
                         }
-                        StartCoroutine(WalkOpenDoor(door, facingDirection));
+                        StartCoroutine(WalkOpenDoor(door));
                     }
                 }
                 else
@@ -404,7 +404,7 @@ public class PlayerWalkController : MonoBehaviour {
     }
 
 
-    IEnumerator<WaitForSeconds> WalkOpenDoor(OneRoomDoor door, Direction direction)
+    IEnumerator<WaitForSeconds> WalkOpenDoor(OneRoomDoor door)
     {
         transitioning = true;
         if (!door.IsOpen)

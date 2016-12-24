@@ -143,9 +143,8 @@ public class MouseController : MonoBehaviour {
                 OneRoomDoor door = hit.transform.GetComponentInParent<OneRoomDoor>();                
                 if (door && playerCtrl.CurrentTile.HasDoor(door))
                 {
-                                    
-                    OneRoomDoor lookDirDoor = playerCtrl.CurrentTile.GetDoor(playerCtrl.LookDirection);
-                    if (lookDirDoor == door && !door.IsOpen)
+                                                        
+                    if (door.direction == playerCtrl.LookDirection && !door.IsOpen)
                     {
                         if (playerCtrl.IsLookingIntoRoom)
                         {

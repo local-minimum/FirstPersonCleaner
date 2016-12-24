@@ -76,7 +76,7 @@ public class OneRoomDoor : MonoBehaviour {
     {
         get
         {
-            return direction;
+            return _direction;
         }
     }
 

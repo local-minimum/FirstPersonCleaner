@@ -62,6 +62,7 @@ public class CorridorTile : MonoBehaviour {
         for (int i = 0, l = doors.Length; i < l; i++)
         {
             doors[i].SetupDoor();
+            doorDirections[doors[i].direction] = doors[i];
         }
 
     }
@@ -95,17 +96,6 @@ public class CorridorTile : MonoBehaviour {
             return doorDirections[direction];
         }
 
-        Ray r = new Ray(playerPosition, GetLookDirection(direction));
-        RaycastHit hit;
-        if (Physics.Raycast(r, out hit, 4, MouseController.DoorLayer))
-        {
-            OneRoomDoor door = hit.transform.GetComponentInParent<OneRoomDoor>();
-            if (door != null && HasDoor(door))
-            {
-                doorDirections.Add(direction, door);
-                return door;
-            }            
-        } 
         return null;
     }
 
