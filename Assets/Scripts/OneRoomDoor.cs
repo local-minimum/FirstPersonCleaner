@@ -42,6 +42,8 @@ public class OneRoomDoor : MonoBehaviour {
         }
     }
 
+    bool neverOpened = true;
+
     void Start()
     {
         restingRotation = transform.rotation;
@@ -51,6 +53,12 @@ public class OneRoomDoor : MonoBehaviour {
 
     public bool OpenDoor(Direction direction)
     {
+        if (neverOpened)
+        {
+            Room room = tile.RoomData;
+            name = string.Format("Door {0}:{1}, {2}, {3}", room.level, room.row, room.col, direction);
+        }
+
         if (isOpen)
         {
             return false;

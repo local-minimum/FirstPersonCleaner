@@ -47,6 +47,14 @@ public class CorridorTile : MonoBehaviour {
 
     Room _roomData;
 
+    public Room RoomData
+    {
+        get
+        {
+            return _roomData;
+        }
+    }
+
     public void Initiate(Room room)
     {
         _roomData = room;
