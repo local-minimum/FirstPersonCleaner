@@ -157,7 +157,7 @@ public class MouseController : MonoBehaviour {
                             }
                         }
                         else {
-                            door.OpenDoor(playerCtrl.LookDirection);
+                            door.OpenDoor();
                             playerCtrl.LookIntoOneRoom();
                             if (OnMouseClickEvent != null)
                             {

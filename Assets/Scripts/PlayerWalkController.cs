@@ -409,7 +409,7 @@ public class PlayerWalkController : MonoBehaviour {
         transitioning = true;
         if (!door.IsOpen)
         {
-            door.OpenDoor(facingDirection);
+            door.OpenDoor();
 
         }
         LookIntoOneRoom();

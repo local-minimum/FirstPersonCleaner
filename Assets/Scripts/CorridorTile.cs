@@ -59,6 +59,10 @@ public class CorridorTile : MonoBehaviour {
     {
         _roomData = room;
 
+        for (int i = 0, l = doors.Length; i < l; i++)
+        {
+            doors[i].SetupDoor();
+        }
 
     }
 
@@ -206,7 +210,7 @@ public class CorridorTile : MonoBehaviour {
         }
     }
 
-    void Start()
+    void Awake()
     {
         doors = GetComponentsInChildren<OneRoomDoor>();
     }

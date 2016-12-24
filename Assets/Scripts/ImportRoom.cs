@@ -213,6 +213,7 @@ public class ImportRoom : MonoBehaviour {
             room.corridorObject = corridor;
 			room.corridorTile = tile;
 
+            //Must come last
             tile.Initiate(room);
 		}
 

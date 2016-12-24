@@ -66,6 +66,13 @@ public class Diorama : MonoBehaviour {
         SyncDioramaCamProperties(factor);
 	}
 
+    string doorName;
+
+    public void SetDoorName(string doorName)
+    {
+        this.doorName = doorName;
+    }
+
     float TranslateDioramaCam()
     {
         float factor = Vector3.Distance(dioramaReferenecPosition.position, sceneFocus.position) / Vector3.Distance(referenceWorldPosition.position, worldFocus.position);

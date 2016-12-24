@@ -41,24 +41,57 @@ public class OneRoomDoor : MonoBehaviour {
             return isOpen;
         }
     }
+    
+    Direction CalculateDirection()
+    {
 
-    bool neverOpened = true;
+        Vector3 offset = (transform.position - tile.playerPosition).normalized;
+        float OffDotNorth = Vector3.Dot(offset, Vector3.forward);
+        float OffDotEast = Vector3.Dot(offset, Vector3.right);
 
-    void Start()
+        if (Mathf.Abs(OffDotNorth) > Mathf.Abs(OffDotEast))
+        {
+            if (OffDotNorth > 0)
+            {
+                return Direction.North;
+            } else
+            {
+                return Direction.South;
+            }
+        } else
+        {
+            if (OffDotEast > 0)
+            {
+                return Direction.East;
+            } else
+            {
+                return Direction.West;
+            }
+        }
+    }
+
+    Direction _direction;
+
+    public Direction direction
+    {
+        get
+        {
+            return direction;
+        }
+    }
+
+    public void SetupDoor()
     {
         restingRotation = transform.rotation;
         tile = GetComponentInParent<CorridorTile>();
-        //col = GetComponentInChildren<Collider>();
+        _direction = CalculateDirection();
+        Room room = tile.RoomData;
+        name = string.Format("Door {0}:{1}, {2}, {3}", room.level, room.row, room.col, _direction);
+        diorama.SetDoorName(name);
     }
 
-    public bool OpenDoor(Direction direction)
+    public bool OpenDoor()
     {
-        if (neverOpened)
-        {
-            Room room = tile.RoomData;
-            name = string.Format("Door {0}:{1}, {2}, {3}", room.level, room.row, room.col, direction);
-            neverOpened = false;
-        }
 
         if (isOpen)
         {
@@ -72,7 +105,7 @@ public class OneRoomDoor : MonoBehaviour {
         else {
             if (room == null)
             {
-                SpawnRoom(direction);
+                SpawnRoom();
             }
             room.SetActive(true);
         }
@@ -82,8 +115,8 @@ public class OneRoomDoor : MonoBehaviour {
         activeLayer = gameObject.layer;
         gameObject.layer = 0;      
         //col.enabled = false;
-        rotationStart = Quaternion.AngleAxis((int)CorridorTile.GetRighDirection(direction) * 90, Vector3.up);
-        rotationTarget = Quaternion.AngleAxis((int)CorridorTile.GetInverseDirection(direction) * 90, Vector3.up);
+        rotationStart = Quaternion.AngleAxis((int)CorridorTile.GetRighDirection(_direction) * 90, Vector3.up);
+        rotationTarget = Quaternion.AngleAxis((int)CorridorTile.GetInverseDirection(_direction) * 90, Vector3.up);
         startOfRotationTime = Time.timeSinceLevelLoad;
         rotating = true;
         return true;
@@ -142,13 +175,13 @@ public class OneRoomDoor : MonoBehaviour {
         }
     }
 
-    void SpawnRoom(Direction direction)
+    void SpawnRoom()
     {
         room = Instantiate(roomPrefab);
-        room.transform.Rotate(Vector3.up, (int)direction * 90);
+        room.transform.Rotate(Vector3.up, (int)_direction * 90);
         Direction ortho;
-        CorridorTile.GetRotation(direction, true, out ortho);
-        room.transform.position = tile.transform.position + CorridorTile.GetLookDirection(direction) * 2.65f + CorridorTile.GetLookDirection(ortho) * 0.4f + Vector3.down * 0.5f;
+        CorridorTile.GetRotation(_direction, true, out ortho);
+        room.transform.position = tile.transform.position + CorridorTile.GetLookDirection(_direction) * 2.65f + CorridorTile.GetLookDirection(ortho) * 0.4f + Vector3.down * 0.5f;
         room.transform.SetParent(transform.parent);
     }
 
